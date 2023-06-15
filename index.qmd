@@ -1,88 +1,65 @@
----
-title: "Course title"
-output:
-  html_document:
-    toc: false
-    toc_float: false
----
+# **Welcome!**
 
+We developed a [Nextflow DSL2 workflow template](https://github.com/Sydney-Informatics-Hub/Nextflow_DSL2_template) and this user guide to aid beginners in developing their own Nextflow workflows. Here, we guide you through how to use our workflow template to develop your own Nextflow pipelines. 
 
-This is a training course aimed at (your target audience) to learn (your course).
+[Nextflow](https://www.nextflow.io/) is open source and scalable workflow management software for bioinformatics. It enables the development and running of integrated, reproducible workflows consisting of multiple processes, various environment management systems, scripting languages, and software packages. While Nextflow is designed to have a minimal learning curve as it doesn't require end users to learn new programming languages, its extensive capabilities, use of Groovy syntax, and [comprehensive documentation](https://www.nextflow.io/docs/latest/index.html) can be overwhelming for users who aren't well versed in programming and software development.  
 
+This user guide is under active development and will be updated progressively. 
 
-## Trainers
+## **How to use this guide**
 
-Have a list of the people delivering the course if it is needed. 
-However, this is subject to change so might be a good idea to not specifiy.
+This guide explains all aspects of using the workflow template, including: 
 
-Here's an example list.
-This is a good place to define what your preferred name is if you have one.
+#### **1. How to use the template on GitHub** 
 
-* Nathaniel (Nate) Butterworth
-* Darya Vanichkina
-* Kristian Maras
+Start [here]() for directions on how to set yourself up to use this template. This section provides step-by-step instructions to help you set up your local development environment and use the template files.
 
+#### **2. The template structure and components** 
 
-## Course pre-requisites and setup requirements
+Use the [template components]() section to familiarise yourself with the essential elements of the template including code base structure, directory organisation, configuration files, and how to modularise your workflow.
 
-Provide some sort of general description of what you should know and who this course is for. For example: 
+#### **3. Resource configuration**
 
-> No previous programming experience is required, but **Session 1 is a pre-requisite for the other sessions**. Training will be delivered online, so you will need access to a modern computer with a stable internet connection and around 5GB of storage space for data downloaded prior to the course. Participants are encouraged to setup a Python environment on their local computer (as per the [Setup Instructions](./setup.html) provided), but participation using other platforms/environments can be supported where necessary.
+The [resource configuration]() section can help you configure the resources required for running your workflow efficiently. The guide will cover topics such as specifying CPU and memory requirements, handling parallel execution, and integrating with high-performance computing (HPC) environments.
 
+#### **4. Guides for customising the template**
 
-## Venue
+In the [guides]() you will find various examples of scenarios you may come across when writing Nextflow code and developing your workflows. If you would like to contribute to this section, please submit a pull request. 
 
-Specifiy where the training will be, whether it is in person, online, or hybrid.
+#### **5. A hands-on tutorial** 
 
-Include a reminder about the location and time zone in which this course will be running.
-In almost all cases, our courses are delivered from Sydney and times are reported in AEDT (GMT+11).
+Get a feel for the template and how to use it with the [hands-on tutorial](). It walks you through a practical example that demonstrates the application of the workflow template. 
 
-#### Zoom etiquette and how we interact
+#### **6. Documentation and training resources**
 
-Include some sort of descripter about what is expected from attendees in terms of participation, and what sort of interaction they should expect. 
-This could also be moved to an about page. 
+The details contained within this user guide are limited, as such we strongly recommend you explore additional documentation and training resources. These resources serve as references for further exploration of Nextflow concepts, advanced topics, and community support.
 
-Here's an example for a zoom only online course:
+### **Attention newcomers!**
 
-> Sessions will be recorded for attendees only, and it is set up to only record the host shared screen and host audio. We will try and get these uploaded to this site as soon as possible. Please interrupt whenever you want! Ideally, have your camera on and interact as much as possible. There will be someone monitoring the chat-window with any questions you would like to post there.  Four hours is a long Zoom session so we have plenty of scheduled breaks combined with a mix of content to be delivered as demos, plus sections as independent exercises, but most of the course will be pretty-hands on with everyone writing their own code. We will use Zoom break-out rooms as needed with the Trainers and participants.
+If you are new to this template and/or Nextflow, we recommend you do with the following, before applying the template to your own workflow: 
 
+1. Familiarise yourself with Nextflow 
+2. Clone the template repository 
+3. Explore the template structure as you run through the hands-on exercise
+4. Review the workflow structure 
+5. Customise the resource configuration for your own needs 
 
-## Code of Conduct
+## **Who is the DSL2 template for?**
 
-As a University of Sydney course, we also want to make sure peopele are aware of our code of conduct.
-Feel free to move this to an about page as needed. 
+The DSL2 workflow template is suitable for: 
 
-Example standard Code of Conduct statement: 
+* Nextflow newcomers looking for a low barrier to entry, structured starting point, and guidance. 
+* Custom workflow developers looking for a simple scaffold which can be extended and modified as needed. 
+* Collaborative teams looking for a standard and consistent workflow code base structure. 
+* Scalable workflow developers looking for a scalable and reproducible solution for their data analysis and processing needs. 
 
-We expect all attendees of our training to follow our code of conduct, including bullying, harassment and discrimination prevention policies.
+It is *not* suitable for: 
 
-In order to foster a positive and professional learning environment we encourage the following kinds of behaviours at all our events and on our platforms:
+* Those wishing to create and contribute to public nf-core workflows, as it is not nf-core compatible. 
+* Those creating simple or single-task workflows with only a few tasks and minimal complexity. 
+* Those needing to rapidly prototype a workflow or perform exploratory analysis. 
+* Those with no previous command-line and bash experience. 
 
-* Use welcoming and inclusive language
-* Be respectful of different viewpoints and experiences
-* Gracefully accept constructive criticism
-* Focus on what is best for the community
-* Show courtesy and respect towards other community members
+## **Acknowledgements**
 
-Our full CoC, with incident reporting guidelines, is available [here]https://sydney-informatics-hub.github.io/codeofconduct/).
-
-
-
-## Schedule
-
-If your training includes multiple components, it is always nice to have a table with the schedule.
-With quarto we can make tables using markdown formating, like below.
-
-|  |  |
-| --- | :--- |
-| **Day 1** |
-| Morning | [Fundamentals](notebooks/01a-fundamentals.ipynb) |
-|   | [Example R Content](notebooks/01b_exampleRcontent.qmd) |
-| **Day 2** |
-| Morning | [Example MD Content](notebooks/01c_exampleMDcontent.md) |
-
-## Setup Instructions
-
-Link to the setup instructions if there are any, for example:
-
-> Please complete the [Setup Instructions](./setup.html) **before the course**. If you have any trouble, please get in contact with us ASAP.
+The Nextflow DSL2 template and accompanying materials were developed by the Sydney Informatics Hub, University of Sydney in partnership with the Australian BioCommons - Bring Your Own Data Platforms project (Australian Research Data Commons and NCRIS via Bioplatforms Australia). 

@@ -1,0 +1,52 @@
+# **The template**
+
+We developed this template to aid beginners in developing their own Nextflow workflows. The workflow code-base is organised into a number of different executable files and directories. This organisaiton promotes code modularity, reusability, maintainability, and clarity. We have provided a framework that allows users to customise and extend the workflow while adhering to code management best practices. Each executable file included in the template contains comments (indicated by `//`), links to relevant Nextflow documentation, and examples. To apply the template to your own workflows, you will need to replace examples with your own code. 
+
+## **Set up**
+
+Requirements: 
+
+* A GitHub account 
+* Installed on your chosen development environment: 
+  * Nextflow (>v20.10.0)
+  * Git 
+  * Singularity 
+
+### **Clone the template**
+
+1. Open the [DSL2 template repository](https://github.com/Sydney-Informatics-Hub/Nextflow_DSL2_template) on GitHub
+2. Select the <span style="color: green">Use this template</span> box and create a new repository 
+3. Name your repository, ending in `-nf` (this is required by cookiecutter gh action)
+4. Select the <span style="color: green">Create repository from template</span> box
+
+Explain what cookiecutter will do. 
+
+### **Download Nextflow**
+
+Depending on the system you're working on there are a few options for installing and running Nextflow including reproducible options like bioconda and Singularity. See [here](https://nf-co.re/usage/installation) for installation instructions. 
+
+Once you have installed Nextflow, you can configure it to run on your system. This template only provides the standard `nextflow.config` file. See [here](https://www.nextflow.io/blog/2021/nextflow-developer-environment.html) for some set up tips.
+
+## **Writing best-practice Nextflow code**
+
+This repository is structured as follows: 
+
+```
+Nextflow_DSL2_template
+├── LICENSE
+├── README.md
+├── cleanup
+├── config
+    ├── gadi.config
+│   ├── nimbus.config
+│   ├── setonix.config
+│   └── standard.config
+├── main.nf
+├── guides 
+├── modules
+│   ├── process1.nf
+│   └── process2.nf
+├── nextflow.config
+├── run_pipeline
+└── samples.txt
+```

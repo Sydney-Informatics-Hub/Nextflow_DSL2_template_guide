@@ -1,0 +1,27 @@
+# **Resources**
+
+## Nextflow documentation
+
+* [Nextflow user guide](https://www.nextflow.io/docs/latest/index.html)
+* [Nextflow quick start guide](https://www.nextflow.io/index.html#GetStarted) 
+* [Nextflow YouTube channel](https://www.youtube.com/c/Nextflow)  
+
+## Training
+
+* [Nextflow training workshop materials](https://training.nextflow.io/) 
+* [Customising nf-core workshop materials](https://sydney-informatics-hub.github.io/customising-nfcore-workshop/)
+* [Intro to Nextflow workflows](https://carpentries-incubator.github.io/workflows-nextflow/01-getting-started-with-nextflow/index.html)
+* [NF-camp tutorial converting rnaseq-nf pipeline to DSL2](https://github.com/nextflow-io/nfcamp-tutorial)  
+* [DSL2 modules tutorial video](https://www.youtube.com/watch?v=6k9lWewSBYc)  
+* [Intro to DSL2 video](https://www.youtube.com/watch?v=I-hunuzsh6A&t=658s)  
+* [Nextflow for data intensive pipelines from Pawsey Supercomputing Center](https://www.youtube.com/watch?v=bIRLbYPWHoM)
+* [A self-guided DSL2 tutorial](https://antunderwood.gitlab.io/bioinformant-blog/posts/building_a_dsl2_pipeline_in_nextflow/)  
+
+## nf-core
+
+* [Nextflow's nf-core pipelines](https://nf-co.re/)
+* [DSL2 pipeline structure walkthrough video from nf-core](https://www.youtube.com/watch?v=0xjc7PkF1Bc)
+
+## Australian BioCommons
+
+* [Australian BioCommons workflow documentation guidelines](https://github.com/AustralianBioCommons/doc_guidelines)

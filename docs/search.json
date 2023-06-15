@@ -9,58 +9,58 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Course title",
+    "title": "Nextflow DSL2 template user guide",
     "section": "",
-    "text": "This is a training course aimed at (your target audience) to learn (your course).\nAll materials copyright Sydney Informatics Hub, University of Sydney"
+    "text": "We developed a Nextflow DSL2 workflow template and this user guide to aid beginners in developing their own Nextflow workflows. Here, we guide you through how to use our workflow template to develop your own Nextflow pipelines.\nNextflow is open source and scalable workflow management software for bioinformatics. It enables the development and running of integrated, reproducible workflows consisting of multiple processes, various environment management systems, scripting languages, and software packages. While Nextflow is designed to have a minimal learning curve as it doesn’t require end users to learn new programming languages, its extensive capabilities, use of Groovy syntax, and comprehensive documentation can be overwhelming for users who aren’t well versed in programming and software development.\nThis user guide is under active development and will be updated progressively.\n\n\nThis guide explains all aspects of using the workflow template, including:\n\n\nStart here for directions on how to set yourself up to use this template. This section provides step-by-step instructions to help you set up your local development environment and use the template files.\n\n\n\nUse the template components section to familiarise yourself with the essential elements of the template including code base structure, directory organisation, configuration files, and how to modularise your workflow.\n\n\n\nThe resource configuration section can help you configure the resources required for running your workflow efficiently. The guide will cover topics such as specifying CPU and memory requirements, handling parallel execution, and integrating with high-performance computing (HPC) environments.\n\n\n\nIn the guides you will find various examples of scenarios you may come across when writing Nextflow code and developing your workflows. If you would like to contribute to this section, please submit a pull request.\n\n\n\nGet a feel for the template and how to use it with the hands-on tutorial. It walks you through a practical example that demonstrates the application of the workflow template.\n\n\n\nThe details contained within this user guide are limited, as such we strongly recommend you explore additional documentation and training resources. These resources serve as references for further exploration of Nextflow concepts, advanced topics, and community support.\n\n\n\nIf you are new to this template and/or Nextflow, we recommend you do with the following, before applying the template to your own workflow:\n\nFamiliarise yourself with Nextflow\nClone the template repository\nExplore the template structure as you run through the hands-on exercise\nReview the workflow structure\nCustomise the resource configuration for your own needs\n\n\n\n\n\nThe DSL2 workflow template is suitable for:\n\nNextflow newcomers looking for a low barrier to entry, structured starting point, and guidance.\nCustom workflow developers looking for a simple scaffold which can be extended and modified as needed.\nCollaborative teams looking for a standard and consistent workflow code base structure.\nScalable workflow developers looking for a scalable and reproducible solution for their data analysis and processing needs.\n\nIt is not suitable for:\n\nThose wishing to create and contribute to public nf-core workflows, as it is not nf-core compatible.\nThose creating simple or single-task workflows with only a few tasks and minimal complexity.\nThose needing to rapidly prototype a workflow or perform exploratory analysis.\nThose with no previous command-line and bash experience.\n\n\n\n\nThe Nextflow DSL2 template and accompanying materials were developed by the Sydney Informatics Hub, University of Sydney in partnership with the Australian BioCommons - Bring Your Own Data Platforms project (Australian Research Data Commons and NCRIS via Bioplatforms Australia)."
   },
   {
     "objectID": "index.html#trainers",
     "href": "index.html#trainers",
-    "title": "Course title",
+    "title": "Nextflow DSL2 template user guide",
     "section": "Trainers",
     "text": "Trainers\nHave a list of the people delivering the course if it is needed. However, this is subject to change so might be a good idea to not specifiy.\nHere’s an example list. This is a good place to define what your preferred name is if you have one.\n\nNathaniel (Nate) Butterworth\nDarya Vanichkina\nKristian Maras"
   },
   {
     "objectID": "index.html#course-pre-requisites-and-setup-requirements",
     "href": "index.html#course-pre-requisites-and-setup-requirements",
-    "title": "Course title",
+    "title": "Nextflow DSL2 template user guide",
     "section": "Course pre-requisites and setup requirements",
     "text": "Course pre-requisites and setup requirements\nProvide some sort of general description of what you should know and who this course is for. For example:\n\nNo previous programming experience is required, but Session 1 is a pre-requisite for the other sessions. Training will be delivered online, so you will need access to a modern computer with a stable internet connection and around 5GB of storage space for data downloaded prior to the course. Participants are encouraged to setup a Python environment on their local computer (as per the Setup Instructions provided), but participation using other platforms/environments can be supported where necessary."
   },
   {
     "objectID": "index.html#venue",
     "href": "index.html#venue",
-    "title": "Course title",
+    "title": "Nextflow DSL2 template user guide",
     "section": "Venue",
     "text": "Venue\nSpecifiy where the training will be, whether it is in person, online, or hybrid.\nInclude a reminder about the location and time zone in which this course will be running. In almost all cases, our courses are delivered from Sydney and times are reported in AEDT (GMT+11).\n\nZoom etiquette and how we interact\nInclude some sort of descripter about what is expected from attendees in terms of participation, and what sort of interaction they should expect. This could also be moved to an about page.\nHere’s an example for a zoom only online course:\n\nSessions will be recorded for attendees only, and it is set up to only record the host shared screen and host audio. We will try and get these uploaded to this site as soon as possible. Please interrupt whenever you want! Ideally, have your camera on and interact as much as possible. There will be someone monitoring the chat-window with any questions you would like to post there. Four hours is a long Zoom session so we have plenty of scheduled breaks combined with a mix of content to be delivered as demos, plus sections as independent exercises, but most of the course will be pretty-hands on with everyone writing their own code. We will use Zoom break-out rooms as needed with the Trainers and participants."
   },
   {
     "objectID": "index.html#code-of-conduct",
     "href": "index.html#code-of-conduct",
-    "title": "Course title",
+    "title": "Nextflow DSL2 template user guide",
     "section": "Code of Conduct",
     "text": "Code of Conduct\nAs a University of Sydney course, we also want to make sure peopele are aware of our code of conduct. Feel free to move this to an about page as needed.\nExample standard Code of Conduct statement:\nWe expect all attendees of our training to follow our code of conduct, including bullying, harassment and discrimination prevention policies.\nIn order to foster a positive and professional learning environment we encourage the following kinds of behaviours at all our events and on our platforms:\n\nUse welcoming and inclusive language\nBe respectful of different viewpoints and experiences\nGracefully accept constructive criticism\nFocus on what is best for the community\nShow courtesy and respect towards other community members\n\nOur full CoC, with incident reporting guidelines, is available [here]https://sydney-informatics-hub.github.io/codeofconduct/)."
   },
   {
     "objectID": "index.html#schedule",
     "href": "index.html#schedule",
-    "title": "Course title",
+    "title": "Nextflow DSL2 template user guide",
     "section": "Schedule",
     "text": "Schedule\nIf your training includes multiple components, it is always nice to have a table with the schedule. With quarto we can make tables using markdown formating, like below.\n\n\n\nDay 1\n\n\n\nMorning\nFundamentals\n\n\n\nExample R Content\n\n\nDay 2\n\n\n\nMorning\nExample MD Content"
   },
   {
     "objectID": "index.html#setup-instructions",
     "href": "index.html#setup-instructions",
-    "title": "Course title",
+    "title": "Nextflow DSL2 template user guide",
     "section": "Setup Instructions",
     "text": "Setup Instructions\nLink to the setup instructions if there are any, for example:\n\nPlease complete the Setup Instructions before the course. If you have any trouble, please get in contact with us ASAP."
   },
   {
     "objectID": "setup.html",
     "href": "setup.html",
-    "title": "Setup",
+    "title": "Use the template",
     "section": "",
-    "text": "1. Get a client\nThese are the setup instructions…\n\n\n\n\nAll materials copyright Sydney Informatics Hub, University of Sydney"
+    "text": "All materials copyright Sydney Informatics Hub, University of Sydney"
   },
   {
     "objectID": "notebooks/01a-fundamentals.html",
@@ -81,6 +81,90 @@
     "href": "notebooks/01b_exampleRcontent.html",
     "title": "Sydney Informatics Hub Course name",
     "section": "",
-    "text": "Sample R lesson\n\n\n\n\n\n\nChallenge 1\n\n\n\nHow can we make our lessons a bit more interactive??\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nHere’s some markdown code showing how to use markdown to do cool things in our quarto markdowns.\n\n::: callout-tip\n## Challenge 1\nHow can we make our lessons a bit more interactive??\n:::\n\n::: {.callout-caution collapse=\"true\"}\n## Solution\n\nWe can take advantage of cool markdown!\n\n:::\n\n\n\nYou can define sections in your quarto using html.\n<div class=\"questions\">\n</div>\nQuestions\n\nWhat can R do?\nHow do I do it?\nObjectives\n\nLearn the basic R commands\n\n# if using VSCode may been\n#install.packages(\"languageserver\")\nhist(mtcars$mpg)\n\n\n\n\nChallenge\nWrite a function to convert map scale. For example, on a 1:25,000 map (good for hiking!) the distance between two points is 15 cm. How far apart are these in real life? (3750 m).\n[Reminder: 15 cm * 25000 = 375000 cm = 3750 m]\nYour function should take as input two numbers: the distance on the map (in cm) and the second number of the scale and, i.e. calculate_distance(15, 25000) should return 375000\n\nSolution\n#Declare the name of the function\n# this is not a R example - but you get the idea!\ndef calculate_distance(distance_cm,scale):\n    '''calculates distance based on map and scale\n    returns: z\n    inputs: distance_cm,scale\n    distance_cm and scale are two integers\n    returns the product of distance_cm and scale\n    '''  \n    \n    return(distance_cm * scale)\nKey points\n\nYou can store things in R in variables\nLists can be used to store objects of different types\nLoops with for can be used to iterate over each object in a list\nFunctions are used to write (and debug) repetitive code once\nIndexing\n\n\nAll materials copyright Sydney Informatics Hub, University of Sydney"
+    "text": "Sample R lesson\n\n\n\n\n\n\nChallenge 1\n\n\n\nHow can we make our lessons a bit more interactive??\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nHere’s some markdown code showing how to use markdown to do cool things in our quarto markdowns.\n\n::: callout-tip\n## Challenge 1\nHow can we make our lessons a bit more interactive??\n:::\n\n::: {.callout-caution collapse=\"true\"}\n## Solution\n\nWe can take advantage of cool markdown!\n\n:::\n\n\n\nYou can define sections in your quarto using html.\n<div class=\"questions\">\n</div>\n\nQuestions\n\nWhat can R do?\nHow do I do it?\n\n\n\nObjectives\n\nLearn the basic R commands\n\n\n\n# if using VSCode may been\n#install.packages(\"languageserver\")\nhist(mtcars$mpg)\n\n\n\n\n\nChallenge\nWrite a function to convert map scale. For example, on a 1:25,000 map (good for hiking!) the distance between two points is 15 cm. How far apart are these in real life? (3750 m).\n[Reminder: 15 cm * 25000 = 375000 cm = 3750 m]\nYour function should take as input two numbers: the distance on the map (in cm) and the second number of the scale and, i.e. calculate_distance(15, 25000) should return 375000\n\n\nSolution\n\n#Declare the name of the function\n# this is not a R example - but you get the idea!\ndef calculate_distance(distance_cm,scale):\n    '''calculates distance based on map and scale\n    returns: z\n    inputs: distance_cm,scale\n    distance_cm and scale are two integers\n    returns the product of distance_cm and scale\n    '''  \n    \n    return(distance_cm * scale)\n\n\n\nKey points\n\nYou can store things in R in variables\nLists can be used to store objects of different types\nLoops with for can be used to iterate over each object in a list\nFunctions are used to write (and debug) repetitive code once\nIndexing\n\n\n\n\n\n\nAll materials copyright Sydney Informatics Hub, University of Sydney"
+  },
+  {
+    "objectID": "notebooks/main-nf.html",
+    "href": "notebooks/main-nf.html",
+    "title": "Nextflow DSL2 template user guide",
+    "section": "",
+    "text": "main.nf\n\nWhat’s in main.nf?\nThis is the primary pipeline script which pulls additional code for subprocesses from the module/ directory. It contains: * DSL-2 enable command * A customisable header for the pipeline that will be printed to the screen when run with nextflow run main.nf * A customisable help command for the pipeline that can be printed when nextflow run main.nf --help is run. This can also be customised to be run when default/required arguments are not provided. To do this, see the workflow help function. * Channel defintions to be included in the workflow. See here for more details.\n* The main workflow structure that determines which processes will be run in what order (based on input and outputs provided). This template only includes 2 templates. This is required by DSL-2 syntax. * A customisable statement printed to the screen upon workflow completion. The statement to be printed depends on whether the workflow completed successfully.\n\n\n\n\n\n\nAll materials copyright Sydney Informatics Hub, University of Sydney"
+  },
+  {
+    "objectID": "resources.html",
+    "href": "resources.html",
+    "title": "Nextflow DSL2 template user guide",
+    "section": "",
+    "text": "Nextflow user guide\nNextflow quick start guide\nNextflow YouTube channel\n\n\n\n\n\nNextflow training workshop materials\nCustomising nf-core workshop materials\nIntro to Nextflow workflows\nNF-camp tutorial converting rnaseq-nf pipeline to DSL2\n\nDSL2 modules tutorial video\n\nIntro to DSL2 video\n\nNextflow for data intensive pipelines from Pawsey Supercomputing Center\nA self-guided DSL2 tutorial\n\n\n\n\n\nNextflow’s nf-core pipelines\nDSL2 pipeline structure walkthrough video from nf-core\n\n\n\n\n\nAustralian BioCommons workflow documentation guidelines"
+  },
+  {
+    "objectID": "notebooks/hands-on.html",
+    "href": "notebooks/hands-on.html",
+    "title": "Nextflow DSL2 template user guide",
+    "section": "",
+    "text": "Hands on tutorial\n\n\n\n\n\nAll materials copyright Sydney Informatics Hub, University of Sydney"
+  },
+  {
+    "objectID": "notebooks/modues.html",
+    "href": "notebooks/modues.html",
+    "title": "Nextflow DSL2 template user guide",
+    "section": "",
+    "text": "Modules and processes\n\n\n\n\nAll materials copyright Sydney Informatics Hub, University of Sydney"
+  },
+  {
+    "objectID": "notebooks/workflow.html",
+    "href": "notebooks/workflow.html",
+    "title": "Nextflow DSL2 template user guide",
+    "section": "",
+    "text": "The workflow\n\n\n\n\n\nAll materials copyright Sydney Informatics Hub, University of Sydney"
+  },
+  {
+    "objectID": "notebooks/configs.html",
+    "href": "notebooks/configs.html",
+    "title": "Nextflow DSL2 template user guide",
+    "section": "",
+    "text": "config/ directory\n\nWhat’s in config/?\nThis directory contains various profile modules for configuring the pipeline run. Some care should be taken when using these config profiles. See the Nextflow documentation for more details.\nThis directory contains the following profiles: * nimbus: this profile is specific to Pawsey Supercomputing Centre’s Nimbus cloud. It enables the use of Docker. * standard: this is the default profile which runs Singularity. * setonix: this profile is specific to Pawsey Supercomputing Centre’s Setonix HPC. It enables the use of the SLURM job scheduler and Singularity.\n* gadi: this profile is specific to the National Computational Infrastructure’s Gadi HPC. It enables the use of the PBS Pro job scheduler and Singularity\n\n\n\n\n\n\nAll materials copyright Sydney Informatics Hub, University of Sydney"
+  },
+  {
+    "objectID": "notebooks/modules.html",
+    "href": "notebooks/modules.html",
+    "title": "Nextflow DSL2 template user guide",
+    "section": "",
+    "text": "modules/ directory\n\nWhat’s in modules/?\nThis directory contains all sub-workflows to be run with nextflow run main.nf. It is considered good practice to split out processes into separate .nf files and store them here, rather than including them all in the main.nf file. This directory is referenced in main.nf by using include {x} from ./modules/process. These process scripts currently contain all code to be run in the script: block.\nEach .nf script contains the process to be run, in addition to details of which container to be used, where to publish the output for the process.\n\n\n\n\n\n\nAll materials copyright Sydney Informatics Hub, University of Sydney"
+  },
+  {
+    "objectID": "notebooks/guides.html",
+    "href": "notebooks/guides.html",
+    "title": "Nextflow DSL2 template user guide",
+    "section": "",
+    "text": "Guides\n\n\n\n\n\nAll materials copyright Sydney Informatics Hub, University of Sydney"
+  },
+  {
+    "objectID": "notebooks/nextflow-config.html",
+    "href": "notebooks/nextflow-config.html",
+    "title": "Nextflow DSL2 template user guide",
+    "section": "",
+    "text": "nextflow.config\n\nWhat’s in nextflow.config?\nThis is the main configuration script that Nextflow looks for when you run nextflow run main.nf. It contains a number of property definitions that are used by the pipeline. A key feature of Nextflow is the ability to separate workflow implementation from the underlying execution platformm using this configuration file. Since we can add additional configuration files for different run environments (i.e. job schedulers, use of singularity vs bioconda) each configuration file can contain conflicting settings and parameters listed in this file can be overwritten in the run command by specifying relevant commands. See here for details on the heirarchy of confuration files. This file contains:\n\nMainfest for defining some metadata including authorship, link to the repo, workflow version, etc\nMandated minimal version of Nextflow that can be used to run this pipeline\nResume function that allows the pipeline to start up at the last successful process if the run fails part way through (currently enabled)\nVarious profile definitions that can be activated when launching a pipeline. These can be used together, depending on their requirements. We can define various profiles depending on the system you’re using. See here for more details on what sorts of things can be included here.\nDefault parameters for running the pipeline. These include default file names, containers, paths, etc. These can be overwritten when launching the pipeline.\nCustomisable workflow run info reports with dag{}, report{}, timeline{}, and trace{}. You can specify where to output these run summary files.\n\n\n\n\n\n\n\nAll materials copyright Sydney Informatics Hub, University of Sydney"
+  },
+  {
+    "objectID": "notebooks/configuration.html",
+    "href": "notebooks/configuration.html",
+    "title": "Nextflow DSL2 template user guide",
+    "section": "",
+    "text": "Resource configuration\n\n\n\n\n\nAll materials copyright Sydney Informatics Hub, University of Sydney"
+  },
+  {
+    "objectID": "template.html",
+    "href": "template.html",
+    "title": "Nextflow DSL2 template user guide",
+    "section": "",
+    "text": "We developed this template to aid beginners in developing their own Nextflow workflows. The workflow code-base is organised into a number of different executable files and directories. This organisaiton promotes code modularity, reusability, maintainability, and clarity. We have provided a framework that allows users to customise and extend the workflow while adhering to code management best practices. Each executable file included in the template contains comments (indicated by //), links to relevant Nextflow documentation, and examples. To apply the template to your own workflows, you will need to replace examples with your own code.\n\n\nRequirements:\n\nA GitHub account\nInstalled on your chosen development environment:\n\nNextflow (>v20.10.0)\nGit\nSingularity\n\n\n\n\n\nOpen the DSL2 template repository on GitHub\nSelect the Use this template box and create a new repository\nName your repository, ending in -nf (this is required by cookiecutter gh action)\nSelect the Create repository from template box\n\nExplain what cookiecutter will do.\n\n\n\nDepending on the system you’re working on there are a few options for installing and running Nextflow including reproducible options like bioconda and Singularity. See here for installation instructions.\nOnce you have installed Nextflow, you can configure it to run on your system. This template only provides the standard nextflow.config file. See here for some set up tips.\n\n\n\n\nThis repository is structured as follows:\nNextflow_DSL2_template\n├── LICENSE\n├── README.md\n├── cleanup\n├── config\n    ├── gadi.config\n│   ├── nimbus.config\n│   ├── setonix.config\n│   └── standard.config\n├── main.nf\n├── guides \n├── modules\n│   ├── process1.nf\n│   └── process2.nf\n├── nextflow.config\n├── run_pipeline\n└── samples.txt"
+  },
+  {
+    "objectID": "notebooks/software.html",
+    "href": "notebooks/software.html",
+    "title": "Nextflow DSL2 template user guide",
+    "section": "",
+    "text": "Software management\n\n\n\n\n\nAll materials copyright Sydney Informatics Hub, University of Sydney"
   }
 ]

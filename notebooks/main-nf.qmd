@@ -1,0 +1,11 @@
+# **`main.nf`**
+
+### What's in `main.nf`? 
+
+This is the primary pipeline script which pulls additional code for subprocesses from the `module/` directory. It contains: 
+* DSL-2 enable command 
+* A customisable header for the pipeline that will be printed to the screen when run with `nextflow run main.nf` 
+* A customisable help command for the pipeline that can be printed when `nextflow run main.nf --help` is run. This can also be customised to be run when default/required arguments are not provided. To do this, see the `workflow` help function. 
+* Channel defintions to be included in the workflow. See [here](https://www.nextflow.io/docs/latest/dsl2.html#channel-forking) for more details.  
+* The main workflow structure that determines which processes will be run in what order (based on input and outputs provided). This template only includes 2 templates. This is required by DSL-2 syntax. 
+* A customisable statement printed to the screen upon workflow completion. The statement to be printed depends on whether the workflow completed successfully. 

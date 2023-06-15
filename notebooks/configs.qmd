@@ -1,0 +1,11 @@
+# `config/` directory
+
+### What's in `config/`? 
+
+This directory contains various profile modules for configuring the pipeline run. Some care should be taken when using these config profiles. See the [Nextflow documentation](https://nextflow.io/docs/latest/config.html#config-profiles) for more details.
+
+This directory contains the following profiles:
+* `nimbus`: this profile is specific to Pawsey Supercomputing Centre's Nimbus cloud. It enables the use of Docker. 
+* `standard`: this is the default profile which runs Singularity.
+* `setonix`: this profile is specific to Pawsey Supercomputing Centre's Setonix HPC. It enables the use of the SLURM job scheduler and Singularity.  
+* `gadi`: this profile is specific to the National Computational Infrastructure's Gadi HPC. It enables the use of the PBS Pro job scheduler and Singularity 
