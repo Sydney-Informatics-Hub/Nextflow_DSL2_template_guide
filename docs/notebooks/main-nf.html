@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Nextflow DSL2 template user guide – main-nf</title>
+<title>Nextflow DSL2 template user guide - main.nf</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -71,7 +134,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Nextflow DSL2 template user guide</h1>
+      <h1 class="quarto-secondary-nav-title"><code>main.nf</code></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -104,12 +167,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../setup.html" class="sidebar-item-text sidebar-link">Use the template</a>
+  <a href="../template.html" class="sidebar-item-text sidebar-link"><strong>The template</strong></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Template components</a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true"><strong>Template components</strong></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -117,12 +180,12 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notebooks/main-nf.html" class="sidebar-item-text sidebar-link active"><strong><code>main.nf</code></strong></a>
+  <a href="../notebooks/main-nf.html" class="sidebar-item-text sidebar-link active"><code>main.nf</code></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notebooks/nextflow-config.html" class="sidebar-item-text sidebar-link"><strong><code>nextflow.config</code></strong></a>
+  <a href="../notebooks/nextflow-config.html" class="sidebar-item-text sidebar-link"><code>nextflow.config</code></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -144,12 +207,17 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notebooks/hands-on.html" class="sidebar-item-text sidebar-link">Hands on exercise</a>
+  <a href="../notebooks/software.html" class="sidebar-item-text sidebar-link"><strong>Software management</strong></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notebooks/guides.html" class="sidebar-item-text sidebar-link">Guides</a>
+  <a href="../notebooks/hands-on.html" class="sidebar-item-text sidebar-link"><strong>Hands on tutorial</strong></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notebooks/guides.html" class="sidebar-item-text sidebar-link"><strong>Guides</strong></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -165,14 +233,107 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content column-page-right" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><code>main.nf</code></h1>
+</div>
 
 
-<section id="main.nf" class="level1">
-<h1><strong><code>main.nf</code></strong></h1>
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>This is the primary script file or entry point for defining and executing a Nextflow workflow. The <code>main.nf</code> script contains the workflow’s structure, processes, and channels. This file doesn’t have to be called <code>main.nf</code> but this is common practice in Nextflow.</p>
 <section id="whats-in-main.nf" class="level3">
-<h3 class="anchored" data-anchor-id="whats-in-main.nf">What’s in <code>main.nf</code>?</h3>
-<p>This is the primary pipeline script which pulls additional code for subprocesses from the <code>module/</code> directory. It contains: * DSL-2 enable command * A customisable header for the pipeline that will be printed to the screen when run with <code>nextflow run main.nf</code> * A customisable help command for the pipeline that can be printed when <code>nextflow run main.nf --help</code> is run. This can also be customised to be run when default/required arguments are not provided. To do this, see the <code>workflow</code> help function. * Channel defintions to be included in the workflow. See <a href="https://www.nextflow.io/docs/latest/dsl2.html#channel-forking">here</a> for more details.<br>
-* The main workflow structure that determines which processes will be run in what order (based on input and outputs provided). This template only includes 2 templates. This is required by DSL-2 syntax. * A customisable statement printed to the screen upon workflow completion. The statement to be printed depends on whether the workflow completed successfully.</p>
+<h3 class="anchored" data-anchor-id="whats-in-main.nf"><strong>What’s in <code>main.nf</code>?</strong></h3>
+<p>This file contains the following essentials:</p>
+<ul>
+<li>Process definitions</li>
+<li>Channel definitions</li>
+<li>Workflow structure</li>
+</ul>
+<section id="processes" class="level4">
+<h4 class="anchored" data-anchor-id="processes"><strong>Processes</strong></h4>
+<p>Consider processes as individual units of work or steps to be executed by a workflow. While you can opt to define all processes within the <code>main.nf</code> script (like <a href="https://github.com/nextflow-io/rnaseq-nf/blob/3b5b49f/main.nf">here</a>), we have chosen to focus on modularity with this template. As such, processes inside the template are saved as individual scripts inside the <code>modules/</code> directory and <a href="https://training.nextflow.io/basic_training/modules/#importing-modules">imported</a> into the <code>main.nf</code> script:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>include { processName } from './modules/moduleName'</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Each process is also specified again inside the <code>workflow{}</code> scope along with its inputs. See the <a href=""><code>modules/</code> directory</a> section for details on how process modules connect to their definitions inside the <code>main.nf</code>.</p>
+</section>
+<section id="channels" class="level4">
+<h4 class="anchored" data-anchor-id="channels"><strong>Channels</strong></h4>
+<p>There are lots of ways to define and apply <a href="https://training.nextflow.io/basic_training/channels/">channels in Nextflow</a>. In Nextflow, channels are essential for connecting tasks to one another in the workflow definition. Channels are defined within the workflow scope in the workflow template. In the template, we’ve defined an example channel called <em>input</em> that uses the <code>fromPath()</code> factory to capture a parameterised input file so users can provide their own custom input files to the workflow.</p>
+<p>Observe how the input channel is consumed by process1 below:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>workflow {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    input = Channel.fromPath("${params.input}")</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    process1(input)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Sometimes you will need to apply methods called <a href="https://training.nextflow.io/basic_training/operators/#basic-example">operators</a> to transform data inside channels. For example, here we used a combination of basic operators to:</p>
+<ol type="1">
+<li>Split rows into different columns (<a href="https://www.nextflow.io/docs/latest/operator.html#splitcsv">.splitCsv</a>)</li>
+<li>Group those split fields for each row to pair a specific file to a specific sample (<a href="https://www.nextflow.io/docs/latest/operator.html#map">.map</a>)</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>input = checkInputs.out</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    .splitCsv(header: true, sep:"\t")</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    .map { row -&gt; tuple(row.sampleID, file(row.bam))}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="the-workflow" class="level4">
+<h4 class="anchored" data-anchor-id="the-workflow"><strong>The workflow</strong></h4>
+<p>The <code>workflow{}</code> scope contains all components required to invoke one or more processes. In the template, we’ve used an if else loop to first invoke a help command to ensure the workflow is being run with the correct parameters and then run the processes imported using the <a href="https://training.nextflow.io/basic_training/modules/#importing-modules"><code>include</code> scope</a>.</p>
+<p>Inside the template, two example processes and their inputs/outputs are connected as:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>workflow {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    input = Channel.fromPath("${params.input}")</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    // Run process 1 </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    processName1(input)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    // Run process 2 which takes output of process 1 </span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    processName2(processOne.out.File)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Workflows can be structured with more flexibility and complexity, see here for <a href="https://training.nextflow.io/basic_training/modules/#workflow-definition">some examples</a>.</p>
+</section>
+<section id="additional-features" class="level4">
+<h4 class="anchored" data-anchor-id="additional-features"><strong>Additional features</strong></h4>
+<p>Some additional features that we have provided in the <code>main.nf</code> file are intended to make your workflows easier to run and troubleshoot. They are not currently well documented in the Nextflow user guide. We have used Nextflow’s interpretation of the <a href="">Groovy logger function</a> to print messages to the screen to make the workflow more interactive and clarify execution. The log functions we have used include the following and can be removed without affecting the workflow execution.</p>
+<p><strong>A customisable execution message</strong></p>
+<p>This will be printed to the screen when the workflow is run. Edit the text inside the header text block:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>log.info """\</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    YOU CAN PUT ANYTHING YOU WANT IN HERE </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>""".stripIndent()`</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Some suggestions for things to include here:</p>
+<ul>
+<li>The name of your workflow</li>
+<li>A DOI for citation purposes</li>
+<li>Print specified parameters</li>
+</ul>
+<p><strong>A customisable help message</strong></p>
+<p>This will be printed to the screen when the <code>--help</code> parameter is used or a required parameter is not supplied. You can edit the message to be printed inside the help message text block:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>def helpMessage() {</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    log.info"""</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        YOU CAN PUT ANYTHING YOU WANT IN HERE </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    """.stripIndent()</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Some suggestions to include here:</p>
+<ul>
+<li>The suggested run command</li>
+<li>Required parameters and a short explainer</li>
+<li>Optional parameters and a short explainer</li>
+</ul>
+<p><strong>A customisable completion message</strong></p>
+<p>This will be printed to the screen when the workflow has finished running. You can edit the message to be printed inside the summary message block:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>workflow.onComplete {</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>summary = """</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    YOU CAN PUT ANYTHING YOU WANT IN HERE </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  """</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>println summary</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>

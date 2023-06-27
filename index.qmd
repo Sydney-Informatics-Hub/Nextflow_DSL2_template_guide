@@ -1,4 +1,7 @@
-# **Welcome!**
+---
+title: '**Welcome!**'
+from: markdown+emoji
+---
 
 We developed a [Nextflow DSL2 workflow template](https://github.com/Sydney-Informatics-Hub/Nextflow_DSL2_template) and this user guide to aid beginners in developing their own Nextflow workflows. Here, we guide you through how to use our workflow template to develop your own Nextflow pipelines. 
 
@@ -34,15 +37,16 @@ Get a feel for the template and how to use it with the [hands-on tutorial](). It
 
 The details contained within this user guide are limited, as such we strongly recommend you explore additional documentation and training resources. These resources serve as references for further exploration of Nextflow concepts, advanced topics, and community support.
 
-### **Attention newcomers!**
-
-If you are new to this template and/or Nextflow, we recommend you do with the following, before applying the template to your own workflow: 
+::: {.callout-tip}
+## **Attention newcomers!**
+If you are new to this template and/or Nextflow, we recommend you do the following before applying the template to your own workflow: 
 
 1. Familiarise yourself with Nextflow 
 2. Clone the template repository 
 3. Explore the template structure as you run through the hands-on exercise
 4. Review the workflow structure 
 5. Customise the resource configuration for your own needs 
+:::
 
 ## **Who is the DSL2 template for?**
 

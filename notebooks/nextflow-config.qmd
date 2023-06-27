@@ -1,8 +1,9 @@
-# **`nextflow.config`**
+# `nextflow.config`
 
-### What's in `nextflow.config`? 
+### **What's in `nextflow.config`?** 
 
-This is the main configuration script that Nextflow looks for when you run `nextflow run main.nf`. It contains a number of property definitions that are used by the pipeline. A key feature of Nextflow is the ability to separate workflow implementation from the underlying execution platformm using this configuration file. Since we can add additional configuration files for different run environments (i.e. job schedulers, use of singularity vs bioconda) each configuration file can contain conflicting settings and parameters listed in this file can be overwritten in the run command by specifying relevant commands. See [here](https://www.nextflow.io/docs/latest/config.html#configuration-file) for details on the heirarchy of confuration files. This file contains: 
+This is the configuration script that Nextflow looks for when you run `nextflow run main.nf`. It contains a number of property definitions that are used by the pipeline. A key feature of Nextflow is the ability to separate workflow implementation from the underlying execution platformm using this configuration file. Since we can add additional configuration files for different run environments (i.e. job schedulers, use of singularity vs bioconda) each configuration file can contain conflicting settings and parameters listed in this file can be overwritten in the run command by specifying relevant commands. See [here](https://www.nextflow.io/docs/latest/config.html#configuration-file) for details on the heirarchy of confuration files. This file contains: 
+
 
 * Mainfest for defining some metadata including authorship, link to the repo, workflow version, etc 
 * Mandated minimal version of Nextflow that can be used to run this pipeline 

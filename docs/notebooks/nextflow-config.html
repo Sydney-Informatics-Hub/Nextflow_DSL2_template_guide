@@ -104,12 +104,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../setup.html" class="sidebar-item-text sidebar-link">Use the template</a>
+  <a href="../template.html" class="sidebar-item-text sidebar-link"><strong>The template</strong></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Template components</a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true"><strong>Template components</strong></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -117,12 +117,12 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notebooks/main-nf.html" class="sidebar-item-text sidebar-link"><strong><code>main.nf</code></strong></a>
+  <a href="../notebooks/main-nf.html" class="sidebar-item-text sidebar-link"><code>main.nf</code></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notebooks/nextflow-config.html" class="sidebar-item-text sidebar-link active"><strong><code>nextflow.config</code></strong></a>
+  <a href="../notebooks/nextflow-config.html" class="sidebar-item-text sidebar-link active"><code>nextflow.config</code></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -144,12 +144,17 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notebooks/hands-on.html" class="sidebar-item-text sidebar-link">Hands on exercise</a>
+  <a href="../notebooks/software.html" class="sidebar-item-text sidebar-link"><strong>Software management</strong></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notebooks/guides.html" class="sidebar-item-text sidebar-link">Guides</a>
+  <a href="../notebooks/hands-on.html" class="sidebar-item-text sidebar-link"><strong>Hands on tutorial</strong></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notebooks/guides.html" class="sidebar-item-text sidebar-link"><strong>Guides</strong></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -168,10 +173,10 @@ ul.task-list li input[type="checkbox"] {
 
 
 <section id="nextflow.config" class="level1">
-<h1><strong><code>nextflow.config</code></strong></h1>
+<h1><code>nextflow.config</code></h1>
 <section id="whats-in-nextflow.config" class="level3">
-<h3 class="anchored" data-anchor-id="whats-in-nextflow.config">What’s in <code>nextflow.config</code>?</h3>
-<p>This is the main configuration script that Nextflow looks for when you run <code>nextflow run main.nf</code>. It contains a number of property definitions that are used by the pipeline. A key feature of Nextflow is the ability to separate workflow implementation from the underlying execution platformm using this configuration file. Since we can add additional configuration files for different run environments (i.e.&nbsp;job schedulers, use of singularity vs bioconda) each configuration file can contain conflicting settings and parameters listed in this file can be overwritten in the run command by specifying relevant commands. See <a href="https://www.nextflow.io/docs/latest/config.html#configuration-file">here</a> for details on the heirarchy of confuration files. This file contains:</p>
+<h3 class="anchored" data-anchor-id="whats-in-nextflow.config"><strong>What’s in <code>nextflow.config</code>?</strong></h3>
+<p>This is the configuration script that Nextflow looks for when you run <code>nextflow run main.nf</code>. It contains a number of property definitions that are used by the pipeline. A key feature of Nextflow is the ability to separate workflow implementation from the underlying execution platformm using this configuration file. Since we can add additional configuration files for different run environments (i.e.&nbsp;job schedulers, use of singularity vs bioconda) each configuration file can contain conflicting settings and parameters listed in this file can be overwritten in the run command by specifying relevant commands. See <a href="https://www.nextflow.io/docs/latest/config.html#configuration-file">here</a> for details on the heirarchy of confuration files. This file contains:</p>
 <ul>
 <li>Mainfest for defining some metadata including authorship, link to the repo, workflow version, etc</li>
 <li>Mandated minimal version of Nextflow that can be used to run this pipeline</li>

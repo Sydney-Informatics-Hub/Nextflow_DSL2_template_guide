@@ -1,1 +1,4 @@
-# **Resource configuration**
+---
+title: 'Resource configuration'
+from: markdown+emoji
+---

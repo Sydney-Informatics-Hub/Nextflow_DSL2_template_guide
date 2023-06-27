@@ -1,11 +1,122 @@
-# **`main.nf`**
+---
+title: '`main.nf`'
+from: markdown+emoji
+---
 
-### What's in `main.nf`? 
+This is the primary script file or entry point for defining and executing a Nextflow workflow. The `main.nf` script contains the workflow's structure, processes, and channels. This file doesn't have to be called `main.nf` but this is common practice in Nextflow. 
 
-This is the primary pipeline script which pulls additional code for subprocesses from the `module/` directory. It contains: 
-* DSL-2 enable command 
-* A customisable header for the pipeline that will be printed to the screen when run with `nextflow run main.nf` 
-* A customisable help command for the pipeline that can be printed when `nextflow run main.nf --help` is run. This can also be customised to be run when default/required arguments are not provided. To do this, see the `workflow` help function. 
-* Channel defintions to be included in the workflow. See [here](https://www.nextflow.io/docs/latest/dsl2.html#channel-forking) for more details.  
-* The main workflow structure that determines which processes will be run in what order (based on input and outputs provided). This template only includes 2 templates. This is required by DSL-2 syntax. 
-* A customisable statement printed to the screen upon workflow completion. The statement to be printed depends on whether the workflow completed successfully. 
+### **What's in `main.nf`?** 
+
+This file contains the following essentials: 
+
+* Process definitions 
+* Channel definitions
+* Workflow structure 
+
+#### **Processes** 
+
+Consider processes as individual units of work or steps to be executed by a workflow. While you can opt to define all processes within the `main.nf` script (like [here](https://github.com/nextflow-io/rnaseq-nf/blob/3b5b49f/main.nf)), we have chosen to focus on modularity with this template. As such, processes inside the template are saved as individual scripts inside the `modules/` directory and [imported](https://training.nextflow.io/basic_training/modules/#importing-modules) into the `main.nf` script: 
+
+```default
+include { processName } from './modules/moduleName'
+```
+
+Each process is also specified again inside the `workflow{}` scope along with its inputs. See the [`modules/` directory]() section for details on how process modules connect to their definitions inside the `main.nf`. 
+
+#### **Channels** 
+
+There are lots of ways to define and apply [channels in Nextflow](https://training.nextflow.io/basic_training/channels/). In Nextflow, channels are essential for connecting tasks to one another in the workflow definition. Channels are defined within the workflow scope in the workflow template. In the template, we've defined an example channel called *input* that uses the `fromPath()` factory to capture a parameterised input file so users can provide their own custom input files to the workflow. 
+
+Observe how the input channel is consumed by process1 below:   
+
+```default
+workflow {
+    input = Channel.fromPath("${params.input}")
+
+    process1(input)
+}
+```
+
+Sometimes you will need to apply methods called [operators](https://training.nextflow.io/basic_training/operators/#basic-example) to transform data inside channels. For example, here we used a combination of basic operators to: 
+
+1. Split rows into different columns ([.splitCsv](https://www.nextflow.io/docs/latest/operator.html#splitcsv))
+2. Group those split fields for each row to pair a specific file to a specific sample ([.map](https://www.nextflow.io/docs/latest/operator.html#map))
+
+```default
+input = checkInputs.out
+    .splitCsv(header: true, sep:"\t")
+    .map { row -> tuple(row.sampleID, file(row.bam))}
+```
+
+#### **The workflow** 
+
+The `workflow{}` scope contains all components required to invoke one or more processes. In the template, we've used an if else loop to first invoke a help command to ensure the workflow is being run with the correct parameters and then run the processes imported using the [`include` scope](https://training.nextflow.io/basic_training/modules/#importing-modules). 
+
+Inside the template, two example processes and their inputs/outputs are connected as: 
+
+```default
+workflow {
+
+    input = Channel.fromPath("${params.input}")
+
+    // Run process 1 
+	processName1(input)
+	
+    // Run process 2 which takes output of process 1 
+	processName2(processOne.out.File)
+}
+```
+
+Workflows can be structured with more flexibility and complexity, see here for [some examples](https://training.nextflow.io/basic_training/modules/#workflow-definition). 
+
+#### **Additional features** 
+
+Some additional features that we have provided in the `main.nf` file are intended to make your workflows easier to run and troubleshoot. They are not currently well documented in the Nextflow user guide. We have used Nextflow's interpretation of the [Groovy logger function]() to print messages to the screen to make the workflow more interactive and clarify execution. The log functions we have used include the following and can be removed without affecting the workflow execution.  
+
+**A customisable execution message** 
+
+This will be printed to the screen when the workflow is run. Edit the text inside the header text block:
+
+```default
+log.info """\
+    YOU CAN PUT ANYTHING YOU WANT IN HERE 
+""".stripIndent()`
+```
+
+Some suggestions for things to include here: 
+
+* The name of your workflow 
+* A DOI for citation purposes 
+* Print specified parameters
+
+
+**A customisable help message**
+
+This will be printed to the screen when the `--help` parameter is used or a required parameter is not supplied. You can edit the message to be printed inside the help message text block:
+
+```default
+def helpMessage() {
+    log.info"""
+        YOU CAN PUT ANYTHING YOU WANT IN HERE 
+    """.stripIndent()
+}
+```
+
+Some suggestions to include here: 
+
+* The suggested run command 
+* Required parameters and a short explainer 
+* Optional parameters and a short explainer 
+
+**A customisable completion message**
+
+This will be printed to the screen when the workflow has finished running. You can edit the message to be printed inside the summary message block:
+
+```default
+workflow.onComplete {
+summary = """
+    YOU CAN PUT ANYTHING YOU WANT IN HERE 
+  """
+println summary
+}
+```

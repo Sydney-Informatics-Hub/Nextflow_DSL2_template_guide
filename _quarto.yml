@@ -10,11 +10,12 @@ website:
     contents: 
       - index.qmd
       - template.qmd
-      - section: "Template components"
+      - section: "**Template components**"
         contents:
           - notebooks/main-nf.qmd
           - notebooks/nextflow-config.qmd
           - notebooks/modules.qmd
+          - notebooks/bin.qmd
           - notebooks/configs.qmd
       - notebooks/configuration.qmd
       - notebooks/software.qmd

@@ -1,0 +1,3 @@
+# `bin/` directory
+
+### What should go in `bin/`? 

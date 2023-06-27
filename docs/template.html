@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Nextflow DSL2 template user guide – template</title>
+<title>Nextflow DSL2 template user guide - The template</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -71,7 +134,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Nextflow DSL2 template user guide</h1>
+      <h1 class="quarto-secondary-nav-title"><strong>The template</strong></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -109,7 +172,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Template components</a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true"><strong>Template components</strong></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -117,17 +180,22 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./notebooks/main-nf.html" class="sidebar-item-text sidebar-link"><strong><code>main.nf</code></strong></a>
+  <a href="./notebooks/main-nf.html" class="sidebar-item-text sidebar-link"><code>main.nf</code></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./notebooks/nextflow-config.html" class="sidebar-item-text sidebar-link"><strong><code>nextflow.config</code></strong></a>
+  <a href="./notebooks/nextflow-config.html" class="sidebar-item-text sidebar-link"><code>nextflow.config</code></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./notebooks/modules.html" class="sidebar-item-text sidebar-link"><code>modules/</code> directory</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebooks/bin.html" class="sidebar-item-text sidebar-link"><code>bin/</code> directory</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -139,7 +207,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./notebooks/configuration.html" class="sidebar-item-text sidebar-link"><strong>Resource configuration</strong></a>
+  <a href="./notebooks/configuration.html" class="sidebar-item-text sidebar-link">Resource configuration</a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -170,11 +238,33 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content column-page-right" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><strong>The template</strong></h1>
+</div>
 
 
-<section id="the-template" class="level1">
-<h1><strong>The template</strong></h1>
-<p>We developed this template to aid beginners in developing their own Nextflow workflows. The workflow code-base is organised into a number of different executable files and directories. This organisaiton promotes code modularity, reusability, maintainability, and clarity. We have provided a framework that allows users to customise and extend the workflow while adhering to code management best practices. Each executable file included in the template contains comments (indicated by <code>//</code>), links to relevant Nextflow documentation, and examples. To apply the template to your own workflows, you will need to replace examples with your own code.</p>
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>We developed the Nextflow DSL2 template to aid beginners in learning Nextflow and developing their own workflows. The template employs a basic framework that allows users to customise and extend the workflow while adhering to code management best practices.</p>
+<p>The workflow code-base is organised into a number of different executable files and directories. This organisaiton promotes code modularity, reusability, maintainability, and clarity. Each executable file included in the template contains comment lines, links to relevant Nextflow documentation, and implementation examples. To apply the template to your own workflows, you will need to replace examples with your own code.</p>
+<p>Modularising the code base and splitting workflow processes and configuration files offers a few benefits:</p>
+<ul>
+<li>Code organisation and maintainability</li>
+<li>Readability and clarity</li>
+<li>Collaboration</li>
+<li>Testing and debugging</li>
+<li>Code reuse and extensibility</li>
+</ul>
 <section id="set-up" class="level2">
 <h2 class="anchored" data-anchor-id="set-up"><strong>Set up</strong></h2>
 <p>Requirements:</p>
@@ -195,7 +285,7 @@ ul.task-list li input[type="checkbox"] {
 <li>Name your repository, ending in <code>-nf</code> (this is required by cookiecutter gh action)</li>
 <li>Select the <span style="color: green">Create repository from template</span> box</li>
 </ol>
-<p>Explain what cookiecutter will do.</p>
+<p>Explain what cookiecutter will do. How to push and save changes to workflow code base using Git.</p>
 </section>
 <section id="download-nextflow" class="level3">
 <h3 class="anchored" data-anchor-id="download-nextflow"><strong>Download Nextflow</strong></h3>
@@ -203,29 +293,41 @@ ul.task-list li input[type="checkbox"] {
 <p>Once you have installed Nextflow, you can configure it to run on your system. This template only provides the standard <code>nextflow.config</code> file. See <a href="https://www.nextflow.io/blog/2021/nextflow-developer-environment.html">here</a> for some set up tips.</p>
 </section>
 </section>
-<section id="writing-best-practice-nextflow-code" class="level2">
-<h2 class="anchored" data-anchor-id="writing-best-practice-nextflow-code"><strong>Writing best-practice Nextflow code</strong></h2>
-<p>This repository is structured as follows:</p>
-<pre><code>Nextflow_DSL2_template
-├── LICENSE
-├── README.md
-├── cleanup
-├── config
-    ├── gadi.config
-│&nbsp;&nbsp; ├── nimbus.config
-│&nbsp;&nbsp; ├── setonix.config
-│&nbsp;&nbsp; └── standard.config
-├── main.nf
-├── guides 
-├── modules
-│&nbsp;&nbsp; ├── process1.nf
-│&nbsp;&nbsp; └── process2.nf
-├── nextflow.config
-├── run_pipeline
-└── samples.txt</code></pre>
+<section id="template-structure" class="level2">
+<h2 class="anchored" data-anchor-id="template-structure"><strong>Template structure</strong></h2>
+<p>Nextflow is highly flexible, allowing users to implement workflows in a number of different ways. In this template, we provide one common implementation for structuring your Nextflow code base in a way that is easy to maintain and read.</p>
+<p>The template’s code repository is organised into a number of files and directories (see the <a href="">template components</a> for details):</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Nextflow_DSL2_template</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>├── LICENSE</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>├── README.md</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>├── bin</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>├── config</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    ├── gadi.config</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>&nbsp;&nbsp;  ├── nimbus.config</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>&nbsp;&nbsp;  ├── setonix.config</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>&nbsp;&nbsp;  └── standard.config</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>├── main.nf</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>├── modules</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>│&nbsp;&nbsp; ├── process1.nf</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>│&nbsp;&nbsp; └── process2.nf</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>└── nextflow.config</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The template includes the basic features of a Nextflow workflow to enable you to run workflows in a reproducible, portable, and transparent manner. Consider a basic Nextflow run command below, where a user will need to specify parameters and (optionally) a configuration <a href="https://www.nextflow.io/docs/latest/config.html#config-profiles">profile</a>:</p>
+<p><img src="./figs/template_command.png" class="img-fluid"></p>
+<ul>
+<li>The <code>main.nf</code> file is the executable file that identifies the workflow structure, inputs, and processes to pull form the <code>modules/</code> directory.</li>
+<li>The <code>--parameter</code> flag matches a parameter initialised in the <code>nextflow.config</code> file and applies it to the workflow execution.</li>
+<li>The <code>-profile</code> flag is used to specify environment-specific configuration details such as a software implementation method and/or resource management.</li>
+</ul>
+<p>Running a workflow that follows this template will output:</p>
+<ul>
+<li>A customisable execution message invoked when the workflow is run</li>
+<li>A customisable help message invoked using <code>--help</code> or failing to supply a required parameter</li>
+<li>A customisable completion message invoked when the workflow has finished running</li>
+<li>Files generated by your processes, optionally these can be saved to a results directory</li>
+<li>Workflow execution resource usage, trace, and timeline reports</li>
+</ul>
 
 
-</section>
 </section>
 
 <div style="font-size: 14px;">
