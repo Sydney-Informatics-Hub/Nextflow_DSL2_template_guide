@@ -1,7 +1,66 @@
 # `modules/` directory
 
-### What's in `modules/`?
+### **What's in `modules/`?**
 
-This directory contains all sub-workflows to be run with `nextflow run main.nf`. It is considered good practice to split out processes into separate `.nf` files and store them here, rather than including them all in the `main.nf` file. This directory is referenced in `main.nf` by using [`include {x} from ./modules/process`](https://www.nextflow.io/docs/latest/dsl2.html#modules). These process scripts currently contain all code to be run in the `script:` block. 
+This directory contains all sub-workflows to be run with `nextflow run main.nf`. It is considered good practice to split out processes into separate `.nf` files and store them here, rather than including them all in the `main.nf` file. This directory is referenced in `main.nf` by [`include {x} from ./modules/process`](https://www.nextflow.io/docs/latest/dsl2.html#modules). 
 
-Each `.nf` script contains the process to be run, in addition to details of which container to be used, where to publish the output for the process. 
+Each module `.nf` script contains the process to be run, in addition to details of which container to be used, where to publish the output for the process. 
+
+### **What is in each module file?**
+#### **Directives** 
+
+Nextflow process [directives](https://www.nextflow.io/docs/latest/process.html#directives) are optional settings that determine the execution of the current process. They can be provided at the top of the process body, before any other declaration blocks. 
+
+Some examples you may wish to include are: 
+
+* [`debug true`](https://www.nextflow.io/docs/latest/process.html#debug) to print stdout for each command being run  
+* [`module`](https://www.nextflow.io/docs/latest/process.html#module) to specify environmental modules
+* [`container`](https://www.nextflow.io/docs/latest/process.html#container) to specify a container to run the process
+* [`error strategy`](https://www.nextflow.io/docs/latest/process.html#errorstrategy) to define how a process error is managed
+* [`labels`](https://www.nextflow.io/docs/latest/process.html#label) that can be applied to multiple processes
+
+In the template we have provided an example of using a [dynamic directive](https://www.nextflow.io/docs/latest/process.html#dynamic-computing-resources) to modify the amount of computing resources requested by a process in case of a process failure and try to re-execute it using a higher limit: 
+
+```default
+process process1 {
+    time { 2.hour * task.attempt }
+
+    errorStrategy { task.exitStatus in 137..143 ? 'retry' : 'terminate' }
+    maxRetries 2
+...
+}
+```
+
+In this example, if a task fails and returns an exit status between 137-143, it is resubmitted, otherwise it will terminate. The first time the process is run, `task.attempt` is set to 1 and it will request 2 hour of maximum execution time. If the first attempt of a task fails AND reports an exit status of 137-143, it will be resubmitted but this time `task.attempt` is 2, so the maximum execution time will be set to 4 hours. You can customise the number of attempts (maxRetries), the task exit status, and can specify time, memory, or cpus as resources. 
+
+#### **Input**
+
+The [input block](https://www.nextflow.io/docs/latest/process.html#inputs) is required for each process, it defines the input channels for a process. A process must have at least one input and only one input block. You can specify values, paths, or files as inputs. 
+
+#### **Output**
+
+An [output block](https://www.nextflow.io/docs/latest/process.html#outputs) defines the output channels for a process. A process should have at least one output and only one output block.
+
+* explain emit 
+* explain optional 
+
+#### **Script** 
+
+The [script block](https://www.nextflow.io/docs/latest/process.html#script) defines the script executed by the process as a string expression. The script block must follow the input and output blocks at the bottom of a process scope.
+
+```default 
+
+process process1 {
+
+    input: 
+    path x 
+
+    output:
+    path y 
+
+    script:
+    """
+    cat x 
+    """
+}
+```
