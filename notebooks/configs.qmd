@@ -1,6 +1,6 @@
 # `config/` directory
 
-### What's in `config/`? 
+### **What's in `config/`?** 
 
 This directory contains various profile modules for configuring the pipeline run. Some care should be taken when using these config profiles. See the [Nextflow documentation](https://nextflow.io/docs/latest/config.html#config-profiles) for more details.
 
@@ -10,3 +10,16 @@ This directory contains the following profiles:
 * `standard`: this is the default profile.
 * `setonix`: this profile is specific to Pawsey Supercomputing Centre's Setonix HPC. It enables the use of the SLURM job scheduler and Singularity.  
 * `gadi`: this profile is specific to the National Computational Infrastructure's Gadi HPC. It enables the use of the PBS Pro job scheduler and Singularity 
+
+### **How do I write a custom config file?**
+
+While we have provided a number of recommended configuration features inside our template's `nextflow.config` file, these may not port well between different infrastructures. For that reason we have provided some additional config examples for national HPC and cloud platforms. There are many different ways to configure a Nextflow workflow and your need to configure a workflow will depend on the needs of your workflow users, such as:
+
+* Increase the resources to take advantage of high CPU or high memory infrastructures
+* Run on a HPC or cloud infrastructure
+* Execute specific modules on specific node types on a cluster
+* Use a different software execution method 
+* Selectively adjust the execution of one or a few processes
+
+We recommend you take a look at the examples provided in the `config/` directory of this template, the [Nextflow documentation](https://www.nextflow.io/docs/latest/config.html#) regarding configuration and [our customising nf-core workshop materials](https://sydney-informatics-hub.github.io/customising-nfcore-workshop/notebooks/2.3_configEnv.html) to get some ideas on how to write custom Nextflow configuration files.  
+

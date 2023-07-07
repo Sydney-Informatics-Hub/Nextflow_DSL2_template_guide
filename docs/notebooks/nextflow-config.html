@@ -20,6 +20,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -30,6 +93,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<script src="../site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -60,6 +125,32 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-TNWWV3HK57"></script>
+
+<script type="text/plain" cookie-consent="tracking">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-TNWWV3HK57', { 'anonymize_ip': true});
+</script>
+
+<script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({
+  "notice_banner_type":"simple",
+  "consent_type":"express",
+  "palette":"light",
+  "language":"en",
+  "page_load_consent_levels":["strictly-necessary"],
+  "notice_banner_reject_button_hide":false,
+  "preferences_center_close_button_hide":false,
+  "website_name":"",
+"website_privacy_policy_url":"https://www.sydney.edu.au/privacy-statement.html"
+  });
+});
+</script> 
+  
 
 
 <link rel="stylesheet" href="styles.scss">
@@ -179,19 +270,153 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="nextflow.config" class="level1">
 <h1><code>nextflow.config</code></h1>
+<p>This is the configuration script that Nextflow looks for when you run a workflow. It contains a number of property definitions that are used by the pipeline. A key feature of Nextflow is the ability to separate workflow implementation from the underlying execution platform using this configuration file. Since we can add additional configuration files for different run environments (i.e.&nbsp;job schedulers, use of singularity vs bioconda) each configuration file can contain conflicting settings and parameters listed in this file can be overwritten in the run command by specifying relevant commands. See <a href="https://www.nextflow.io/docs/latest/config.html#configuration-file">here</a> for details on the hierarchy of configuration files.</p>
 <section id="whats-in-nextflow.config" class="level3">
 <h3 class="anchored" data-anchor-id="whats-in-nextflow.config"><strong>What’s in <code>nextflow.config</code>?</strong></h3>
-<p>This is the configuration script that Nextflow looks for when you run <code>nextflow run main.nf</code>. It contains a number of property definitions that are used by the pipeline. A key feature of Nextflow is the ability to separate workflow implementation from the underlying execution platformm using this configuration file. Since we can add additional configuration files for different run environments (i.e.&nbsp;job schedulers, use of singularity vs bioconda) each configuration file can contain conflicting settings and parameters listed in this file can be overwritten in the run command by specifying relevant commands. See <a href="https://www.nextflow.io/docs/latest/config.html#configuration-file">here</a> for details on the heirarchy of confuration files. This file contains:</p>
+<p>This file contains:</p>
 <ul>
-<li>Mainfest for defining some metadata including authorship, link to the repo, workflow version, etc</li>
-<li>Mandated minimal version of Nextflow that can be used to run this pipeline</li>
-<li>Resume function that allows the pipeline to start up at the last successful process if the run fails part way through (currently enabled)</li>
-<li>Various profile definitions that can be activated when launching a pipeline. These can be used together, depending on their requirements. We can define various profiles depending on the system you’re using. See <a href="https://www.nextflow.io/docs/latest/config.html?highlight=profiles#config-profiles">here</a> for more details on what sorts of things can be included here.</li>
-<li>Default parameters for running the pipeline. These include default file names, containers, paths, etc. These can be overwritten when launching the pipeline.</li>
-<li>Customisable workflow run info reports with <code>dag{}</code>, <code>report{}</code>, <code>timeline{}</code>, and <code>trace{}</code>. You can specify where to output these run summary files.</li>
+<li>A manifest for defining workflow metadata</li>
+<li>Mandated minimal version of Nextflow required to run pipeline</li>
+<li>Default workflow parameter definitions</li>
+<li>Shell behaviour settings for the workflow</li>
+<li>Execution reports</li>
+<li>Configuration profiles</li>
+<li>Default resource definitions for processes</li>
 </ul>
+<section id="manifest" class="level4">
+<h4 class="anchored" data-anchor-id="manifest"><strong>Manifest</strong></h4>
+<p>The <a href="https://www.nextflow.io/docs/latest/config.html#scope-manifest">manifest</a> scope allows you to define metadata required when publishing or running your pipeline. In this template, we’ve applied the following information to the workflow:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>manifest {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    author = 'Georgie Samaha'</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    name = 'Nextflow_DSL2_template-nf'</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    description = 'Template for creating Nextflow workflows'</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    homePage = 'https://github.com/Sydney-Informatics-Hub/Nextflow_DSL2_template'</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="nextflow-version" class="level4">
+<h4 class="anchored" data-anchor-id="nextflow-version"><strong>Nextflow version</strong></h4>
+<p>The <a href="https://www.nextflow.io/docs/latest/config.html?highlight=nextflowversion#nextflow-version">nextflowVersion</a> setting allows you to mandate a minimum version of Nextflow that can be used to run your pipeline. In this template we have specified the minimal version of Nextflow that can handle DSL2 syntax:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>nextflowVersion = '!&gt;=20.07.1'</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="parameters" class="level4">
+<h4 class="anchored" data-anchor-id="parameters"><strong>Parameters</strong></h4>
+<p>The <a href="https://www.nextflow.io/docs/latest/config.html#scope-params">params</a> scope allows you to define all parameters accessible in the pipeline script. Here, you can define default values to parameters which can then be overwritten using parameter flags (<code>--</code>) when the workflow is run. These defined parameters should correspond to parameters called by the process modules. For example:</p>
+<p>In <code>nextflow.config</code> we define default parameters:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>params.foo = 'Hello'</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>params.bar = 'world!'</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In <code>main.nf</code> we define the workflow and specify our parameters as inputs to the process:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>// Include the process file </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>include { PROCESS } from './modules/process.nf'</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>// Run the workflow, calling the process called PROCESS </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>workflow {</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    PROCESS(params.foo, params.bar).view()</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In <code>modules/process.nf</code> we provide those parameters as input channels to the process and defined the output channel as standard output:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>process PROCESS {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>input:</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    val(params.foo)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    val(params.bar)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>output:</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    stdout</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>script:</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    """</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    echo "$params.foo $params.bar"</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    """</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Running these scripts as:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>nextflow run main.nf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Gives the following output:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>N E X T F L O W  ~  version 22.10.3</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>Launching `main.nf` [angry_montalcini] DSL2 - revision: 33ed2edb33</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>executor &gt;  local (1)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>[eb/25f43a] process &gt; PROCESS [100%] 1 of 1 ✔</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>Hello world!</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+How is this output printed to the screen?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note the use of the <code>.view()</code> appended to the process inside the workflow in the <code>main.nf</code> file. The <a href="https://www.nextflow.io/docs/latest/operator.html#view">view</a> operator prints items emitted by a channel to standard output.</p>
+</div>
+</div>
+<p>You can override these parameters when you run the workflow, for example:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>nextflow run main.nf --foo goodbye </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Gives the following output:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>N E X T F L O W  ~  version 22.10.3</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>Launching `main.nf` [maniac_hopper] DSL2 - revision: c7986b5056</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>executor &gt;  local (1)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>[5c/33c2f0] process &gt; PROCESS [100%] 1 of 1 ✔</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>goodbye world!</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="shell-behaviour-settings" class="level4">
+<h4 class="anchored" data-anchor-id="shell-behaviour-settings"><strong>Shell behaviour settings</strong></h4>
+<p>By default for the most recent versions of Nextflow, workflows are executed with <code>set -ue</code>. Set is a Bash command used to control the different attributes and parameters of the shell environment. The <code>-e</code> flag ensures the workflow exits for non-zero exit status values and the <code>-u</code> flag traces unset variables. We have provided additional recommended shell settings to enhance error handling and pipeline reliability:</p>
+<ul>
+<li><code>'/bin/bash'</code> tells Nextflow to use Bash as the shell to run process scripts</li>
+<li><code>'-euo', 'pipefail'</code> tells Bash to consider a pipeline as failed if any command within it fails and to exit on error.</li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>shell = ['/bin/bash', '-euo', 'pipefail']</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can specify additional <a href="https://tldp.org/LDP/abs/html/options.html">bash options</a> to specify script execution and error management strategies.</p>
+</section>
+<section id="execution-reports" class="level4">
+<h4 class="anchored" data-anchor-id="execution-reports"><strong>Execution reports</strong></h4>
+<p>Nextflow provides a number of features for tracing and reporting on process execution status. In this template, we’ve asked Nextflow to generate info reports with <code>dag{}</code>, <code>report{}</code>, <code>timeline{}</code>, and <code>trace{}</code> scopes.</p>
+<p><strong>DAG visualisation with <code>dag{}</code></strong></p>
+<p>A Nextflow pipeline’s direct acyclic graph (DAG) can be rendered by specifying <a href="https://www.nextflow.io/docs/latest/tracing.html#dag-visualisation">the <code>dag{}</code></a> scope in the <code>nextflow.config</code>. In this template, we have:</p>
+<ul>
+<li>Enabled DAG creation upon workflow completion by default with <code>enable = true</code></li>
+<li>Enabled the overwriting of existing DAGs with <code>overwrite = true</code></li>
+<li>Specified a file name and location to save the DAG with <code>file = 'runInfo/dag.svg'</code></li>
+</ul>
+<p>To generate the DAG, you must have <a href="http://www.graphviz.org/">GraphViz</a> installed on your system.</p>
+<p><strong>Execution report with <code>report{}</code></strong></p>
+<p>Nextflow can create an HTML execution report that contains useful metrics about your workflow execution. See the Nextflow documentation for more information on its <a href="https://www.nextflow.io/docs/latest/tracing.html#execution-report">contents</a>. Similarly, we have employed the same operators as above to output the execution report, however unlike a DAG you may wish to not overwrite existing execution reports, you can do this by specifying <code>overwrite = false</code> and naming your execution report based on timestamp, as was demonstrated <a href="https://sydney-informatics-hub.github.io/customising-nfcore-workshop/notebooks/2.4_multiConfig.html#customised-resource-tracing">here</a> for a trace report:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>// Define timestamp, to avoid overwriting existing report </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>def timestamp = new java.util.Date().format('yyyy-MM-dd_HH-mm-ss')</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>report {</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    enabled = true</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    overwrite = false</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    file = 'runInfo/report-${timestamp}.html'</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Timeline summary with <code>timeline{}</code></strong></p>
+<p>Nextflow can create an HTML timeline report for all tasks executed by your workflow. See the Nextflow documentation for more information on its <a href="https://www.nextflow.io/docs/latest/tracing.html#timeline-report">contents</a>. Same as with the dag and report features, you may wish to adjust the way these are output in the template.</p>
+<p><strong>Process resource trace with <code>trace{}</code></strong></p>
+<p>This template also creates a simple resource <a href="https://www.nextflow.io/docs/latest/tracing.html#trace-report">trace report</a>. A trace report can be customised to include any combination of available fields as demonstrated <a href="https://sydney-informatics-hub.github.io/customising-nfcore-workshop/notebooks/2.4_multiConfig.html#customised-resource-tracing">here</a>. Consider customising the trace file generated by the workflow by adding the <code>fields =</code> option to specify any of the <a href="https://www.nextflow.io/docs/latest/tracing.html#trace-report">trace fields</a> provided by Nextflow.</p>
+</section>
+<section id="configuration-profiles" class="level4">
+<h4 class="anchored" data-anchor-id="configuration-profiles"><strong>Configuration profiles</strong></h4>
+<p>We have provided configuration files for specific infrastructures inside the <code>config/</code> directory in this template. These are defined inside the <code>nextflow.config</code> file using the <a href="https://www.nextflow.io/docs/latest/config.html#config-profiles"><code>profiles{}</code> scope</a>. To keep the workflow modular and flexible, we’ve assigned profile names to these config files using <a href="https://www.nextflow.io/docs/latest/config.html#config-include"><code>includeConfig</code></a> allowing these profile definitions to be activated when launching your pipeline with <code>nextflow run main.nf -profile standard</code> for example. These configuration files can be used to override defaults specified inside the <code>nextflow.config</code>. Add your own custom configuration to <code>config/</code> directory and update the profiles scope within the <code>nextflow.config</code> with the following:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>profiles {</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    standard    { includeConfig "config/standard.config"}</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    configName  { includeConfig "config/my.config"      }</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>See <a href="https://www.nextflow.io/docs/latest/config.html?highlight=profiles#config-profiles">here</a> for more details on what sorts of things can be included here.</p>
+</section>
+<section id="default-resource-definitions" class="level4">
+<h4 class="anchored" data-anchor-id="default-resource-definitions"><strong>Default resource definitions</strong></h4>
+<p>The <code>process{}</code> configuration scope can be used to provide default configurations for the processes in your workflow. In the template, we have set some default CPU and memory directives to be applied to all processes run by the workflow. There are many <a href="https://www.nextflow.io/docs/latest/process.html#process-directives">process directives</a> you can apply here to control resource availability, software execution, interact with job schedulers etc.</p>
+<p>You can take a more fine-grained approach to process configuration by using Nextflow’s <code>withName</code> <a href="https://www.nextflow.io/docs/latest/config.html#process-selectors">process selector</a>, as demonstrated <a href="https://sydney-informatics-hub.github.io/customising-nfcore-workshop/notebooks/2.3_configEnv.html#custom-resource-configuration-using-process-names">here</a>. For example, for a process called PROCESS, we could change the default settings applied at the workflow level with:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>process {</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    cpus = 1</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    memory = 5.Gb</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    withName: 'PROCESS' {</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>        cpus = 2</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>        memory = 10.Gb</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
+</section>
 </section>
 </section>
 
@@ -447,6 +672,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+      <div class="nav-footer-center"><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+  </div>
+</footer>
 
 
 

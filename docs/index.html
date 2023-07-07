@@ -30,6 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<script src="site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -60,6 +62,32 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-TNWWV3HK57"></script>
+
+<script type="text/plain" cookie-consent="tracking">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-TNWWV3HK57', { 'anonymize_ip': true});
+</script>
+
+<script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({
+  "notice_banner_type":"simple",
+  "consent_type":"express",
+  "palette":"light",
+  "language":"en",
+  "page_load_consent_levels":["strictly-necessary"],
+  "notice_banner_reject_button_hide":false,
+  "preferences_center_close_button_hide":false,
+  "website_name":"",
+"website_privacy_policy_url":"https://www.sydney.edu.au/privacy-statement.html"
+  });
+});
+</script> 
+  
 
 
 <link rel="stylesheet" href="styles.scss">
@@ -200,23 +228,23 @@ ul.task-list li input[type="checkbox"] {
 <p>This guide explains all aspects of using the workflow template, including:</p>
 <section id="how-to-use-the-template-on-github" class="level4">
 <h4 class="anchored" data-anchor-id="how-to-use-the-template-on-github"><strong>1. How to use the template on GitHub</strong></h4>
-<p>Start <a href="">here</a> for directions on how to set yourself up to use this template. This section provides step-by-step instructions to help you set up your local development environment and use the template files.</p>
+<p>Start here for directions on how to set yourself up to use this template. This section provides step-by-step instructions to help you set up your local development environment and use the template files.</p>
 </section>
 <section id="the-template-structure-and-components" class="level4">
 <h4 class="anchored" data-anchor-id="the-template-structure-and-components"><strong>2. The template structure and components</strong></h4>
-<p>Use the <a href="">template components</a> section to familiarise yourself with the essential elements of the template including code base structure, directory organisation, configuration files, and how to modularise your workflow.</p>
+<p>Use the <a href="./template.html">template components</a> sections to familiarise yourself with the essential elements of the template including code base structure, directory organisation, configuration files, and how to modularise your workflow.</p>
 </section>
 <section id="resource-configuration" class="level4">
 <h4 class="anchored" data-anchor-id="resource-configuration"><strong>3. Resource configuration</strong></h4>
-<p>The <a href="">resource configuration</a> section can help you configure the resources required for running your workflow efficiently. The guide will cover topics such as specifying CPU and memory requirements, handling parallel execution, and integrating with high-performance computing (HPC) environments.</p>
+<p>The <a href="./notebooks/configuration.html">resource configuration</a> section can help you configure the resources required for running your workflow efficiently. The guide will cover topics such as specifying CPU and memory requirements, handling parallel execution, and integrating with high-performance computing (HPC) environments.</p>
 </section>
 <section id="guides-for-customising-the-template" class="level4">
 <h4 class="anchored" data-anchor-id="guides-for-customising-the-template"><strong>4. Guides for customising the template</strong></h4>
-<p>In the <a href="">guides</a> you will find various examples of scenarios you may come across when writing Nextflow code and developing your workflows. If you would like to contribute to this section, please submit a pull request.</p>
+<p>In the <a href="./notebooks/guides.html">guides</a> you will find various examples of scenarios you may come across when writing Nextflow code and developing your workflows. If you would like to contribute to this section, please submit a pull request.</p>
 </section>
 <section id="a-hands-on-tutorial" class="level4">
 <h4 class="anchored" data-anchor-id="a-hands-on-tutorial"><strong>5. A hands-on tutorial</strong></h4>
-<p>Get a feel for the template and how to use it with the <a href="">hands-on tutorial</a>. It walks you through a practical example that demonstrates the application of the workflow template.</p>
+<p>Get a feel for the template and how to use it with the <a href="./notebooks/hands-on.html">hands-on tutorial</a>. It walks you through a practical example that demonstrates the application of the workflow template.</p>
 </section>
 <section id="documentation-and-training-resources" class="level4">
 <h4 class="anchored" data-anchor-id="documentation-and-training-resources"><strong>6. Documentation and training resources</strong></h4>
@@ -519,6 +547,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+      <div class="nav-footer-center"><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+  </div>
+</footer>
 
 
 

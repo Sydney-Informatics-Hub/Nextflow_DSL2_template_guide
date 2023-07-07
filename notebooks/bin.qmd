@@ -1,3 +1,17 @@
 # `bin/` directory
 
-### What should go in `bin/`? 
+A strength of Nextflow is the fact it can be used to combine processes written in different languages. You may have custom scripts you would like to execute within your workflow and it is [recommended](https://www.nextflow.io/docs/edge/faq.html#how-do-i-invoke-custom-scripts-and-tools) these be stored in your `/bin` directory. 
+
+### **What should go in `bin/`?** 
+
+In the real world, workflows often use custom scripts written in languages like Bash, Perl, R, and Python. Simply place these scripts inside the `bin/` directory in the workflow project root folder, as we have provided in this template. These scripts will automatically be added by Nextflow to your workflow execution $PATH. 
+
+::: {.callout-tip}
+# Make your scripts executable
+
+Your custom scripts must be executable for Nextflow to run them. You can give execution permissions for a custom script stored in `bin/` with: 
+
+```default
+chmod +x bin/customScript.sh 
+```
+:::
