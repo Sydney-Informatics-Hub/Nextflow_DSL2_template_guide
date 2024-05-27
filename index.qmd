@@ -1,5 +1,5 @@
 ---
-title: '**Welcome!**'
+title: '**Welcome to the Nextflow template guide!**'
 from: markdown+emoji
 ---
 
@@ -13,25 +13,25 @@ This user guide is under active development and will be updated progressively.
 
 This guide explains all aspects of using the workflow template, including: 
 
-#### **1. How to use the template on GitHub** 
+#### **1. [How to use the template](template.qmd)** 
 
-Start here for directions on how to set yourself up to use this template. This section provides step-by-step instructions to help you set up your local development environment and use the template files.
+This section provides step-by-step instructions to help you set up your local development environment and use the template files.
 
-#### **2. The template structure and components** 
+#### **2. Template components** 
 
-Use the [template components](./template.qmd) sections to familiarise yourself with the essential elements of the template including code base structure, directory organisation, configuration files, and how to modularise your workflow.
+Use these sections to familiarise yourself with the essential elements of the template including code base structure, directory organisation, configuration files, and how to modularise your workflow.
 
-#### **3. Resource configuration**
+#### **3. [Resource configuration](./notebooks/configuration.qmd)**
 
-The [resource configuration](./notebooks/configuration.qmd) section can help you configure the resources required for running your workflow efficiently. The guide will cover topics such as specifying CPU and memory requirements, handling parallel execution, and integrating with high-performance computing (HPC) environments.
+This section can help you configure the resources required for running your workflow efficiently in your environment. The guide will cover topics such as specifying CPU and memory requirements, handling parallel execution, and integrating with HPC environments.
 
-#### **4. Guides for customising the template**
+#### **4. [Guides for customising the template](./notebooks/guides.qmd)**
 
-In the [guides](./notebooks/guides.qmd) you will find various examples of scenarios you may come across when writing Nextflow code and developing your workflows. If you would like to contribute to this section, please submit a pull request. 
+Here, you will find various examples of scenarios you may come across when writing Nextflow code and developing your workflows. 
 
-#### **5. A hands-on tutorial** 
+#### **5. [A hands-on tutorial](./notebooks/hands-on.qmd)** 
 
-Get a feel for the template and how to use it with the [hands-on tutorial](./notebooks/hands-on.qmd). It walks you through a practical example that demonstrates the application of the workflow template. 
+Get a feel for the template and how to use it with the [hands-on tutorial]. It walks you through a practical example that demonstrates the application of the workflow template. 
 
 #### **6. Documentation and training resources**
 

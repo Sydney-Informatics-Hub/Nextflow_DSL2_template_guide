@@ -2,120 +2,330 @@
   {
     "objectID": "resources.html",
     "href": "resources.html",
-    "title": "Nextflow DSL2 template user guide",
+    "title": "Resources",
     "section": "",
-    "text": "Nextflow user guide\nNextflow quick start guide\nNextflow YouTube channel\n\n\n\n\n\nNextflow training workshop materials\nCustomising nf-core workshop materials\nIntro to Nextflow workflows\nNF-camp tutorial converting rnaseq-nf pipeline to DSL2\n\nDSL2 modules tutorial video\n\nIntro to DSL2 video\n\nNextflow for data intensive pipelines from Pawsey Supercomputing Center\nA self-guided DSL2 tutorial\n\n\n\n\n\nNextflow’s nf-core pipelines\nDSL2 pipeline structure walkthrough video from nf-core\n\n\n\n\n\nAustralian BioCommons workflow documentation guidelines"
+    "text": "Nextflow user guide\nNextflow quick start guide\nNextflow YouTube channel\n\n\n\n\n\nNextflow training workshop materials\nCustomising nf-core workshop materials\nIntro to Nextflow workflows\nNF-camp tutorial converting rnaseq-nf pipeline to DSL2\n\nDSL2 modules tutorial video\n\nIntro to DSL2 video\n\nNextflow for data intensive pipelines from Pawsey Supercomputing Center\nA self-guided DSL2 tutorial\n\n\n\n\n\nNextflow’s nf-core pipelines\nDSL2 pipeline structure walkthrough video from nf-core\n\n\n\n\n\nAustralian BioCommons workflow documentation guidelines",
+    "crumbs": [
+      "**Resources**"
+    ]
   },
   {
-    "objectID": "template.html",
-    "href": "template.html",
-    "title": "The template",
+    "objectID": "resources.html#nextflow-documentation",
+    "href": "resources.html#nextflow-documentation",
+    "title": "Resources",
     "section": "",
-    "text": "We developed the Nextflow DSL2 template to aid beginners in learning Nextflow and developing their own workflows. The template employs a basic framework that allows users to customise and extend the workflow while adhering to code management best practices.\nThe workflow code-base is organised into a number of different executable files and directories. This organisaiton promotes code modularity, reusability, maintainability, and clarity. Each executable file included in the template contains comment lines, links to relevant Nextflow documentation, and implementation examples. To apply the template to your own workflows, you will need to replace examples with your own code.\nModularising the code base and splitting workflow processes and configuration files offers a few benefits:"
+    "text": "Nextflow user guide\nNextflow quick start guide\nNextflow YouTube channel",
+    "crumbs": [
+      "**Resources**"
+    ]
   },
   {
-    "objectID": "template.html#set-up",
-    "href": "template.html#set-up",
-    "title": "The template",
-    "section": "Set up",
-    "text": "Set up\nRequirements:\n\nA GitHub account\nInstalled on your chosen development environment:\n\nNextflow (>v20.10.0)\nGit\nSingularity\n\n\n\nClone the template\n\nOpen the DSL2 template repository on GitHub\nSelect the Use this template box and create a new repository\nName your repository, ending in -nf (this is required by cookiecutter gh action)\nSelect the Create repository from template box\n\nExplain what cookiecutter will do. How to push and save changes to workflow code base using Git.\n\n\nDownload Nextflow\nDepending on the system you’re working on there are a few options for installing and running Nextflow including reproducible options like bioconda and Singularity. See here for installation instructions.\nOnce you have installed Nextflow, you can configure it to run on your system. This template only provides the standard nextflow.config file. See here for some set up tips."
+    "objectID": "resources.html#training",
+    "href": "resources.html#training",
+    "title": "Resources",
+    "section": "",
+    "text": "Nextflow training workshop materials\nCustomising nf-core workshop materials\nIntro to Nextflow workflows\nNF-camp tutorial converting rnaseq-nf pipeline to DSL2\n\nDSL2 modules tutorial video\n\nIntro to DSL2 video\n\nNextflow for data intensive pipelines from Pawsey Supercomputing Center\nA self-guided DSL2 tutorial",
+    "crumbs": [
+      "**Resources**"
+    ]
   },
   {
-    "objectID": "template.html#template-structure",
-    "href": "template.html#template-structure",
-    "title": "The template",
-    "section": "Template structure",
-    "text": "Template structure\nNextflow is highly flexible, allowing users to implement workflows in a number of different ways. In this template, we provide one common implementation for structuring your Nextflow code base in a way that is easy to maintain and read.\nThe template’s code repository is organised into a number of files and directories (see the template components for details):\nNextflow_DSL2_template\n├── LICENSE\n├── README.md\n├── bin\n├── config\n    ├── gadi.config\n    ├── nimbus.config\n    ├── setonix.config\n    └── standard.config\n├── main.nf\n├── modules\n│   ├── process1.nf\n│   └── process2.nf\n└── nextflow.config\nThe template includes the basic features of a Nextflow workflow to enable you to run workflows in a reproducible, portable, and transparent manner. Consider a basic Nextflow run command below, where a user will need to specify parameters and (optionally) a configuration profile:\n\n\nThe main.nf file is the executable file that identifies the workflow structure, inputs, and processes to pull form the modules/ directory.\nThe --parameter flag matches a parameter initialised in the nextflow.config file and applies it to the workflow execution.\nThe -profile flag is used to specify environment-specific configuration details such as a software implementation method and/or resource management.\n\nRunning a workflow that follows this template will output:\n\nA customisable execution message invoked when the workflow is run\nA customisable help message invoked using --help or failing to supply a required parameter\nA customisable completion message invoked when the workflow has finished running\nFiles generated by your processes, optionally these can be saved to a results directory\nWorkflow execution resource usage, trace, and timeline reports"
+    "objectID": "resources.html#nf-core",
+    "href": "resources.html#nf-core",
+    "title": "Resources",
+    "section": "",
+    "text": "Nextflow’s nf-core pipelines\nDSL2 pipeline structure walkthrough video from nf-core",
+    "crumbs": [
+      "**Resources**"
+    ]
+  },
+  {
+    "objectID": "resources.html#australian-biocommons",
+    "href": "resources.html#australian-biocommons",
+    "title": "Resources",
+    "section": "",
+    "text": "Australian BioCommons workflow documentation guidelines",
+    "crumbs": [
+      "**Resources**"
+    ]
   },
   {
     "objectID": "notebooks/hands-on.html",
     "href": "notebooks/hands-on.html",
-    "title": "Nextflow DSL2 template user guide",
+    "title": "Hands on tutorial",
     "section": "",
-    "text": "Hands on tutorial\n\n\n\n\n\nAll materials copyright Sydney Informatics Hub, University of Sydney"
-  },
-  {
-    "objectID": "notebooks/software.html",
-    "href": "notebooks/software.html",
-    "title": "Nextflow DSL2 template user guide",
-    "section": "",
-    "text": "Software management\n\n\n\n\n\nAll materials copyright Sydney Informatics Hub, University of Sydney"
-  },
-  {
-    "objectID": "notebooks/bin.html",
-    "href": "notebooks/bin.html",
-    "title": "Nextflow DSL2 template user guide",
-    "section": "",
-    "text": "bin/ directory\nA strength of Nextflow is the fact it can be used to combine processes written in different languages. You may have custom scripts you would like to execute within your workflow and it is recommended these be stored in your /bin directory.\n\nWhat should go in bin/?\nIn the real world, workflows often use custom scripts written in languages like Bash, Perl, R, and Python. Simply place these scripts inside the bin/ directory in the workflow project root folder, as we have provided in this template. These scripts will automatically be added by Nextflow to your workflow execution $PATH.\n\n\n\n\n\n\nMake your scripts executable\n\n\n\nYour custom scripts must be executable for Nextflow to run them. You can give execution permissions for a custom script stored in bin/ with:\nchmod +x bin/customScript.sh \n\n\n\n\n\n\n\n\nAll materials copyright Sydney Informatics Hub, University of Sydney"
-  },
-  {
-    "objectID": "notebooks/main-nf.html",
-    "href": "notebooks/main-nf.html",
-    "title": "main.nf",
-    "section": "",
-    "text": "This is the primary script file or entry point for defining and executing a Nextflow workflow. The main.nf script contains the workflow’s structure, processes, and channels. This file doesn’t have to be called main.nf but this is common practice in Nextflow.\n\nWhat’s in main.nf?\nThis file contains the following essentials:\n\nProcess definitions\nChannel definitions\nWorkflow structure\n\n\nProcesses\nConsider processes as individual units of work or steps to be executed by a workflow. While you can opt to define all processes within the main.nf script (like here), we have chosen to focus on modularity with this template. As such, processes inside the template are saved as individual scripts inside the modules/ directory and imported into the main.nf script:\ninclude { processName } from './modules/moduleName'\nEach process is also specified again inside the workflow{} scope along with its inputs. See the modules/ directory section for details on how process modules connect to their definitions inside the main.nf.\n\n\nChannels\nThere are lots of ways to define and apply channels in Nextflow. In Nextflow, channels are essential for connecting tasks to one another in the workflow definition. Channels are defined within the workflow scope in the workflow template. In the template, we’ve defined an example channel called input that uses the fromPath() factory to capture a parameterised input file so users can provide their own custom input files to the workflow.\nObserve how the input channel is consumed by process1 below:\nworkflow {\n    input = Channel.fromPath(\"${params.input}\")\n\n    process1(input)\n}\nSometimes you will need to apply methods called operators to transform data inside channels. For example, here we used a combination of basic operators to:\n\nSplit rows into different columns (.splitCsv)\nGroup those split fields for each row to pair a specific file to a specific sample (.map)\n\ninput = checkInputs.out\n    .splitCsv(header: true, sep:\"\\t\")\n    .map { row -> tuple(row.sampleID, file(row.bam))}\n\n\nThe workflow\nThe workflow{} scope contains all components required to invoke one or more processes. In the template, we’ve used an if else loop to first invoke a help command to ensure the workflow is being run with the correct parameters and then run the processes imported using the include scope.\nInside the template, two example processes and their inputs/outputs are connected as:\nworkflow {\n\n    input = Channel.fromPath(\"${params.input}\")\n\n    // Run process 1 \n    processName1(input)\n    \n    // Run process 2 which takes output of process 1 \n    processName2(processOne.out.File)\n}\nWorkflows can be structured with more flexibility and complexity, see here for some examples.\n\n\nAdditional features\nSome additional features that we have provided in the main.nf file are intended to make your workflows easier to run and troubleshoot. They are not currently well documented in the Nextflow user guide. We have used Nextflow’s interpretation of the Groovy logger function to print messages to the screen to make the workflow more interactive and clarify execution. The log functions we have used include the following and can be removed without affecting the workflow execution.\nA customisable execution message\nThis will be printed to the screen when the workflow is run. Edit the text inside the header text block:\nlog.info \"\"\"\\\n    YOU CAN PUT ANYTHING YOU WANT IN HERE \n\"\"\".stripIndent()`\nSome suggestions for things to include here:\n\nThe name of your workflow\nA DOI for citation purposes\nPrint specified parameters\n\nA customisable help message\nThis will be printed to the screen when the --help parameter is used or a required parameter is not supplied. You can edit the message to be printed inside the help message text block:\ndef helpMessage() {\n    log.info\"\"\"\n        YOU CAN PUT ANYTHING YOU WANT IN HERE \n    \"\"\".stripIndent()\n}\nSome suggestions to include here:\n\nThe suggested run command\nRequired parameters and a short explainer\nOptional parameters and a short explainer\n\nA customisable completion message\nThis will be printed to the screen when the workflow has finished running. You can edit the message to be printed inside the summary message block:\nworkflow.onComplete {\nsummary = \"\"\"\n    YOU CAN PUT ANYTHING YOU WANT IN HERE \n  \"\"\"\nprintln summary\n}\n\n\n\n\n\n\nAll materials copyright Sydney Informatics Hub, University of Sydney"
+    "text": "Hands on tutorial\n\n\n\n\n\nAll materials copyright Sydney Informatics Hub, University of Sydney",
+    "crumbs": [
+      "**Hands on tutorial**"
+    ]
   },
   {
     "objectID": "notebooks/nextflow-config.html",
     "href": "notebooks/nextflow-config.html",
-    "title": "Nextflow DSL2 template user guide",
+    "title": "nextflow.config",
     "section": "",
-    "text": "nextflow.config\nThis is the configuration script that Nextflow looks for when you run a workflow. It contains a number of property definitions that are used by the pipeline. A key feature of Nextflow is the ability to separate workflow implementation from the underlying execution platform using this configuration file. Since we can add additional configuration files for different run environments (i.e. job schedulers, use of singularity vs bioconda) each configuration file can contain conflicting settings and parameters listed in this file can be overwritten in the run command by specifying relevant commands. See here for details on the hierarchy of configuration files.\n\nWhat’s in nextflow.config?\nThis file contains:\n\nA manifest for defining workflow metadata\nMandated minimal version of Nextflow required to run pipeline\nDefault workflow parameter definitions\nShell behaviour settings for the workflow\nExecution reports\nConfiguration profiles\nDefault resource definitions for processes\n\n\nManifest\nThe manifest scope allows you to define metadata required when publishing or running your pipeline. In this template, we’ve applied the following information to the workflow:\nmanifest {\n    author = 'Georgie Samaha'\n    name = 'Nextflow_DSL2_template-nf'\n    description = 'Template for creating Nextflow workflows'\n    homePage = 'https://github.com/Sydney-Informatics-Hub/Nextflow_DSL2_template'\n}\n\n\nNextflow version\nThe nextflowVersion setting allows you to mandate a minimum version of Nextflow that can be used to run your pipeline. In this template we have specified the minimal version of Nextflow that can handle DSL2 syntax:\nnextflowVersion = '!>=20.07.1'\n\n\nParameters\nThe params scope allows you to define all parameters accessible in the pipeline script. Here, you can define default values to parameters which can then be overwritten using parameter flags (--) when the workflow is run. These defined parameters should correspond to parameters called by the process modules. For example:\nIn nextflow.config we define default parameters:\nparams.foo = 'Hello'\nparams.bar = 'world!'\nIn main.nf we define the workflow and specify our parameters as inputs to the process:\n// Include the process file \ninclude { PROCESS } from './modules/process.nf'\n\n// Run the workflow, calling the process called PROCESS \nworkflow {\n    PROCESS(params.foo, params.bar).view()\n}\nIn modules/process.nf we provide those parameters as input channels to the process and defined the output channel as standard output:\nprocess PROCESS {\ninput:\n    val(params.foo)\n    val(params.bar)\n\noutput:\n    stdout\n\nscript:\n    \"\"\"\n    echo \"$params.foo $params.bar\"\n    \"\"\"\n}\nRunning these scripts as:\nnextflow run main.nf\nGives the following output:\nN E X T F L O W  ~  version 22.10.3\nLaunching `main.nf` [angry_montalcini] DSL2 - revision: 33ed2edb33\nexecutor >  local (1)\n[eb/25f43a] process > PROCESS [100%] 1 of 1 ✔\nHello world!\n\n\n\n\n\n\nHow is this output printed to the screen?\n\n\n\nNote the use of the .view() appended to the process inside the workflow in the main.nf file. The view operator prints items emitted by a channel to standard output.\n\n\nYou can override these parameters when you run the workflow, for example:\nnextflow run main.nf --foo goodbye \nGives the following output:\nN E X T F L O W  ~  version 22.10.3\nLaunching `main.nf` [maniac_hopper] DSL2 - revision: c7986b5056\nexecutor >  local (1)\n[5c/33c2f0] process > PROCESS [100%] 1 of 1 ✔\ngoodbye world!\n\n\nShell behaviour settings\nBy default for the most recent versions of Nextflow, workflows are executed with set -ue. Set is a Bash command used to control the different attributes and parameters of the shell environment. The -e flag ensures the workflow exits for non-zero exit status values and the -u flag traces unset variables. We have provided additional recommended shell settings to enhance error handling and pipeline reliability:\n\n'/bin/bash' tells Nextflow to use Bash as the shell to run process scripts\n'-euo', 'pipefail' tells Bash to consider a pipeline as failed if any command within it fails and to exit on error.\n\nshell = ['/bin/bash', '-euo', 'pipefail']\nYou can specify additional bash options to specify script execution and error management strategies.\n\n\nExecution reports\nNextflow provides a number of features for tracing and reporting on process execution status. In this template, we’ve asked Nextflow to generate info reports with dag{}, report{}, timeline{}, and trace{} scopes.\nDAG visualisation with dag{}\nA Nextflow pipeline’s direct acyclic graph (DAG) can be rendered by specifying the dag{} scope in the nextflow.config. In this template, we have:\n\nEnabled DAG creation upon workflow completion by default with enable = true\nEnabled the overwriting of existing DAGs with overwrite = true\nSpecified a file name and location to save the DAG with file = 'runInfo/dag.svg'\n\nTo generate the DAG, you must have GraphViz installed on your system.\nExecution report with report{}\nNextflow can create an HTML execution report that contains useful metrics about your workflow execution. See the Nextflow documentation for more information on its contents. Similarly, we have employed the same operators as above to output the execution report, however unlike a DAG you may wish to not overwrite existing execution reports, you can do this by specifying overwrite = false and naming your execution report based on timestamp, as was demonstrated here for a trace report:\n// Define timestamp, to avoid overwriting existing report \ndef timestamp = new java.util.Date().format('yyyy-MM-dd_HH-mm-ss')\n\nreport {\n    enabled = true\n    overwrite = false\n    file = 'runInfo/report-${timestamp}.html'\n}\nTimeline summary with timeline{}\nNextflow can create an HTML timeline report for all tasks executed by your workflow. See the Nextflow documentation for more information on its contents. Same as with the dag and report features, you may wish to adjust the way these are output in the template.\nProcess resource trace with trace{}\nThis template also creates a simple resource trace report. A trace report can be customised to include any combination of available fields as demonstrated here. Consider customising the trace file generated by the workflow by adding the fields = option to specify any of the trace fields provided by Nextflow.\n\n\nConfiguration profiles\nWe have provided configuration files for specific infrastructures inside the config/ directory in this template. These are defined inside the nextflow.config file using the profiles{} scope. To keep the workflow modular and flexible, we’ve assigned profile names to these config files using includeConfig allowing these profile definitions to be activated when launching your pipeline with nextflow run main.nf -profile standard for example. These configuration files can be used to override defaults specified inside the nextflow.config. Add your own custom configuration to config/ directory and update the profiles scope within the nextflow.config with the following:\nprofiles {\n    standard    { includeConfig \"config/standard.config\"}\n    configName  { includeConfig \"config/my.config\"      }\n}\nSee here for more details on what sorts of things can be included here.\n\n\nDefault resource definitions\nThe process{} configuration scope can be used to provide default configurations for the processes in your workflow. In the template, we have set some default CPU and memory directives to be applied to all processes run by the workflow. There are many process directives you can apply here to control resource availability, software execution, interact with job schedulers etc.\nYou can take a more fine-grained approach to process configuration by using Nextflow’s withName process selector, as demonstrated here. For example, for a process called PROCESS, we could change the default settings applied at the workflow level with:\nprocess {\n    cpus = 1\n    memory = 5.Gb\n\n    withName: 'PROCESS' {\n        cpus = 2\n        memory = 10.Gb\n    }\n}\n\n\n\n\n\n\n\nAll materials copyright Sydney Informatics Hub, University of Sydney"
+    "text": "nextflow.config\nThis is the configuration script that Nextflow looks for when you run a workflow. It contains a number of property definitions that are used by the pipeline. A key feature of Nextflow is the ability to separate workflow implementation from the underlying execution platform using this configuration file. Since we can add additional configuration files for different run environments (i.e. job schedulers, use of singularity vs bioconda) each configuration file can contain conflicting settings and parameters listed in this file can be overwritten in the run command by specifying relevant commands. See here for details on the hierarchy of configuration files.\n\nWhat’s in nextflow.config?\nThis file contains:\n\nA manifest for defining workflow metadata\nMandated minimal version of Nextflow required to run pipeline\nDefault workflow parameter definitions\nShell behaviour settings for the workflow\nExecution reports\nConfiguration profiles\nDefault resource definitions for processes\n\n\nManifest\nThe manifest scope allows you to define metadata required when publishing or running your pipeline. In this template, we’ve applied the following information to the workflow:\nmanifest {\n    author = 'Georgie Samaha'\n    name = 'Nextflow_DSL2_template-nf'\n    description = 'Template for creating Nextflow workflows'\n    homePage = 'https://github.com/Sydney-Informatics-Hub/Nextflow_DSL2_template'\n}\n\n\nNextflow version\nThe nextflowVersion setting allows you to mandate a minimum version of Nextflow that can be used to run your pipeline. In this template we have specified the minimal version of Nextflow that can handle DSL2 syntax:\nnextflowVersion = '!&gt;=20.07.1'\n\n\nParameters\nThe params scope allows you to define all parameters accessible in the pipeline script. Here, you can define default values to parameters which can then be overwritten using parameter flags (--) when the workflow is run. These defined parameters should correspond to parameters called by the process modules. For example:\nIn nextflow.config we define default parameters:\nparams.foo = 'Hello'\nparams.bar = 'world!'\nIn main.nf we define the workflow and specify our parameters as inputs to the process:\n// Include the process file \ninclude { PROCESS } from './modules/process.nf'\n\n// Run the workflow, calling the process called PROCESS \nworkflow {\n    PROCESS(params.foo, params.bar).view()\n}\nIn modules/process.nf we provide those parameters as input channels to the process and defined the output channel as standard output:\nprocess PROCESS {\ninput:\n    val(params.foo)\n    val(params.bar)\n\noutput:\n    stdout\n\nscript:\n    \"\"\"\n    echo \"$params.foo $params.bar\"\n    \"\"\"\n}\nRunning these scripts as:\nnextflow run main.nf\nGives the following output:\nN E X T F L O W  ~  version 22.10.3\nLaunching `main.nf` [angry_montalcini] DSL2 - revision: 33ed2edb33\nexecutor &gt;  local (1)\n[eb/25f43a] process &gt; PROCESS [100%] 1 of 1 ✔\nHello world!\n\n\n\n\n\n\nHow is this output printed to the screen?\n\n\n\nNote the use of the .view() appended to the process inside the workflow in the main.nf file. The view operator prints items emitted by a channel to standard output.\n\n\nYou can override these parameters when you run the workflow, for example:\nnextflow run main.nf --foo goodbye \nGives the following output:\nN E X T F L O W  ~  version 22.10.3\nLaunching `main.nf` [maniac_hopper] DSL2 - revision: c7986b5056\nexecutor &gt;  local (1)\n[5c/33c2f0] process &gt; PROCESS [100%] 1 of 1 ✔\ngoodbye world!\n\n\nShell behaviour settings\nBy default for the most recent versions of Nextflow, workflows are executed with set -ue. Set is a Bash command used to control the different attributes and parameters of the shell environment. The -e flag ensures the workflow exits for non-zero exit status values and the -u flag traces unset variables. We have provided additional recommended shell settings to enhance error handling and pipeline reliability:\n\n'/bin/bash' tells Nextflow to use Bash as the shell to run process scripts\n'-euo', 'pipefail' tells Bash to consider a pipeline as failed if any command within it fails and to exit on error.\n\nshell = ['/bin/bash', '-euo', 'pipefail']\nYou can specify additional bash options to specify script execution and error management strategies.\n\n\nExecution reports\nNextflow provides a number of features for tracing and reporting on process execution status. In this template, we’ve asked Nextflow to generate info reports with dag{}, report{}, timeline{}, and trace{} scopes.\nDAG visualisation with dag{}\nA Nextflow pipeline’s direct acyclic graph (DAG) can be rendered by specifying the dag{} scope in the nextflow.config. In this template, we have:\n\nEnabled DAG creation upon workflow completion by default with enable = true\nEnabled the overwriting of existing DAGs with overwrite = true\nSpecified a file name and location to save the DAG with file = 'runInfo/dag.svg'\n\nTo generate the DAG, you must have GraphViz installed on your system.\nExecution report with report{}\nNextflow can create an HTML execution report that contains useful metrics about your workflow execution. See the Nextflow documentation for more information on its contents. Similarly, we have employed the same operators as above to output the execution report, however unlike a DAG you may wish to not overwrite existing execution reports, you can do this by specifying overwrite = false and naming your execution report based on timestamp, as was demonstrated here for a trace report:\n// Define timestamp, to avoid overwriting existing report \ndef timestamp = new java.util.Date().format('yyyy-MM-dd_HH-mm-ss')\n\nreport {\n    enabled = true\n    overwrite = false\n    file = 'runInfo/report-${timestamp}.html'\n}\nTimeline summary with timeline{}\nNextflow can create an HTML timeline report for all tasks executed by your workflow. See the Nextflow documentation for more information on its contents. Same as with the dag and report features, you may wish to adjust the way these are output in the template.\nProcess resource trace with trace{}\nThis template also creates a simple resource trace report. A trace report can be customised to include any combination of available fields as demonstrated here. Consider customising the trace file generated by the workflow by adding the fields = option to specify any of the trace fields provided by Nextflow.\n\n\nConfiguration profiles\nWe have provided configuration files for specific infrastructures inside the config/ directory in this template. These are defined inside the nextflow.config file using the profiles{} scope. To keep the workflow modular and flexible, we’ve assigned profile names to these config files using includeConfig allowing these profile definitions to be activated when launching your pipeline with nextflow run main.nf -profile standard for example. These configuration files can be used to override defaults specified inside the nextflow.config. Add your own custom configuration to config/ directory and update the profiles scope within the nextflow.config with the following:\nprofiles {\n    standard    { includeConfig \"config/standard.config\"}\n    configName  { includeConfig \"config/my.config\"      }\n}\nSee here for more details on what sorts of things can be included here.\n\n\nDefault resource definitions\nThe process{} configuration scope can be used to provide default configurations for the processes in your workflow. In the template, we have set some default CPU and memory directives to be applied to all processes run by the workflow. There are many process directives you can apply here to control resource availability, software execution, interact with job schedulers etc.\nYou can take a more fine-grained approach to process configuration by using Nextflow’s withName process selector, as demonstrated here. For example, for a process called PROCESS, we could change the default settings applied at the workflow level with:\nprocess {\n    cpus = 1\n    memory = 5.Gb\n\n    withName: 'PROCESS' {\n        cpus = 2\n        memory = 10.Gb\n    }\n}\n\n\n\n\n\n\n\nAll materials copyright Sydney Informatics Hub, University of Sydney",
+    "crumbs": [
+      "**Template components**",
+      "`nextflow.config`"
+    ]
   },
   {
     "objectID": "notebooks/guides.html",
     "href": "notebooks/guides.html",
-    "title": "Nextflow DSL2 template user guide",
+    "title": "Guides",
     "section": "",
-    "text": "Guides\n\n\n\n\n\nAll materials copyright Sydney Informatics Hub, University of Sydney"
-  },
-  {
-    "objectID": "notebooks/modules.html",
-    "href": "notebooks/modules.html",
-    "title": "Nextflow DSL2 template user guide",
-    "section": "",
-    "text": "modules/ directory\n\nWhat’s in modules/?\nThis directory contains all sub-workflows to be run with nextflow run main.nf. It is considered good practice to split out processes into separate .nf files and store them here, rather than including them all in the main.nf file. This directory is referenced in main.nf by include {x} from ./modules/process.\nEach module .nf script contains the process to be run, in addition to details of which container to be used, where to publish the output for the process.\n\n\nWhat is in each module file?\n\nDirectives\nNextflow process directives are optional settings that determine the execution of the current process. They can be provided at the top of the process body, before any other declaration blocks.\nSome examples you may wish to include are:\n\ndebug true to print stdout for each command being run\n\nmodule to specify environmental modules\ncontainer to specify a container to run the process\nerror strategy to define how a process error is managed\nlabels that can be applied to multiple processes\n\nIn the template we have provided an example of using a dynamic directive to modify the amount of computing resources requested by a process in case of a process failure and try to re-execute it using a higher limit:\nprocess process1 {\n    time { 2.hour * task.attempt }\n\n    errorStrategy { task.exitStatus in 137..143 ? 'retry' : 'terminate' }\n    maxRetries 2\n...\n}\nIn this example, if a task fails and returns an exit status between 137-143, it is resubmitted, otherwise it will terminate. The first time the process is run, task.attempt is set to 1 and it will request 2 hour of maximum execution time. If the first attempt of a task fails AND reports an exit status of 137-143, it will be resubmitted but this time task.attempt is 2, so the maximum execution time will be set to 4 hours. You can customise the number of attempts (maxRetries), the task exit status, and can specify time, memory, or cpus as resources.\n\n\nInput\nThe input block is required for each process, it defines the input channels for a process. A process must have at least one input and only one input block. You can specify values, paths, or files as inputs.\n\n\nOutput\nAn output block defines the output channels for a process. A process should have at least one output and only one output block. Nextflow DSL2 provides some flexibility regarding the creation of outputs. For example, we can use the emit option the assign a name identifier to a specific output. Assign a process’ output a specific name:\nprocess PROCESS1 {\n    output: \n        path 'sample*.bam', emit: sample_bam\n}\nThis name can be used within the main.nf workflow to reference the channel, whether that be as input for another process or to view the output:\nworkflow {\n    PROCESS1()\n    PROCESS1.out.samples_bam.view()\n}\nWe can also define an output as optional, meaning the process will not fail if an output is not generated by a task. Set an output as optional with the following:\noutput: \n    path(\"myFile.txt\"), optional: true\n\n\nScript\nThe script block defines the script executed by the process as a string expression. The script block must follow the input and output blocks at the bottom of a process scope.\n\nprocess process1 {\n\n    input: \n    path x \n\n    output:\n    path y \n\n    script:\n    \"\"\"\n    cat x \n    \"\"\"\n}\n\n\n\n\n\n\n\nAll materials copyright Sydney Informatics Hub, University of Sydney"
+    "text": "Guides\n\n\n\n\n\nAll materials copyright Sydney Informatics Hub, University of Sydney",
+    "crumbs": [
+      "**Guides**"
+    ]
   },
   {
     "objectID": "notebooks/configuration.html",
     "href": "notebooks/configuration.html",
     "title": "Resource configuration",
     "section": "",
-    "text": "All materials copyright Sydney Informatics Hub, University of Sydney"
+    "text": "All materials copyright Sydney Informatics Hub, University of Sydney",
+    "crumbs": [
+      "**Resource configuration**"
+    ]
   },
   {
-    "objectID": "notebooks/configs.html",
-    "href": "notebooks/configs.html",
-    "title": "Nextflow DSL2 template user guide",
+    "objectID": "template.html",
+    "href": "template.html",
+    "title": "The template",
     "section": "",
-    "text": "config/ directory\n\nWhat’s in config/?\nThis directory contains various profile modules for configuring the pipeline run. Some care should be taken when using these config profiles. See the Nextflow documentation for more details.\nThis directory contains the following profiles:\n\nnimbus: this profile is specific to Pawsey Supercomputing Centre’s Nimbus cloud. It enables the use of Docker.\nstandard: this is the default profile.\nsetonix: this profile is specific to Pawsey Supercomputing Centre’s Setonix HPC. It enables the use of the SLURM job scheduler and Singularity.\n\ngadi: this profile is specific to the National Computational Infrastructure’s Gadi HPC. It enables the use of the PBS Pro job scheduler and Singularity\n\n\n\nHow do I write a custom config file?\nWhile we have provided a number of recommended configuration features inside our template’s nextflow.config file, these may not port well between different infrastructures. For that reason we have provided some additional config examples for national HPC and cloud platforms. There are many different ways to configure a Nextflow workflow and your need to configure a workflow will depend on the needs of your workflow users, such as:\n\nIncrease the resources to take advantage of high CPU or high memory infrastructures\nRun on a HPC or cloud infrastructure\nExecute specific modules on specific node types on a cluster\nUse a different software execution method\nSelectively adjust the execution of one or a few processes\n\nWe recommend you take a look at the examples provided in the config/ directory of this template, the Nextflow documentation regarding configuration and our customising nf-core workshop materials to get some ideas on how to write custom Nextflow configuration files.\n\n\n\n\n\n\nAll materials copyright Sydney Informatics Hub, University of Sydney"
+    "text": "We developed the Nextflow DSL2 template to aid beginners in learning Nextflow and developing their own workflows. The template employs a basic framework that allows users to customise and extend the workflow while adhering to code management best practices.\nThe workflow code-base is organised into a number of different executable files and directories. This organisaiton promotes code modularity, reusability, maintainability, and clarity. Each executable file included in the template contains comment lines, links to relevant Nextflow documentation, and implementation examples. To apply the template to your own workflows, you will need to replace examples with your own code.\nModularising the code base and splitting workflow processes and configuration files offers a few benefits:",
+    "crumbs": [
+      "**The template**"
+    ]
+  },
+  {
+    "objectID": "template.html#set-up",
+    "href": "template.html#set-up",
+    "title": "The template",
+    "section": "Set up",
+    "text": "Set up\nRequirements:\n\nA GitHub account\nInstalled on your chosen development environment:\n\nNextflow (&gt;v20.10.0)\nGit\nSingularity\n\n\n\nClone the template\n\nOpen the DSL2 template repository on GitHub\nSelect the Use this template box and create a new repository\nName your repository, ending in -nf (this is required by cookiecutter gh action)\nSelect the Create repository from template box\n\nOnce you create a new repository using this template, a GitHub Action workflow will automatically be deployed. This workflow will populate your new repository with the skeleton template directory.\nWe recommend working in a development environment like VS Code to work with this template. If you’re working with VS Code, use the nf-core-extensionpack for some nice features like syntax highlighting. You can clone your copy of the template to your environment using git. For example:\ngit clone https://github.com/georgiesamaha/myWorkflow-nf.git\n\n\nDownload Nextflow\nDepending on the system you’re working on there are a few options for installing and running Nextflow including reproducible options like bioconda and Singularity. See here for installation instructions.\nOnce you have installed Nextflow, you can configure it to run on your system. See here for some set up tips.",
+    "crumbs": [
+      "**The template**"
+    ]
+  },
+  {
+    "objectID": "template.html#template-structure",
+    "href": "template.html#template-structure",
+    "title": "The template",
+    "section": "Template structure",
+    "text": "Template structure\nNextflow is highly flexible, allowing users to implement workflows in a number of different ways. In this template, we provide one common implementation for structuring your Nextflow code base in a way that is easy to maintain and read.\nThe template’s code repository is organised into a number of files and directories (see the template components for details):\nmyWorkflow-nf\n├── .github/ISSUE_TEMPLATE\n├── assets\n├── bin\n    └── samplesheetchecker.py\n├── config\n    ├── gadi.config\n    ├── nimbus.config\n    ├── setonix.config\n    └── standard.config\n├── modules\n|   ├── check_input.nf\n│   ├── process1.nf\n│   └── process2.nf\n├── main.nf\n├── LICENSE\n├── README.md\n└── nextflow.config\nConsider a basic Nextflow run command below, where a user will need to specify parameters and (optionally) a configuration profile:\n\n\nThe main.nf file is the executable file that identifies the workflow structure, inputs, and processes to pull form the modules/ directory.\nThe --parameter flag matches a parameter initialised in the nextflow.config file and applies it to the workflow execution.\nThe -profile flag is used to specify environment-specific configuration details such as a software implementation method and/or resource management.\n\nRunning a workflow that follows this template will output:\n\nA customisable execution message invoked when the workflow is run\nA customisable help message invoked using --help or failing to supply a required parameter\nA customisable completion message invoked when the workflow has finished running\nFiles generated by your processes, optionally these can be saved to a results directory\nWorkflow execution resource usage, trace, and timeline reports",
+    "crumbs": [
+      "**The template**"
+    ]
   },
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Welcome!",
+    "title": "Welcome to the Nextflow template guide!",
     "section": "",
-    "text": "We developed a Nextflow DSL2 workflow template and this user guide to aid beginners in developing their own Nextflow workflows. Here, we guide you through how to use our workflow template to develop your own Nextflow pipelines.\nNextflow is open source and scalable workflow management software for bioinformatics. It enables the development and running of integrated, reproducible workflows consisting of multiple processes, various environment management systems, scripting languages, and software packages. While Nextflow is designed to have a minimal learning curve as it doesn’t require end users to learn new programming languages, its extensive capabilities, use of Groovy syntax, and comprehensive documentation can be overwhelming for users who aren’t well versed in programming and software development.\nThis user guide is under active development and will be updated progressively."
+    "text": "We developed a Nextflow DSL2 workflow template and this user guide to aid beginners in developing their own Nextflow workflows. Here, we guide you through how to use our workflow template to develop your own Nextflow pipelines.\nNextflow is open source and scalable workflow management software for bioinformatics. It enables the development and running of integrated, reproducible workflows consisting of multiple processes, various environment management systems, scripting languages, and software packages. While Nextflow is designed to have a minimal learning curve as it doesn’t require end users to learn new programming languages, its extensive capabilities, use of Groovy syntax, and comprehensive documentation can be overwhelming for users who aren’t well versed in programming and software development.\nThis user guide is under active development and will be updated progressively.",
+    "crumbs": [
+      "**Welcome to the Nextflow template guide!**"
+    ]
   },
   {
     "objectID": "index.html#how-to-use-this-guide",
     "href": "index.html#how-to-use-this-guide",
-    "title": "Welcome!",
+    "title": "Welcome to the Nextflow template guide!",
     "section": "How to use this guide",
-    "text": "How to use this guide\nThis guide explains all aspects of using the workflow template, including:\n\n1. How to use the template on GitHub\nStart here for directions on how to set yourself up to use this template. This section provides step-by-step instructions to help you set up your local development environment and use the template files.\n\n\n2. The template structure and components\nUse the template components sections to familiarise yourself with the essential elements of the template including code base structure, directory organisation, configuration files, and how to modularise your workflow.\n\n\n3. Resource configuration\nThe resource configuration section can help you configure the resources required for running your workflow efficiently. The guide will cover topics such as specifying CPU and memory requirements, handling parallel execution, and integrating with high-performance computing (HPC) environments.\n\n\n4. Guides for customising the template\nIn the guides you will find various examples of scenarios you may come across when writing Nextflow code and developing your workflows. If you would like to contribute to this section, please submit a pull request.\n\n\n5. A hands-on tutorial\nGet a feel for the template and how to use it with the hands-on tutorial. It walks you through a practical example that demonstrates the application of the workflow template.\n\n\n6. Documentation and training resources\nThe details contained within this user guide are limited, as such we strongly recommend you explore additional documentation and training resources. These resources serve as references for further exploration of Nextflow concepts, advanced topics, and community support.\n\n\n\n\n\n\nAttention newcomers!\n\n\n\nIf you are new to this template and/or Nextflow, we recommend you do the following before applying the template to your own workflow:\n\nFamiliarise yourself with Nextflow\nClone the template repository\nExplore the template structure as you run through the hands-on exercise\nReview the workflow structure\nCustomise the resource configuration for your own needs"
+    "text": "How to use this guide\nThis guide explains all aspects of using the workflow template, including:\n\n1. How to use the template\nThis section provides step-by-step instructions to help you set up your local development environment and use the template files.\n\n\n2. Template components\nUse these sections to familiarise yourself with the essential elements of the template including code base structure, directory organisation, configuration files, and how to modularise your workflow.\n\n\n3. Resource configuration\nThis section can help you configure the resources required for running your workflow efficiently in your environment. The guide will cover topics such as specifying CPU and memory requirements, handling parallel execution, and integrating with HPC environments.\n\n\n4. Guides for customising the template\nHere, you will find various examples of scenarios you may come across when writing Nextflow code and developing your workflows.\n\n\n5. A hands-on tutorial\nGet a feel for the template and how to use it with the [hands-on tutorial]. It walks you through a practical example that demonstrates the application of the workflow template.\n\n\n6. Documentation and training resources\nThe details contained within this user guide are limited, as such we strongly recommend you explore additional documentation and training resources. These resources serve as references for further exploration of Nextflow concepts, advanced topics, and community support.\n\n\n\n\n\n\nAttention newcomers!\n\n\n\nIf you are new to this template and/or Nextflow, we recommend you do the following before applying the template to your own workflow:\n\nFamiliarise yourself with Nextflow\nClone the template repository\nExplore the template structure as you run through the hands-on exercise\nReview the workflow structure\nCustomise the resource configuration for your own needs",
+    "crumbs": [
+      "**Welcome to the Nextflow template guide!**"
+    ]
   },
   {
     "objectID": "index.html#who-is-the-dsl2-template-for",
     "href": "index.html#who-is-the-dsl2-template-for",
-    "title": "Welcome!",
+    "title": "Welcome to the Nextflow template guide!",
     "section": "Who is the DSL2 template for?",
-    "text": "Who is the DSL2 template for?\nThe DSL2 workflow template is suitable for:\n\nNextflow newcomers looking for a low barrier to entry, structured starting point, and guidance.\nCustom workflow developers looking for a simple scaffold which can be extended and modified as needed.\nCollaborative teams looking for a standard and consistent workflow code base structure.\nScalable workflow developers looking for a scalable and reproducible solution for their data analysis and processing needs.\n\nIt is not suitable for:\n\nThose wishing to create and contribute to public nf-core workflows, as it is not nf-core compatible.\nThose creating simple or single-task workflows with only a few tasks and minimal complexity.\nThose needing to rapidly prototype a workflow or perform exploratory analysis.\nThose with no previous command-line and bash experience."
+    "text": "Who is the DSL2 template for?\nThe DSL2 workflow template is suitable for:\n\nNextflow newcomers looking for a low barrier to entry, structured starting point, and guidance.\nCustom workflow developers looking for a simple scaffold which can be extended and modified as needed.\nCollaborative teams looking for a standard and consistent workflow code base structure.\nScalable workflow developers looking for a scalable and reproducible solution for their data analysis and processing needs.\n\nIt is not suitable for:\n\nThose wishing to create and contribute to public nf-core workflows, as it is not nf-core compatible.\nThose creating simple or single-task workflows with only a few tasks and minimal complexity.\nThose needing to rapidly prototype a workflow or perform exploratory analysis.\nThose with no previous command-line and bash experience.",
+    "crumbs": [
+      "**Welcome to the Nextflow template guide!**"
+    ]
   },
   {
     "objectID": "index.html#acknowledgements",
     "href": "index.html#acknowledgements",
-    "title": "Welcome!",
+    "title": "Welcome to the Nextflow template guide!",
     "section": "Acknowledgements",
-    "text": "Acknowledgements\nThe Nextflow DSL2 template and accompanying materials were developed by the Sydney Informatics Hub, University of Sydney in partnership with the Australian BioCommons - Bring Your Own Data Platforms project (Australian Research Data Commons and NCRIS via Bioplatforms Australia)."
+    "text": "Acknowledgements\nThe Nextflow DSL2 template and accompanying materials were developed by the Sydney Informatics Hub, University of Sydney in partnership with the Australian BioCommons - Bring Your Own Data Platforms project (Australian Research Data Commons and NCRIS via Bioplatforms Australia).",
+    "crumbs": [
+      "**Welcome to the Nextflow template guide!**"
+    ]
+  },
+  {
+    "objectID": "notebooks/configs.html",
+    "href": "notebooks/configs.html",
+    "title": "config/ directory",
+    "section": "",
+    "text": "config/ directory\n\nWhat’s in config/?\nThis directory contains various profile modules for configuring the pipeline run. Some care should be taken when using these config profiles. See the Nextflow documentation for more details.\nThis directory contains the following profiles:\n\nnimbus: this profile is specific to Pawsey Supercomputing Centre’s Nimbus cloud. It enables the use of Docker.\nstandard: this is the default profile.\nsetonix: this profile is specific to Pawsey Supercomputing Centre’s Setonix HPC. It enables the use of the SLURM job scheduler and Singularity.\n\ngadi: this profile is specific to the National Computational Infrastructure’s Gadi HPC. It enables the use of the PBS Pro job scheduler and Singularity\n\n\n\nHow do I write a custom config file?\nWhile we have provided a number of recommended configuration features inside our template’s nextflow.config file, these may not port well between different infrastructures. For that reason we have provided some additional config examples for national HPC and cloud platforms. There are many different ways to configure a Nextflow workflow and your need to configure a workflow will depend on the needs of your workflow users, such as:\n\nIncrease the resources to take advantage of high CPU or high memory infrastructures\nRun on a HPC or cloud infrastructure\nExecute specific modules on specific node types on a cluster\nUse a different software execution method\nSelectively adjust the execution of one or a few processes\n\nWe recommend you take a look at the examples provided in the config/ directory of this template, the Nextflow documentation regarding configuration and our customising nf-core workshop materials to get some ideas on how to write custom Nextflow configuration files.\n\n\n\n\n\n\nAll materials copyright Sydney Informatics Hub, University of Sydney",
+    "crumbs": [
+      "**Template components**",
+      "`config/` directory"
+    ]
+  },
+  {
+    "objectID": "notebooks/main-nf.html",
+    "href": "notebooks/main-nf.html",
+    "title": "main.nf",
+    "section": "",
+    "text": "This is the primary script file or entry point for defining and executing a Nextflow workflow. The main.nf script contains the workflow’s structure, processes, and channels. This file doesn’t have to be called main.nf but this is common practice in Nextflow.\n\nWhat’s in main.nf?\nThis file contains the following essentials:\n\nProcess definitions\nChannel definitions\nWorkflow structure\n\n\nProcesses\nConsider processes as individual units of work or steps to be executed by a workflow. While you can opt to define all processes within the main.nf script (like here), we have chosen to focus on modularity with this template. As such, processes inside the template are saved as individual scripts inside the modules/ directory and imported into the main.nf script:\ninclude { processName } from './modules/moduleName'\nEach process is also specified again inside the workflow{} scope along with its inputs. See the modules/ directory section for details on how process modules connect to their definitions inside the main.nf.\n\n\nChannels\nThere are lots of ways to define and apply channels in Nextflow. In Nextflow, channels are essential for connecting tasks to one another in the workflow definition. Channels are defined within the workflow scope in the workflow template. In the template, we’ve defined an example channel called input that uses the fromPath() factory to capture a parameterised input file so users can provide their own custom input files to the workflow.\nObserve how the input channel is consumed by process1 below:\nworkflow {\n    input = Channel.fromPath(\"${params.input}\")\n\n    process1(input)\n}\nSometimes you will need to apply methods called operators to transform data inside channels. For example, here we used a combination of basic operators to:\n\nSplit rows into different columns (.splitCsv)\nGroup those split fields for each row to pair a specific file to a specific sample (.map)\n\ninput = checkInputs.out\n    .splitCsv(header: true, sep:\"\\t\")\n    .map { row -&gt; tuple(row.sampleID, file(row.bam))}\n\n\nThe workflow\nThe workflow{} scope contains all components required to invoke one or more processes. In the template, we’ve used an if else loop to first invoke a help command to ensure the workflow is being run with the correct parameters and then run the processes imported using the include scope.\nInside the template, two example processes and their inputs/outputs are connected as:\nworkflow {\n\n    input = Channel.fromPath(\"${params.input}\")\n\n    // Run process 1 \n    processName1(input)\n    \n    // Run process 2 which takes output of process 1 \n    processName2(processOne.out.File)\n}\nWorkflows can be structured with more flexibility and complexity, see here for some examples.\n\n\nAdditional features\nSome additional features that we have provided in the main.nf file are intended to make your workflows easier to run and troubleshoot. They are not currently well documented in the Nextflow user guide. We have used Nextflow’s interpretation of the Groovy logger function to print messages to the screen to make the workflow more interactive and clarify execution. The log functions we have used include the following and can be removed without affecting the workflow execution.\nA customisable execution message\nThis will be printed to the screen when the workflow is run. Edit the text inside the header text block:\nlog.info \"\"\"\\\n    YOU CAN PUT ANYTHING YOU WANT IN HERE \n\"\"\".stripIndent()`\nSome suggestions for things to include here:\n\nThe name of your workflow\nA DOI for citation purposes\nPrint specified parameters\n\nA customisable help message\nThis will be printed to the screen when the --help parameter is used or a required parameter is not supplied. You can edit the message to be printed inside the help message text block:\ndef helpMessage() {\n    log.info\"\"\"\n        YOU CAN PUT ANYTHING YOU WANT IN HERE \n    \"\"\".stripIndent()\n}\nSome suggestions to include here:\n\nThe suggested run command\nRequired parameters and a short explainer\nOptional parameters and a short explainer\n\nA customisable completion message\nThis will be printed to the screen when the workflow has finished running. You can edit the message to be printed inside the summary message block:\nworkflow.onComplete {\nsummary = \"\"\"\n    YOU CAN PUT ANYTHING YOU WANT IN HERE \n  \"\"\"\nprintln summary\n}\n\n\n\n\n\n\nAll materials copyright Sydney Informatics Hub, University of Sydney",
+    "crumbs": [
+      "**Template components**",
+      "`main.nf`"
+    ]
+  },
+  {
+    "objectID": "notebooks/software.html",
+    "href": "notebooks/software.html",
+    "title": "Software management",
+    "section": "",
+    "text": "Software management\n\n\n\n\n\nAll materials copyright Sydney Informatics Hub, University of Sydney",
+    "crumbs": [
+      "**Software management**"
+    ]
+  },
+  {
+    "objectID": "notebooks/bin.html",
+    "href": "notebooks/bin.html",
+    "title": "bin/ directory",
+    "section": "",
+    "text": "bin/ directory\nA strength of Nextflow is the fact it can be used to combine processes written in different languages. You may have custom scripts you would like to execute within your workflow and it is recommended these be stored in your /bin directory.\n\nWhat should go in bin/?\nIn the real world, workflows often use custom scripts written in languages like Bash, Perl, R, and Python. Simply place these scripts inside the bin/ directory in the workflow project root folder, as we have provided in this template. These scripts will automatically be added by Nextflow to your workflow execution $PATH.\n\n\n\n\n\n\nMake your scripts executable\n\n\n\nYour custom scripts must be executable for Nextflow to run them. You can give execution permissions for a custom script stored in bin/ with:\nchmod +x bin/customScript.sh \n\n\n\n\n\n\n\n\nAll materials copyright Sydney Informatics Hub, University of Sydney",
+    "crumbs": [
+      "**Template components**",
+      "`bin/` directory"
+    ]
+  },
+  {
+    "objectID": "notebooks/modules.html",
+    "href": "notebooks/modules.html",
+    "title": "modules/ directory",
+    "section": "",
+    "text": "modules/ directory\n\nWhat’s in modules/?\nThis directory contains all sub-workflows to be run with nextflow run main.nf. It is considered good practice to split out processes into separate .nf files and store them here, rather than including them all in the main.nf file. This directory is referenced in main.nf by include {x} from ./modules/process.\nEach module .nf script contains the process to be run, in addition to details of which container to be used, where to publish the output for the process.\n\n\nWhat is in each module file?\n\nDirectives\nNextflow process directives are optional settings that determine the execution of the current process. They can be provided at the top of the process body, before any other declaration blocks.\nSome examples you may wish to include are:\n\ndebug true to print stdout for each command being run\n\nmodule to specify environmental modules\ncontainer to specify a container to run the process\nerror strategy to define how a process error is managed\nlabels that can be applied to multiple processes\n\nIn the template we have provided an example of using a dynamic directive to modify the amount of computing resources requested by a process in case of a process failure and try to re-execute it using a higher limit:\nprocess process1 {\n    time { 2.hour * task.attempt }\n\n    errorStrategy { task.exitStatus in 137..143 ? 'retry' : 'terminate' }\n    maxRetries 2\n...\n}\nIn this example, if a task fails and returns an exit status between 137-143, it is resubmitted, otherwise it will terminate. The first time the process is run, task.attempt is set to 1 and it will request 2 hour of maximum execution time. If the first attempt of a task fails AND reports an exit status of 137-143, it will be resubmitted but this time task.attempt is 2, so the maximum execution time will be set to 4 hours. You can customise the number of attempts (maxRetries), the task exit status, and can specify time, memory, or cpus as resources.\n\n\nInput\nThe input block is required for each process, it defines the input channels for a process. A process must have at least one input and only one input block. You can specify values, paths, or files as inputs.\n\n\nOutput\nAn output block defines the output channels for a process. A process should have at least one output and only one output block. Nextflow DSL2 provides some flexibility regarding the creation of outputs. For example, we can use the emit option the assign a name identifier to a specific output. Assign a process’ output a specific name:\nprocess PROCESS1 {\n    output: \n        path 'sample*.bam', emit: sample_bam\n}\nThis name can be used within the main.nf workflow to reference the channel, whether that be as input for another process or to view the output:\nworkflow {\n    PROCESS1()\n    PROCESS1.out.samples_bam.view()\n}\nWe can also define an output as optional, meaning the process will not fail if an output is not generated by a task. Set an output as optional with the following:\noutput: \n    path(\"myFile.txt\"), optional: true\n\n\nScript\nThe script block defines the script executed by the process as a string expression. The script block must follow the input and output blocks at the bottom of a process scope.\n\nprocess process1 {\n\n    input: \n    path x \n\n    output:\n    path y \n\n    script:\n    \"\"\"\n    cat x \n    \"\"\"\n}\n\n\n\n\n\n\n\nAll materials copyright Sydney Informatics Hub, University of Sydney",
+    "crumbs": [
+      "**Template components**",
+      "`modules/` directory"
+    ]
+  },
+  {
+    "objectID": "notebooks/components.html",
+    "href": "notebooks/components.html",
+    "title": "Extra bits",
+    "section": "",
+    "text": "There are multiple files and directories in this template. When downloaded, the template’s codebase is organised into the following directories and files. As you go through the template, you’ll notice a number of README.md files that explain what should be placed in the directory."
+  },
+  {
+    "objectID": "notebooks/components.html#githubissues_template",
+    "href": "notebooks/components.html#githubissues_template",
+    "title": "Workflow structure",
+    "section": ".github/ISSUES_TEMPLATE",
+    "text": ".github/ISSUES_TEMPLATE",
+    "crumbs": [
+      "**Template components**",
+      "Workflow structure"
+    ]
+  },
+  {
+    "objectID": "notebooks/components.html#assets",
+    "href": "notebooks/components.html#assets",
+    "title": "Extra bits",
+    "section": "assets/",
+    "text": "assets/\nYou can store auxillary files that your workflow may use in here. We don’t recommend storing data in your git repository but if you had a samplesheet you’d like to use for automated testing then it could be placed here. Additionally, you may wish to store the following:\n\nMultiqc config yaml files\nLogo image files\nEmail templates (e.g. nf-core/sarek email .txt and .html)\nParameter json schema\n\nFor example, in one of our workflows, we’ve included a MultiQC custom configuration file in the assets/ directory. We’ve then referenced this configuration file inside the MultiQC module file and provided a direct path to its location as a variable:\nprocess multiqc {\n    tag \"GENERATING REPORT: ${params.cohort_name}\" \n    publishDir \"${params.outdir}/multiqc\", mode: 'symlink'\n    container 'quay.io/biocontainers/multiqc:1.21--pyhdfd78af_0'\n\n    input:\n    path (multiqc_in)\n    path(params.multiqc_config)\n    \n    output:\n    path(\"*.html\")\n    path(\"*_data\")\n    path(\"*_plots\")\n\n    script: \n    def args = task.ext.args ?: ''\n    def multiqc_config = \"${baseDir}/assets/multiqc_config.yml\"\n    \"\"\"\n    multiqc . \\\n        --filename ${params.cohort_name}_multiqc \\\n        -c ${multiqc_config} \\\n        $args\n    \"\"\"\n}"
+  },
+  {
+    "objectID": "notebooks/components.html#bin",
+    "href": "notebooks/components.html#bin",
+    "title": "Extra bits",
+    "section": "bin/",
+    "text": "bin/"
+  },
+  {
+    "objectID": "notebooks/components.html#config",
+    "href": "notebooks/components.html#config",
+    "title": "Extra bits",
+    "section": "config/",
+    "text": "config/"
+  },
+  {
+    "objectID": "notebooks/components.html#modules",
+    "href": "notebooks/components.html#modules",
+    "title": "Extra bits",
+    "section": "modules/",
+    "text": "modules/"
+  },
+  {
+    "objectID": "notebooks/components.html#githubissue_template",
+    "href": "notebooks/components.html#githubissue_template",
+    "title": "Extra bits",
+    "section": ".github/ISSUE_TEMPLATE",
+    "text": ".github/ISSUE_TEMPLATE\nGitHub issues are items that you and visitors to your code repository can use to plan, track, and discuss your code. By default these are all blank, however you can use templates to organise issues into different categories. For our purposes, we have organised issues into:\n\nBug report: to track and resolve problems in the code that cause it to not run as expected.\nFeature request: to suggest new ideas or features to be added to the workflow.\nQuestion: for general queries.\nBlank issue: for everything else.\n\nIn .github/ISSUE_TEMPLATE you’ll find four markdown files (.md), one each for the bug report template and feature request template. You’ll also find a config.yml which can be customised for your purposes.\nThese files are rendered in your GitHub repository website. For example, in one of our workflows, we’ve used only the bug report and feature request templates:\n\n\n\n\n\n\n\nImportant\n\n\n\nThe .github/ISSUE_TEMPLATE directory and its contents can be removed without impacting the functionality of your workflow.\n\n\nFor details on how to customise these issue templates, see GitHub’s documentation."
+  },
+  {
+    "objectID": "notebooks/components.html#main.nf",
+    "href": "notebooks/components.html#main.nf",
+    "title": "Extra bits",
+    "section": "main.nf",
+    "text": "main.nf"
+  },
+  {
+    "objectID": "notebooks/components.html#license",
+    "href": "notebooks/components.html#license",
+    "title": "Extra bits",
+    "section": "LICENSE",
+    "text": "LICENSE"
+  },
+  {
+    "objectID": "notebooks/components.html#readme.md",
+    "href": "notebooks/components.html#readme.md",
+    "title": "Extra bits",
+    "section": "README.md",
+    "text": "README.md"
+  },
+  {
+    "objectID": "notebooks/components.html#nextflow.config",
+    "href": "notebooks/components.html#nextflow.config",
+    "title": "Extra bits",
+    "section": "nextflow.config",
+    "text": "nextflow.config"
+  },
+  {
+    "objectID": "notebooks/bits.html",
+    "href": "notebooks/bits.html",
+    "title": "Extra bits",
+    "section": "",
+    "text": "There are multiple files and directories in this template. When downloaded, the template’s codebase is organised into the following directories and files. As you go through the template, you’ll notice a number of README.md files that explain what should be placed in the directory. Additionally, note:\n\n.github/ISSUE_TEMPLATE\nassets/\nLICENSE\nREADME.md\n\n\n\n\n\n\n\nNote\n\n\n\nWe highly recommend Nextflow’s Advanced Training materials to support your learning and implementing this template.\n\n\n\n\nGitHub issues are items that you and visitors to your code repository can use to plan, track, and discuss your code. By default these are all blank, however you can use templates to organise issues into different categories. For our purposes, we have organised issues into:\n\nBug report: to track and resolve problems in the code that cause it to not run as expected.\nFeature request: to suggest new ideas or features to be added to the workflow.\nQuestion: for general queries.\nBlank issue: for everything else.\n\nIn .github/ISSUE_TEMPLATE you’ll find four markdown files (.md), one each for the bug report template and feature request template. You’ll also find a config.yml which can be customised for your purposes.\nThese files are rendered in your GitHub repository website. For example, in one of our workflows, we’ve used only the bug report and feature request templates:\n\n\n\n\n\n\n\nImportant\n\n\n\nThe .github/ISSUE_TEMPLATE directory and its contents can be removed without impacting the functionality of your workflow.\n\n\nFor details on how to customise these issue templates, see GitHub’s documentation.\n\n\n\nYou can store auxillary files that your workflow may use in here. We don’t recommend storing data in your git repository but if you had a samplesheet you’d like to use for automated testing then it could be placed here. Additionally, you may wish to store the following:\n\nMultiqc config yaml files\nLogo image files\nEmail templates (e.g. nf-core/sarek email .txt and .html)\nParameter json schema\n\nFor example, in one of our workflows, we’ve included a MultiQC custom configuration file in the assets/ directory. We’ve then referenced this configuration file inside the MultiQC module file and provided a direct path to its location as a variable:\nprocess multiqc {\n    tag \"GENERATING REPORT: ${params.cohort_name}\" \n    publishDir \"${params.outdir}/multiqc\", mode: 'symlink'\n    container 'quay.io/biocontainers/multiqc:1.21--pyhdfd78af_0'\n\n    input:\n    path (multiqc_in)\n    path(params.multiqc_config)\n    \n    output:\n    path(\"*.html\")\n    path(\"*_data\")\n    path(\"*_plots\")\n\n    script: \n    def args = task.ext.args ?: ''\n    def multiqc_config = \"${baseDir}/assets/multiqc_config.yml\"\n    \"\"\"\n    multiqc . \\\n        --filename ${params.cohort_name}_multiqc \\\n        -c ${multiqc_config} \\\n        $args\n    \"\"\"\n}",
+    "crumbs": [
+      "**Template components**",
+      "Extra bits"
+    ]
+  },
+  {
+    "objectID": "notebooks/bits.html#githubissue_template",
+    "href": "notebooks/bits.html#githubissue_template",
+    "title": "Extra bits",
+    "section": "",
+    "text": "GitHub issues are items that you and visitors to your code repository can use to plan, track, and discuss your code. By default these are all blank, however you can use templates to organise issues into different categories. For our purposes, we have organised issues into:\n\nBug report: to track and resolve problems in the code that cause it to not run as expected.\nFeature request: to suggest new ideas or features to be added to the workflow.\nQuestion: for general queries.\nBlank issue: for everything else.\n\nIn .github/ISSUE_TEMPLATE you’ll find four markdown files (.md), one each for the bug report template and feature request template. You’ll also find a config.yml which can be customised for your purposes.\nThese files are rendered in your GitHub repository website. For example, in one of our workflows, we’ve used only the bug report and feature request templates:\n\n\n\n\n\n\n\nImportant\n\n\n\nThe .github/ISSUE_TEMPLATE directory and its contents can be removed without impacting the functionality of your workflow.\n\n\nFor details on how to customise these issue templates, see GitHub’s documentation.",
+    "crumbs": [
+      "**Template components**",
+      "Extra bits"
+    ]
+  },
+  {
+    "objectID": "notebooks/bits.html#assets",
+    "href": "notebooks/bits.html#assets",
+    "title": "Extra bits",
+    "section": "",
+    "text": "You can store auxillary files that your workflow may use in here. We don’t recommend storing data in your git repository but if you had a samplesheet you’d like to use for automated testing then it could be placed here. Additionally, you may wish to store the following:\n\nMultiqc config yaml files\nLogo image files\nEmail templates (e.g. nf-core/sarek email .txt and .html)\nParameter json schema\n\nFor example, in one of our workflows, we’ve included a MultiQC custom configuration file in the assets/ directory. We’ve then referenced this configuration file inside the MultiQC module file and provided a direct path to its location as a variable:\nprocess multiqc {\n    tag \"GENERATING REPORT: ${params.cohort_name}\" \n    publishDir \"${params.outdir}/multiqc\", mode: 'symlink'\n    container 'quay.io/biocontainers/multiqc:1.21--pyhdfd78af_0'\n\n    input:\n    path (multiqc_in)\n    path(params.multiqc_config)\n    \n    output:\n    path(\"*.html\")\n    path(\"*_data\")\n    path(\"*_plots\")\n\n    script: \n    def args = task.ext.args ?: ''\n    def multiqc_config = \"${baseDir}/assets/multiqc_config.yml\"\n    \"\"\"\n    multiqc . \\\n        --filename ${params.cohort_name}_multiqc \\\n        -c ${multiqc_config} \\\n        $args\n    \"\"\"\n}",
+    "crumbs": [
+      "**Template components**",
+      "Extra bits"
+    ]
   }
 ]

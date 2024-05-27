@@ -19,11 +19,11 @@ Modularising the code base and splitting workflow processes and configuration fi
 
 Requirements: 
 
-* A GitHub account 
+* [A GitHub account](https://docs.github.com/en/get-started/start-your-journey/creating-an-account-on-github) 
 * Installed on your chosen development environment: 
-  * Nextflow (>v20.10.0)
-  * Git 
-  * Singularity 
+  * [Nextflow (>v20.10.0)](https://www.nextflow.io/docs/latest/install.html)
+  * [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) 
+  * [Singularity](https://docs.sylabs.io/guides/3.0/user-guide/installation.html) 
 
 ### **Clone the template**
 
@@ -32,14 +32,20 @@ Requirements:
 3. Name your repository, ending in `-nf` (this is required by cookiecutter gh action)
 4. Select the <span style="color: green">Create repository from template</span> box
 
-Explain what cookiecutter will do. How to push and save changes to workflow code base using Git. 
+Once you create a new repository using this template, a GitHub Action workflow will automatically be deployed. This workflow will populate your new repository with the skeleton template directory. 
+
+We recommend working in a development environment like VS Code to work with this template. If you're working with VS Code, use the [nf-core-extensionpack](https://marketplace.visualstudio.com/items?itemName=nf-core.nf-core-extensionpack) for some nice features like syntax highlighting. You can clone your copy of the template to your environment using git. For example: 
+
+```default
+git clone https://github.com/georgiesamaha/myWorkflow-nf.git
+```
 
 ### **Download Nextflow**
 
 Depending on the system you're working on there are a few options for installing and running Nextflow including reproducible options like bioconda and Singularity. See [here](https://nf-co.re/usage/installation) for installation instructions. 
 
-Once you have installed Nextflow, you can configure it to run on your system. This template only provides the standard `nextflow.config` file. See [here](https://www.nextflow.io/blog/2021/nextflow-developer-environment.html) for some set up tips.
-
+Once you have installed Nextflow, you can configure it to run on your system. See [here](https://www.nextflow.io/blog/2021/nextflow-developer-environment.html) for some set up tips.
+ 
 ## **Template structure**
 
 Nextflow is highly flexible, allowing users to implement workflows in a number of different ways. In this template, we provide one common implementation for structuring your Nextflow code base in a way that is easy to maintain and read. 
@@ -47,23 +53,27 @@ Nextflow is highly flexible, allowing users to implement workflows in a number o
 The template's code repository is organised into a number of files and directories (see the [template components]() for details): 
 
 ```default
-Nextflow_DSL2_template
-├── LICENSE
-├── README.md
+myWorkflow-nf
+├── .github/ISSUE_TEMPLATE
+├── assets
 ├── bin
+    └── samplesheetchecker.py
 ├── config
     ├── gadi.config
     ├── nimbus.config
     ├── setonix.config
     └── standard.config
-├── main.nf
 ├── modules
+|   ├── check_input.nf
 │   ├── process1.nf
 │   └── process2.nf
+├── main.nf
+├── LICENSE
+├── README.md
 └── nextflow.config
 ```
 
-The template includes the basic features of a Nextflow workflow to enable you to run workflows in a reproducible, portable, and transparent manner. Consider a basic Nextflow run command below, where a user will need to specify parameters and (optionally) a configuration [profile](https://www.nextflow.io/docs/latest/config.html#config-profiles):  
+Consider a basic Nextflow run command below, where a user will need to specify parameters and (optionally) a configuration [profile](https://www.nextflow.io/docs/latest/config.html#config-profiles):  
 
 ![](./figs/template_command.png)
 
