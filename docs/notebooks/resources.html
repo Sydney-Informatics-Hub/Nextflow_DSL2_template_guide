@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Nextflow DSL2 template user guide - The template</title>
+<title>Nextflow DSL2 template user guide - Resource configuration</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,63 +20,29 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/cookie-consent/cookie-consent.js"></script>
-<link href="site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -146,7 +112,7 @@ cookieconsent.run({
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./template.html"><strong>The template</strong></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/resources.html"><strong>Resource configuration</strong></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -161,7 +127,7 @@ cookieconsent.run({
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Nextflow DSL2 template user guide</a> 
+      <a href="../">Nextflow DSL2 template user guide</a> 
         <div class="sidebar-tools-main">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
@@ -176,13 +142,13 @@ cookieconsent.run({
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><strong>Welcome to the Nextflow template guide!</strong></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./template.html" class="sidebar-item-text sidebar-link active">
+  <a href="../template.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><strong>The template</strong></span></a>
   </div>
 </li>
@@ -197,63 +163,69 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./notebooks/main-nf.html" class="sidebar-item-text sidebar-link">
+  <a href="../notebooks/main-nf.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><code>main.nf</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./notebooks/nextflow-config.html" class="sidebar-item-text sidebar-link">
+  <a href="../notebooks/nextflow-config.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><code>nextflow.config</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./notebooks/modules.html" class="sidebar-item-text sidebar-link">
+  <a href="../notebooks/modules.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><code>modules/</code> directory</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./notebooks/bin.html" class="sidebar-item-text sidebar-link">
+  <a href="../notebooks/bin.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><code>bin/</code> directory</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./notebooks/configs.html" class="sidebar-item-text sidebar-link">
+  <a href="../notebooks/configs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><code>config/</code> directory</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notebooks/bits.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Extra bits</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./notebooks/configuration.html" class="sidebar-item-text sidebar-link">
+  <a href="../notebooks/resources.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><strong>Resource configuration</strong></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./notebooks/software.html" class="sidebar-item-text sidebar-link">
+  <a href="../notebooks/software.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><strong>Software management</strong></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./notebooks/hands-on.html" class="sidebar-item-text sidebar-link">
+  <a href="../notebooks/hands-on.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><strong>Hands on tutorial</strong></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./notebooks/guides.html" class="sidebar-item-text sidebar-link">
+  <a href="../notebooks/guides.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><strong>Guides</strong></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><strong>Resources</strong></span></a>
   </div>
 </li>
@@ -268,7 +240,7 @@ cookieconsent.run({
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><strong>The template</strong></h1>
+<h1 class="title"><strong>Resource configuration</strong></h1>
 </div>
 
 
@@ -285,77 +257,43 @@ cookieconsent.run({
 </header>
 
 
-<p>We developed the Nextflow DSL2 template to aid beginners in learning Nextflow and developing their own workflows. The template employs a basic framework that allows users to customise and extend the workflow while adhering to code management best practices.</p>
-<p>The workflow code-base is organised into a number of different executable files and directories. This organisaiton promotes code modularity, reusability, maintainability, and clarity. Each executable file included in the template contains comment lines, links to relevant Nextflow documentation, and implementation examples. To apply the template to your own workflows, you will need to replace examples with your own code.</p>
-<p>Modularising the code base and splitting workflow processes and configuration files offers a few benefits:</p>
+<p>Resource configuration in Nextflow workflows can be challenging due to the diversity of computational environments we each work in. Each environment has unique resource constraints and management systems which can complicate the allocation of resources like CPUs, memory, and storage.</p>
+<p>Ensuring you’re resource efficient will minimise the runtime and reduce the cost of running your workflows. Poorly configured workflows can lead to failed jobs, wasted computational time, and overuse of resources, particularly in HPC and cloud environments.</p>
+<p>https://nextflow.io/blog/2024/optimizing-nextflow-for-hpc-and-cloud-at-scale.html</p>
+<section id="nextflow-configuration-files" class="level2">
+<h2 class="anchored" data-anchor-id="nextflow-configuration-files"><strong>Nextflow configuration files</strong></h2>
+<p>The core of resource configuration in Nextflow should be contained within the <code>nextflow.config</code> and any other custom configuration files. When a workflow is executed with <code>nextflow run main.nf</code>, Nextflow looks for the <code>nextflow.config</code> and any other <code>.config</code> files in the current directory and the base directory of the execution script. It will also check <code>$HOME/.nextflow/config</code>. When more than 1 of these files exists, they are merged so that the default settings in the <code>nextflow.config</code> are overwritten as required.</p>
+<p>These configuration files allow you to specify <a href="https://www.nextflow.io/docs/latest/config.html#config-scopes">settings for resources</a> such as:</p>
 <ul>
-<li>Code organisation and maintainability</li>
-<li>Readability and clarity</li>
-<li>Collaboration</li>
-<li>Testing and debugging</li>
-<li>Code reuse and extensibility</li>
+<li><code>cpus</code></li>
+<li><code>memory</code></li>
+<li><code>time</code></li>
+<li><code>executor</code></li>
+<li><code>env</code> variables</li>
 </ul>
-<section id="set-up" class="level2">
-<h2 class="anchored" data-anchor-id="set-up"><strong>Set up</strong></h2>
-<p>Requirements:</p>
-<ul>
-<li>A GitHub account</li>
-<li>Installed on your chosen development environment:
-<ul>
-<li>Nextflow (&gt;v20.10.0)</li>
-<li>Git</li>
-<li>Singularity</li>
-</ul></li>
-</ul>
-<section id="clone-the-template" class="level3">
-<h3 class="anchored" data-anchor-id="clone-the-template"><strong>Clone the template</strong></h3>
-<ol type="1">
-<li>Open the <a href="https://github.com/Sydney-Informatics-Hub/Nextflow_DSL2_template">DSL2 template repository</a> on GitHub</li>
-<li>Select the <span style="color: green">Use this template</span> box and create a new repository</li>
-<li>Name your repository, ending in <code>-nf</code> (this is required by cookiecutter gh action)</li>
-<li>Select the <span style="color: green">Create repository from template</span> box</li>
-</ol>
-<p>Explain what cookiecutter will do. How to push and save changes to workflow code base using Git.</p>
+<p>Here is a basic example of how you can set these resources for all processes in a workflow within the process scope in a configuration file:</p>
+<pre><code>process {
+  cpus = 2
+  memory = '4.GB'
+  time = '2.h'
+}</code></pre>
+<p>In Nextflow, resource directives are specified within the <code>process</code> block. These directives control how many CPUs, how much memory, and how much time each process is allocated. While a default minimum resource allocation can be suitable in some workflows, this will not always work in more complex workflows and you will need to configure resources per process. Here is an example of how you’d configure the resources for a specific process, overwriting default settings for that process:</p>
+<pre><code>process {
+  cpus = 2
+  memory = '4.GB'
+  time = '2.h'
+  
+  // Provide additional memory for indexing process
+  withName: 'STAR_INDEX' {
+    cpus = 1
+    memory = '32.GB'
+  }
+}</code></pre>
 </section>
-<section id="download-nextflow" class="level3">
-<h3 class="anchored" data-anchor-id="download-nextflow"><strong>Download Nextflow</strong></h3>
-<p>Depending on the system you’re working on there are a few options for installing and running Nextflow including reproducible options like bioconda and Singularity. See <a href="https://nf-co.re/usage/installation">here</a> for installation instructions.</p>
-<p>Once you have installed Nextflow, you can configure it to run on your system. This template only provides the standard <code>nextflow.config</code> file. See <a href="https://www.nextflow.io/blog/2021/nextflow-developer-environment.html">here</a> for some set up tips.</p>
-</section>
-</section>
-<section id="template-structure" class="level2">
-<h2 class="anchored" data-anchor-id="template-structure"><strong>Template structure</strong></h2>
-<p>Nextflow is highly flexible, allowing users to implement workflows in a number of different ways. In this template, we provide one common implementation for structuring your Nextflow code base in a way that is easy to maintain and read.</p>
-<p>The template’s code repository is organised into a number of files and directories (see the <a href="">template components</a> for details):</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Nextflow_DSL2_template</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>├── LICENSE</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>├── README.md</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>├── bin</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>├── config</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    ├── gadi.config</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>&nbsp;&nbsp;  ├── nimbus.config</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>&nbsp;&nbsp;  ├── setonix.config</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>&nbsp;&nbsp;  └── standard.config</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>├── main.nf</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>├── modules</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>│&nbsp;&nbsp; ├── process1.nf</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>│&nbsp;&nbsp; └── process2.nf</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>└── nextflow.config</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The template includes the basic features of a Nextflow workflow to enable you to run workflows in a reproducible, portable, and transparent manner. Consider a basic Nextflow run command below, where a user will need to specify parameters and (optionally) a configuration <a href="https://www.nextflow.io/docs/latest/config.html#config-profiles">profile</a>:</p>
-<p><img src="./figs/template_command.png" class="img-fluid"></p>
-<ul>
-<li>The <code>main.nf</code> file is the executable file that identifies the workflow structure, inputs, and processes to pull form the <code>modules/</code> directory.</li>
-<li>The <code>--parameter</code> flag matches a parameter initialised in the <code>nextflow.config</code> file and applies it to the workflow execution.</li>
-<li>The <code>-profile</code> flag is used to specify environment-specific configuration details such as a software implementation method and/or resource management.</li>
-</ul>
-<p>Running a workflow that follows this template will output:</p>
-<ul>
-<li>A customisable execution message invoked when the workflow is run</li>
-<li>A customisable help message invoked using <code>--help</code> or failing to supply a required parameter</li>
-<li>A customisable completion message invoked when the workflow has finished running</li>
-<li>Files generated by your processes, optionally these can be saved to a results directory</li>
-<li>Workflow execution resource usage, trace, and timeline reports</li>
-</ul>
+<section id="dynamic-resource-allocations" class="level2">
+<h2 class="anchored" data-anchor-id="dynamic-resource-allocations"><strong>Dynamic resource allocations</strong></h2>
+<p>Nextflow also allows you to dynamically allocate resources based on the input data size or task type. For example, you might need to adjust memory based on the size of an input file:</p>
+<pre><code></code></pre>
 
 
 </section>

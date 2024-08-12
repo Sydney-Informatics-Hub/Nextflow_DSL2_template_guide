@@ -163,12 +163,6 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notebooks/components.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Workflow components</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../notebooks/main-nf.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><code>main.nf</code></span></a>
   </div>
@@ -195,6 +189,12 @@ cookieconsent.run({
   <div class="sidebar-item-container"> 
   <a href="../notebooks/configs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><code>config/</code> directory</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notebooks/bits.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Extra bits</span></a>
   </div>
 </li>
       </ul>
@@ -257,8 +257,47 @@ cookieconsent.run({
 </header>
 
 
+<p>Resource configuration in Nextflow workflows can be challenging due to the diversity of computational environments we each work in. Each environment has unique resource constraints and management systems which can complicate the allocation of resources like CPUs, memory, and storage.</p>
+<p>Ensuring you’re resource efficient will minimise the runtime and reduce the cost of running your workflows. Poorly configured workflows can lead to failed jobs, wasted computational time, and overuse of resources, particularly in HPC and cloud environments.</p>
+<p>https://nextflow.io/blog/2024/optimizing-nextflow-for-hpc-and-cloud-at-scale.html</p>
+<section id="nextflow-configuration-files" class="level2">
+<h2 class="anchored" data-anchor-id="nextflow-configuration-files"><strong>Nextflow configuration files</strong></h2>
+<p>The core of resource configuration in Nextflow should be contained within the <code>nextflow.config</code> and any other custom configuration files. When a workflow is executed with <code>nextflow run main.nf</code>, Nextflow looks for the <code>nextflow.config</code> and any other <code>.config</code> files in the current directory and the base directory of the execution script. It will also check <code>$HOME/.nextflow/config</code>. When more than 1 of these files exists, they are merged so that the default settings in the <code>nextflow.config</code> are overwritten as required.</p>
+<p>These configuration files allow you to specify <a href="https://www.nextflow.io/docs/latest/config.html#config-scopes">settings for resources</a> such as:</p>
+<ul>
+<li><code>cpus</code></li>
+<li><code>memory</code></li>
+<li><code>time</code></li>
+<li><code>executor</code></li>
+<li>``</li>
+</ul>
+<p><code>,</code>cpus<code>,</code>memory<code>, and</code>time` for processes which can be overridden at the process level if needed.</p>
+<p>Here is a basic example of how you can set these resources for all processes in a workflow within the process scope in a configuration file:</p>
+<pre><code>process {
+  cpus = 2
+  memory = '4.GB'
+  time = '2.h'
+}</code></pre>
+<p>In Nextflow, resource directives are specified within the <code>process</code> block. These directives control how many CPUs, how much memory, and how much time each process is allocated. While a default minimum resource allocation can be suitable in some workflows, this will not always work in more complex workflows and you will need to configure resources per process. Here is an example of how you’d configure the resources for a specific process, overwriting default settings for that process:</p>
+<pre><code>process {
+  cpus = 2
+  memory = '4.GB'
+  time = '2.h'
+  
+  // Provide additional memory for indexing process
+  withName: 'STAR_INDEX' {
+    cpus = 1
+    memory = '32.GB'
+  }
+}</code></pre>
+</section>
+<section id="dynamic-resource-allocations" class="level2">
+<h2 class="anchored" data-anchor-id="dynamic-resource-allocations"><strong>Dynamic resource allocations</strong></h2>
+<p>Nextflow also allows you to dynamically allocate resources based on the input data size or task type. For example, you might need to adjust memory based on the size of an input file:</p>
+<pre><code></code></pre>
 
 
+</section>
 
 <div style="font-size: 14px;">
 All materials copyright Sydney Informatics Hub, University of Sydney

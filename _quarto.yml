@@ -18,7 +18,7 @@ website:
           - notebooks/bin.qmd
           - notebooks/configs.qmd
           - notebooks/bits.qmd
-      - notebooks/configuration.qmd
+      - notebooks/resources.qmd
       - notebooks/software.qmd
       - notebooks/hands-on.qmd
       - notebooks/guides.qmd
