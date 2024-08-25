@@ -20,6 +20,7 @@ website:
           - notebooks/bits.qmd
       - notebooks/resources.qmd
       - notebooks/software.qmd
+      - notebooks/demo.qmd
       - notebooks/hands-on.qmd
       - notebooks/guides.qmd
       - resources.qmd
