@@ -235,7 +235,7 @@ cookieconsent.run({
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./notebooks/configuration.html" class="sidebar-item-text sidebar-link">
+  <a href="./notebooks/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><strong>Resource configuration</strong></span></a>
   </div>
 </li>
@@ -243,6 +243,12 @@ cookieconsent.run({
   <div class="sidebar-item-container"> 
   <a href="./notebooks/software.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><strong>Software management</strong></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebooks/demo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>Demo workflow</strong></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -310,7 +316,6 @@ cookieconsent.run({
 <ul>
 <li><a href="https://www.nextflow.io/docs/latest/install.html">Nextflow (&gt;v20.10.0)</a></li>
 <li><a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">Git</a></li>
-<li><a href="https://docs.sylabs.io/guides/3.0/user-guide/installation.html">Singularity</a></li>
 </ul></li>
 </ul>
 <section id="clone-the-template" class="level3">
@@ -322,7 +327,8 @@ cookieconsent.run({
 <li>Select the <span style="color: green">Create repository from template</span> box</li>
 </ol>
 <p>Once you create a new repository using this template, a GitHub Action workflow will automatically be deployed. This workflow will populate your new repository with the skeleton template directory.</p>
-<p>We recommend working in a development environment like VS Code to work with this template. If you’re working with VS Code, use the <a href="https://marketplace.visualstudio.com/items?itemName=nf-core.nf-core-extensionpack">nf-core-extensionpack</a> for some nice features like syntax highlighting. You can clone your copy of the template to your environment using git. For example:</p>
+<p>We recommend working in a development environment like VS Code to work with this template. If you’re working with VS Code, use the <a href="https://marketplace.visualstudio.com/items?itemName=nf-core.nf-core-extensionpack">nf-core-extensionpack</a> for some nice features like syntax highlighting. You can clone your copy of the template to your environment using git.</p>
+<p>For example:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>git clone https://github.com/georgiesamaha/myWorkflow-nf.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="download-nextflow" class="level3">
@@ -339,20 +345,12 @@ cookieconsent.run({
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>├── .github/ISSUE_TEMPLATE</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>├── assets</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>├── bin</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>&nbsp;&nbsp;  └── samplesheetchecker.py</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>├── config</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    ├── gadi.config</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>&nbsp;&nbsp;  ├── nimbus.config</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>&nbsp;&nbsp;  ├── setonix.config</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>&nbsp;&nbsp;  └── standard.config</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>├── modules</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>|   ├── check_input.nf</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>│&nbsp;&nbsp; ├── process1.nf</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>│&nbsp;&nbsp; └── process2.nf</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>├── main.nf</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>├── LICENSE</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>├── README.md</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>└── nextflow.config</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>├── config</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>├── modules</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>├── main.nf</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>├── LICENSE</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>├── README.md</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>└── nextflow.config</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Consider a basic Nextflow run command below, where a user will need to specify parameters and (optionally) a configuration <a href="https://www.nextflow.io/docs/latest/config.html#config-profiles">profile</a>:</p>
 <p><img src="./figs/template_command.png" class="img-fluid"></p>
 <ul>
@@ -368,6 +366,12 @@ cookieconsent.run({
 <li>Files generated by your processes, optionally these can be saved to a results directory</li>
 <li>Workflow execution resource usage, trace, and timeline reports</li>
 </ul>
+</section>
+<section id="use-the-template" class="level2">
+<h2 class="anchored" data-anchor-id="use-the-template"><strong>Use the template</strong></h2>
+<p>This template currently contains 3 processes as as part of the demo workflow. To use this workflow yourself, you will need to delete any processes associated with the demo. Each line of code inside the <code>nextflow.config</code> and <code>main.nf</code> associated with the demo workflow is prefixed by a comment line <code>// DEMO CODE: DELETE FOR YOUR OWN WORKFLOWS</code>.</p>
+<p>Delete the 3 demo process files (<code>modules/check_input.nf</code>, <code>modules/group_samples.nf</code>, <code>modules/generate_report.nf</code>) and use the <code>template_process.nf</code> to structure your own processes.</p>
+<p>See the <strong>template_components</strong> sections in this user guide for what how to use all directories and files provided in this template.</p>
 
 
 </section>
