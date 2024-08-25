@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Nextflow DSL2 template user guide - Resource configuration</title>
+<title>Nextflow DSL2 template user guide</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -112,7 +146,7 @@ cookieconsent.run({
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/configuration.html"><strong>Resource configuration</strong></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/demo.html"><strong>Demo workflow</strong></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -201,7 +235,7 @@ cookieconsent.run({
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notebooks/configuration.html" class="sidebar-item-text sidebar-link active">
+  <a href="../notebooks/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><strong>Resource configuration</strong></span></a>
   </div>
 </li>
@@ -209,6 +243,12 @@ cookieconsent.run({
   <div class="sidebar-item-container"> 
   <a href="../notebooks/software.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><strong>Software management</strong></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notebooks/demo.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><strong>Demo workflow</strong></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -238,65 +278,216 @@ cookieconsent.run({
 <!-- main -->
 <main class="content column-page-right" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title"><strong>Resource configuration</strong></h1>
-</div>
 
 
 
-<div class="quarto-title-meta column-page-right">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<p>Resource configuration in Nextflow workflows can be challenging due to the diversity of computational environments we each work in. Each environment has unique resource constraints and management systems which can complicate the allocation of resources like CPUs, memory, and storage.</p>
-<p>Ensuring you’re resource efficient will minimise the runtime and reduce the cost of running your workflows. Poorly configured workflows can lead to failed jobs, wasted computational time, and overuse of resources, particularly in HPC and cloud environments.</p>
-<p>https://nextflow.io/blog/2024/optimizing-nextflow-for-hpc-and-cloud-at-scale.html</p>
-<section id="nextflow-configuration-files" class="level2">
-<h2 class="anchored" data-anchor-id="nextflow-configuration-files"><strong>Nextflow configuration files</strong></h2>
-<p>The core of resource configuration in Nextflow should be contained within the <code>nextflow.config</code> and any other custom configuration files. When a workflow is executed with <code>nextflow run main.nf</code>, Nextflow looks for the <code>nextflow.config</code> and any other <code>.config</code> files in the current directory and the base directory of the execution script. It will also check <code>$HOME/.nextflow/config</code>. When more than 1 of these files exists, they are merged so that the default settings in the <code>nextflow.config</code> are overwritten as required.</p>
-<p>These configuration files allow you to specify <a href="https://www.nextflow.io/docs/latest/config.html#config-scopes">settings for resources</a> such as:</p>
+<section id="demo-workflow" class="level1">
+<h1><strong>Demo workflow</strong></h1>
+<p><code>template-nf</code> contains a demonstration workflow that can help you explore the template’s functionality. This demo accepts a samplesheet as input and runs 3 processes, demonstrating various aspects of Nextflow functionality. You will need to have Nextflow <a href="https://www.nextflow.io/docs/latest/install.html">installed</a> on your system to run the demo workflow.</p>
+<p>We’ve designed this demo to show off the most simple aspects of the template, we have not included the use of the <code>config/</code> directory as configuration profiles are often infrastructure dependent.</p>
+<p>The demo workflow consists of 3 processes and requires only one input parameter be defined. It accepts samplesheet that can be found in the <code>assets/</code> directory.</p>
+<p>Upon executing this workflow, the <code>samplesheet.csv</code> file will be passed to the first process <code>check_input</code>, which runs a custom script stored in the <code>bin/</code> directory to validate the structure of the samplesheet as per the conditions set out in the custom script.</p>
+<p>Once successfully validated, the validated samplesheet is then passed to the next process <code>group_samples</code> to create 2 separate samplesheets based on which sequencing platform the samples specified in each row have been processed on.</p>
+<p>After this, each platform-specific samplesheet will be summarised by <code>generate_report</code> process which creates a separate summary text file for each.</p>
+<p><img src="../figs/demo.png" class="img-fluid"></p>
+<p>We have structured this demo to show how one can use inbuilt Nextflow features to do common tasks like run custom scripts, pass outputs of one process as inputs to another, publish outputs to a results directory, and process samples specified in a samplesheet in parallel.</p>
+<section id="the-processes" class="level2">
+<h2 class="anchored" data-anchor-id="the-processes">The processes</h2>
+<p>Each process file follows the structure laid out in <code>modules/template_process.nf</code>. We’ve used:</p>
 <ul>
-<li><code>cpus</code></li>
-<li><code>memory</code></li>
-<li><code>time</code></li>
-<li><code>executor</code></li>
-<li>``</li>
+<li>Comment lines <code>//</code> to explain sections of code</li>
+<li><a href="https://www.nextflow.io/docs/latest/process.html#tag">Tags</a> to associate each process execution with a custom label.</li>
+<li><a href="https://www.nextflow.io/docs/latest/process.html#publishdir"><code>publishDir</code></a> to save outputs of selected processes to <code>--outdir</code>.</li>
+<li><a href="https://www.nextflow.io/docs/latest/process.html#inputs"><code>input:</code></a> to define the input channels of a process, similar to function arguments.</li>
+<li><a href="https://www.nextflow.io/docs/latest/process.html#outputs"><code>output:</code></a> to define output channels of a process, similar to function outputs.</li>
+<li><a href="https://www.nextflow.io/docs/latest/process.html#additional-options"><code>emit:</code></a> to define the name of the output channel, which can be used to access the channel by name from the process output</li>
+<li><a href="https://www.nextflow.io/docs/latest/process.html#script"><code>script:</code></a> to define, as a string expression, the script or code that is executed by a process.</li>
 </ul>
-<p><code>,</code>cpus<code>,</code>memory<code>, and</code>time` for processes which can be overridden at the process level if needed.</p>
-<p>Here is a basic example of how you can set these resources for all processes in a workflow within the process scope in a configuration file:</p>
-<pre><code>process {
-  cpus = 2
-  memory = '4.GB'
-  time = '2.h'
-}</code></pre>
-<p>In Nextflow, resource directives are specified within the <code>process</code> block. These directives control how many CPUs, how much memory, and how much time each process is allocated. While a default minimum resource allocation can be suitable in some workflows, this will not always work in more complex workflows and you will need to configure resources per process. Here is an example of how you’d configure the resources for a specific process, overwriting default settings for that process:</p>
-<pre><code>process {
-  cpus = 2
-  memory = '4.GB'
-  time = '2.h'
-  
-  // Provide additional memory for indexing process
-  withName: 'STAR_INDEX' {
-    cpus = 1
-    memory = '32.GB'
-  }
-}</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>// Define the process</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>process generate_report {</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    // Define directives </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    // See: https://nextflow.io/docs/edge/process.html#processes</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    debug = false //turn to true to print command stdout to screen</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    tag "" </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    publishDir "${params.outdir}/", mode: 'copy'</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  container '' </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    // Define input </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    // See: https://www.nextflow.io/docs/latest/process.html#inputs</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    input:</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    path("")</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    // Define output(s)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    // See: https://www.nextflow.io/docs/latest/process.html#outputs</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    output:</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    path("")</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    // Define code to execute </span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    // See: https://www.nextflow.io/docs/latest/process.html#script</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    script:</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    """</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    """</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="dynamic-resource-allocations" class="level2">
-<h2 class="anchored" data-anchor-id="dynamic-resource-allocations"><strong>Dynamic resource allocations</strong></h2>
-<p>Nextflow also allows you to dynamically allocate resources based on the input data size or task type. For example, you might need to adjust memory based on the size of an input file:</p>
-<pre><code></code></pre>
+<section id="run-the-demo" class="level2">
+<h2 class="anchored" data-anchor-id="run-the-demo">Run the demo</h2>
+<section id="use-the-github-template-feature-to-generate-your-own-barebones-workflow-template-following-the-instructions." class="level4">
+<h4 class="anchored" data-anchor-id="use-the-github-template-feature-to-generate-your-own-barebones-workflow-template-following-the-instructions.">1. Use the github template feature to generate your own barebones workflow template, following the <a href="https://github.com/Sydney-Informatics-Hub/template-nf/blob/main/README.md#how-to-use-the-template">instructions</a>.</h4>
+</section>
+<section id="clone-a-copy-of-your-repository-to-your-chosen-computational-environment" class="level4">
+<h4 class="anchored" data-anchor-id="clone-a-copy-of-your-repository-to-your-chosen-computational-environment">2. Clone a copy of your repository to your chosen computational environment</h4>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/yourusername/your-pipeline.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="move-into-your-workflows-directory" class="level4">
+<h4 class="anchored" data-anchor-id="move-into-your-workflows-directory">3. Move into your workflow’s directory</h4>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> your-pipeline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note the different directories and files in the repository. We’ve provided one common implementation for structuring your Nextflow code base in a way that is easy to maintain and read. It consists of</p>
+<p><img src="../figs/00_demo.png" class="img-fluid"></p>
+<p>The template’s code repository is organised into a number of files and directories. Hidden directories prefixed with a <code>.</code> can be ignored for now, they are useful for configuring git and github and aren’t related to running your workflow. The code used in the demo workflow are:</p>
+<ul>
+<li><a href="../notebooks/main-nf.html"><code>main.nf</code></a>: the primary execution script, it contains workflow structure, processes, and channels.</li>
+<li><a href="../notebooks/nextflow-config.html"><code>nextflow.config</code></a>: the configuration file, it contains a number of property definitions that are used by the pipeline.</li>
+<li><a href="../notebooks/bits.html#assets"><code>assets/</code></a>: stores auxillary files. We’ve stored our example <code>samplesheet.csv</code> here.</li>
+<li><a href="../notebooks/bin.html"><code>bin/</code></a>: stores custom scripts to be executed by Nextflow processes. We’ve stored a custom script <code>samplesheetchecker.sh</code> run by the first process of this workflow here.</li>
+<li><a href="../notebooks/modules.html"><code>modules/</code></a>: contains code run by each process executed by the workflow. Processes have been separated into different <code>.nf</code> files for the sake of readability and easy maintenance.</li>
+</ul>
+</section>
+<section id="run-the-pipeline" class="level4">
+<h4 class="anchored" data-anchor-id="run-the-pipeline">4. Run the pipeline</h4>
+<div class="sourceCode" id="cb4"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>nextflow run main.nf --input assets/samplesheet.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Take a look at the stdout printed to the screen. The demo workflow configuration and parameter customisations are documented here. You can use this to confirm if your parameters have been correctly passed to the run command.</p>
+<p><img src="../figs/01_demo.png" class="img-fluid"></p>
+<p>When you execute the workflow on the command line, Nextflow will print a bunch of information to the screen. Some of this information is generated automatically (orange box), others are specified in the <code>main.nf</code> (green boxes). The information in the green boxes have been defined in our <code>main.nf</code> using <code>log.info</code>. It is an entirely optional feature and can be edited as you need.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<code>log.info</code> usage
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This command can be used to print multiline information using Groovy’s logger functionality. Instead of writing a series of <code>println</code> commands, it can be used to include a multiline message.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode groovy code-with-copy"><code class="sourceCode groovy"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>log<span class="op">.</span><span class="fu">info</span> <span class="st">"""</span><span class="op">\</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="st">    This is a multiline message. </span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="st">    It can even capture parameters like</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="st">    results : </span><span class="ss">${</span>params<span class="op">.</span>outdir<span class="ss">}</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>Open the <code>main.nf</code> file to see how we’ve implemented this for summarising the workflow’s execution, pre-execution and post-execution:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode groovy code-with-copy"><code class="sourceCode groovy"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Print a header for your pipeline </span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>log<span class="op">.</span><span class="fu">info</span> <span class="st">"""</span><span class="op">\</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="st">=======================================================================================</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="st">Name of the pipeline - nf </span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="st">=======================================================================================</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="st">Created by &lt;YOUR NAME&gt; </span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="st">Find documentation @ https://sydney-informatics-hub.github.io/Nextflow_DSL2_template_guide/</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="st">Cite this pipeline @ INSERT DOI</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="st">=======================================================================================</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="st">Workflow run parameters </span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="st">=======================================================================================</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="st">input       : </span><span class="ss">${</span>params<span class="op">.</span>input<span class="ss">}</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="st">results     : </span><span class="ss">${</span>params<span class="op">.</span>outdir<span class="ss">}</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="st">workDir     : </span><span class="ss">${</span>workflow<span class="op">.</span>workDir<span class="ss">}</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="st">=======================================================================================</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode groovy code-with-copy"><code class="sourceCode groovy"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Print workflow execution summary </span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>workflow<span class="op">.</span><span class="fu">onComplete</span> <span class="op">{</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="st">=======================================================================================</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="st">Workflow execution summary</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="st">=======================================================================================</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="st">Duration    : </span><span class="ss">${</span>workflow<span class="op">.</span>duration<span class="ss">}</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="st">Success     : </span><span class="ss">${</span>workflow<span class="op">.</span>success<span class="ss">}</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="st">workDir     : </span><span class="ss">${</span>workflow<span class="op">.</span>workDir<span class="ss">}</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="st">Exit status : </span><span class="ss">${</span>workflow<span class="op">.</span>exitStatus<span class="ss">}</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="st">results     : </span><span class="ss">${</span>params<span class="op">.</span>outdir<span class="ss">}</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="st">=======================================================================================</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="st">  """</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>println summary</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>As the workflow starts, you will also see a number of processes spawn out underneath this (orange box). In Nextflow, processes are executed independently and can run in parallel. Nextflow manages the data dependencies between processes, ensuring that each process is executed only when its input data is available and all of its dependencies have been satisfied.</p>
+<p>Because of how the data flows from process 1 (<code>check_input</code>) to process 2 (<code>group_samples</code>) to process 3 (<code>generate_report</code>) in our workflow, they will run in that order.</p>
+</section>
+<section id="explore-the-outputs" class="level4">
+<h4 class="anchored" data-anchor-id="explore-the-outputs">5. Explore the outputs</h4>
+<p>If you can see the workflow exercution summary has run without error, then the pipeline ran successfully. List (<code>ls -la</code>) the contents of your directory, you’ll see a few new directories (and a hidden directory and log file) have been created:</p>
+<p><img src="../figs/02_demo.png" class="img-fluid"></p>
+<p><strong>The <code>work/</code> directory</strong></p>
+<p>As each task is run, a unique sub-directory is created in the work directory. These directories house temporary files and various command logs created by a process. We can find all information regarding this task that we need to troubleshoot a failed task.</p>
+<p><img src="../figs/03_demo.png" class="img-fluid"></p>
+<p>Notice how the work directories correspond to the apparently random number/letter codes printed to the screen next to each process upon workflow execution. Each task in a Nextflow pipeline is assigned a unique identifier based on the input data, parameters, and code used. The output of the task is then saved (cached) in a uniquely named subdirectory within the work directory.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Process caching and the work directory
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Each process in Nextflow generates a unique hash key that represents the combination of the process script, input data, and any parameters used. This hash key ensures that any change in the input, script, or parameters results in a new hash, and thus a new subdirectory in the work directory.</p>
+<p>When a process is executed, Nextflow checks if there is already a subdirectory in the work directory that corresponds to the same hash key. If it finds one, this means that the process with the same inputs and parameters has been run before, and the cached results are available. If a matching directory is found, Nextflow reuses the cached output instead of rerunning the process. This is especially useful when working on large datasets or complex workflows where re-running every step can be time-consuming and computationally expensive.</p>
+<p>If a workflow is interrupted or if you decide to make changes and rerun it, Nextflow can resume from where it left off. Since the results of previously completed tasks are cached in the work directory, Nextflow will skip these tasks and only run the processes that are new or whose inputs have changed.</p>
+</div>
+</div>
+<p><strong>The <code>results/</code> directory</strong></p>
+<p>All final outputs for this workflow will be presented in a directory specified by the <code>--outdir</code> flag which is a custom parameter we have defined in the <code>nextflow.config</code> as <code>params.ourdir</code>. Note the default is set to <code>results/</code>.</p>
+<p><img src="../figs/04_demo.png" class="img-fluid"></p>
+<p>If you were to rerun the workflow, using the <code>--outdir</code> flag and a different value, you could change the name of the output directory:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>nextflow run main.nf --input assets/samplesheet.csv --outdir different_out</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Rendering workflow outputs
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>All Nextflow task outputs are saved to their unique subdirectories within <code>work/</code> automatically. Although the work directory is crucial during the workflow execution, it’s typically not the place where you store final results. It’s more of a temporary workspace that can be cleaned up after the workflow is completed.</p>
+<p>Nextflow requires users to explicitly instruct it to save final outputs after the workflow completes. Unlike the work directory, the location of this is specified by the user. Setting up an output directory is something we must do intentionally at the process level.</p>
+</div>
+</div>
+<p>Note the contents of the <code>results/</code> directory and how this has been defined by the demo workflow’s developer in the process scopes inside the <code>modules/</code> directory using <a href="https://www.nextflow.io/docs/latest/process.html#publishdir"><code>publishDir</code></a>. For example, the <code>group_samples</code> process:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>process group_samples {</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    tag "INPUT: ${checked_samplesheet.fileName}"</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    publishDir "${params.outdir}", mode: 'copy'</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    input:</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    path(checked_samplesheet)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    output:</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    path("samplesheet_illumina.csv"), emit: illumina</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    path("samplesheet_pacbio.csv"), emit: pacbio</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    script:</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    """</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    awk -F, '\$4 == "illumina"' OFS=, ${checked_samplesheet} &gt; samplesheet_illumina.csv</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    awk -F, '\$4 == "pacbio"' OFS=, ${checked_samplesheet} &gt; samplesheet_pacbio.csv</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    """</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Here, we’ve chosen to output the files created by this process as a copy of what has been saved to the <code>work/</code> directory. Alternatively, to save space we could have used <code>symlink</code> to reduce the creation of additional files.</p>
+<p><strong>The <code>.nextflow/</code> directory</strong></p>
+<p>This directory contains a cache subdirectory to store cached data such as downloaded files and can be used to speed up subsequent pipeline runs. It also contains a history file which contains a record of pipeline executions including run time, the unique run name, and command line arguments used.</p>
+<p><strong>The <code>.nextflow.log</code> file</strong></p>
+<p>This file is created by Nextflow during the execution of a pipeline and contains information about all processes and any warnings or errors that occurred during execution.</p>
 
 
+</section>
+</section>
 </section>
 
 <div style="font-size: 14px;">
