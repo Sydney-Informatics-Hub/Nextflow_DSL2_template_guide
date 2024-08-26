@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -112,7 +146,7 @@ cookieconsent.run({
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/resources.html"><strong>Resource configuration</strong></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/resource-config.html"><strong>Resource configuration</strong></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -201,7 +235,7 @@ cookieconsent.run({
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notebooks/resources.html" class="sidebar-item-text sidebar-link active">
+  <a href="../notebooks/resource-config.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><strong>Resource configuration</strong></span></a>
   </div>
 </li>
@@ -263,6 +297,7 @@ cookieconsent.run({
 </header>
 
 
+<p><strong>WORK IN PROGRESS</strong></p>
 <p>Resource configuration in Nextflow workflows can be challenging due to the diversity of computational environments we each work in. Each environment has unique resource constraints and management systems which can complicate the allocation of resources like CPUs, memory, and storage.</p>
 <p>Ensuring you’re resource efficient will minimise the runtime and reduce the cost of running your workflows. Poorly configured workflows can lead to failed jobs, wasted computational time, and overuse of resources, particularly in HPC and cloud environments.</p>
 <p>https://nextflow.io/blog/2024/optimizing-nextflow-for-hpc-and-cloud-at-scale.html</p>
@@ -278,28 +313,28 @@ cookieconsent.run({
 <li><code>env</code> variables</li>
 </ul>
 <p>Here is a basic example of how you can set these resources for all processes in a workflow within the process scope in a configuration file:</p>
-<pre><code>process {
-  cpus = 2
-  memory = '4.GB'
-  time = '2.h'
-}</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>process {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  cpus = 2</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  memory = '4.GB'</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  time = '2.h'</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In Nextflow, resource directives are specified within the <code>process</code> block. These directives control how many CPUs, how much memory, and how much time each process is allocated. While a default minimum resource allocation can be suitable in some workflows, this will not always work in more complex workflows and you will need to configure resources per process. Here is an example of how you’d configure the resources for a specific process, overwriting default settings for that process:</p>
-<pre><code>process {
-  cpus = 2
-  memory = '4.GB'
-  time = '2.h'
-  
-  // Provide additional memory for indexing process
-  withName: 'STAR_INDEX' {
-    cpus = 1
-    memory = '32.GB'
-  }
-}</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>process {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  cpus = 2</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  memory = '4.GB'</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  time = '2.h'</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  // Provide additional memory for indexing process</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  withName: 'STAR_INDEX' {</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    cpus = 1</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    memory = '32.GB'</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="dynamic-resource-allocations" class="level2">
 <h2 class="anchored" data-anchor-id="dynamic-resource-allocations"><strong>Dynamic resource allocations</strong></h2>
 <p>Nextflow also allows you to dynamically allocate resources based on the input data size or task type. For example, you might need to adjust memory based on the size of an input file:</p>
-<pre><code></code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>

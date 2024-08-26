@@ -235,7 +235,7 @@ cookieconsent.run({
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notebooks/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../notebooks/resource-config.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><strong>Resource configuration</strong></span></a>
   </div>
 </li>
@@ -286,17 +286,69 @@ cookieconsent.run({
 <p><code>template-nf</code> contains a demonstration workflow that can help you explore the template’s functionality. This demo accepts a samplesheet as input and runs 3 processes, demonstrating various aspects of Nextflow functionality. You will need to have Nextflow <a href="https://www.nextflow.io/docs/latest/install.html">installed</a> on your system to run the demo workflow.</p>
 <p>We’ve designed this demo to show off the most simple aspects of the template, we have not included the use of the <code>config/</code> directory as configuration profiles are often infrastructure dependent.</p>
 <p>The demo workflow consists of 3 processes and requires only one input parameter be defined. It accepts samplesheet that can be found in the <code>assets/</code> directory.</p>
-<p>Upon executing this workflow, the <code>samplesheet.csv</code> file will be passed to the first process <code>check_input</code>, which runs a custom script stored in the <code>bin/</code> directory to validate the structure of the samplesheet as per the conditions set out in the custom script.</p>
-<p>Once successfully validated, the validated samplesheet is then passed to the next process <code>group_samples</code> to create 2 separate samplesheets based on which sequencing platform the samples specified in each row have been processed on.</p>
-<p>After this, each platform-specific samplesheet will be summarised by <code>generate_report</code> process which creates a separate summary text file for each.</p>
-<p><img src="../figs/demo.png" class="img-fluid"></p>
+<p><img src="../figs/demo_structure.png" class="img-fluid"></p>
 <p>We have structured this demo to show how one can use inbuilt Nextflow features to do common tasks like run custom scripts, pass outputs of one process as inputs to another, publish outputs to a results directory, and process samples specified in a samplesheet in parallel.</p>
+<section id="the-demo-scenario" class="level2">
+<h2 class="anchored" data-anchor-id="the-demo-scenario">The demo scenario</h2>
+<p>Imagine the processes run by this demo are the beginning of a very complex workflow where a user needs to batch samples for further processing depending on their sequencing platform. In this scenario, we’ve got a single samplesheet in csv format with the following structure (in your code see <code>assets/samplesheet.csv</code>):</p>
+<table class="table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 7%">
+<col style="width: 6%">
+<col style="width: 5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>sample</th>
+<th>fq1</th>
+<th>fq2</th>
+<th>platform</th>
+<th>library</th>
+<th>center</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>earlycasualcaiman</td>
+<td>earlycasualcaiman_XXXXXX_1_1k.fastq.gz</td>
+<td>earlycasualcaiman_XXXXXX_2_1k.fastq.gz</td>
+<td>illumina</td>
+<td>1</td>
+<td>nfcore</td>
+</tr>
+<tr class="even">
+<td>hugelymodelbat</td>
+<td>hugelymodelbat_XXXXXX_1_1k.fastq.gz</td>
+<td>hugelymodelbat_XXXXXX_2_1k.fastq.gz</td>
+<td>pacbio</td>
+<td>1</td>
+<td>nfcore</td>
+</tr>
+<tr class="odd">
+<td>vapidkangaroo</td>
+<td>vapidkangaroo_XXXXXX_1_1k.fastq.gz</td>
+<td>vapidkangaroo_XXXXXX_2_1k.fastq.gz</td>
+<td>pacbio</td>
+<td>1</td>
+<td>nfcore</td>
+</tr>
+</tbody>
+</table>
+<p>We need to organise samples based on their sequencing platform for subsequent processing as pacbio and illumina reads require different software and processing methods.</p>
+<p>Upon executing this workflow, the <code>samplesheet.csv</code> file will be passed to the first process <code>check_input</code>, which runs a custom script stored in the <code>bin/</code> directory to validate the structure of the samplesheet as per the conditions set out in the custom script. So these processes are going to validate our original input samplesheet format, group and split the samples into 2 new samplesheets, and summarise the batches separately.</p>
+<p><img src="../figs/demo_flow.png" class="img-fluid"></p>
+<p>Once successfully validated, the validated samplesheet is then passed to the next process <code>group_samples</code> to create 2 separate samplesheets based on which sequencing platform the samples specified in each row have been processed on.</p>
+<p>After this, each platform-specific samplesheet will be summarised by the <code>generate_report</code> process in parallel, creating a separate summary text file for each.</p>
+</section>
 <section id="the-processes" class="level2">
 <h2 class="anchored" data-anchor-id="the-processes">The processes</h2>
 <p>Each process file follows the structure laid out in <code>modules/template_process.nf</code>. We’ve used:</p>
 <ul>
 <li>Comment lines <code>//</code> to explain sections of code</li>
-<li><a href="https://www.nextflow.io/docs/latest/process.html#tag">Tags</a> to associate each process execution with a custom label.</li>
+<li><a href="https://www.nextflow.io/docs/latest/process.html#tag"><code>tag</code></a> to associate each process execution with a custom label.</li>
 <li><a href="https://www.nextflow.io/docs/latest/process.html#publishdir"><code>publishDir</code></a> to save outputs of selected processes to <code>--outdir</code>.</li>
 <li><a href="https://www.nextflow.io/docs/latest/process.html#inputs"><code>input:</code></a> to define the input channels of a process, similar to function arguments.</li>
 <li><a href="https://www.nextflow.io/docs/latest/process.html#outputs"><code>output:</code></a> to define output channels of a process, similar to function outputs.</li>
@@ -337,11 +389,11 @@ cookieconsent.run({
 </section>
 <section id="clone-a-copy-of-your-repository-to-your-chosen-computational-environment" class="level4">
 <h4 class="anchored" data-anchor-id="clone-a-copy-of-your-repository-to-your-chosen-computational-environment">2. Clone a copy of your repository to your chosen computational environment</h4>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/yourusername/your-pipeline.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>git clone https://github.com/yourusername/your-pipeline.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="move-into-your-workflows-directory" class="level4">
 <h4 class="anchored" data-anchor-id="move-into-your-workflows-directory">3. Move into your workflow’s directory</h4>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> your-pipeline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>cd your-pipeline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Note the different directories and files in the repository. We’ve provided one common implementation for structuring your Nextflow code base in a way that is easy to maintain and read. It consists of</p>
 <p><img src="../figs/00_demo.png" class="img-fluid"></p>
 <p>The template’s code repository is organised into a number of files and directories. Hidden directories prefixed with a <code>.</code> can be ignored for now, they are useful for configuring git and github and aren’t related to running your workflow. The code used in the demo workflow are:</p>
@@ -357,7 +409,7 @@ cookieconsent.run({
 <h4 class="anchored" data-anchor-id="run-the-pipeline">4. Run the pipeline</h4>
 <div class="sourceCode" id="cb4"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>nextflow run main.nf --input assets/samplesheet.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Take a look at the stdout printed to the screen. The demo workflow configuration and parameter customisations are documented here. You can use this to confirm if your parameters have been correctly passed to the run command.</p>
-<p><img src="../figs/01_demo.png" class="img-fluid"></p>
+<p><img src="../figs/demo_stdout.png" class="img-fluid"></p>
 <p>When you execute the workflow on the command line, Nextflow will print a bunch of information to the screen. Some of this information is generated automatically (orange box), others are specified in the <code>main.nf</code> (green boxes). The information in the green boxes have been defined in our <code>main.nf</code> using <code>log.info</code>. It is an entirely optional feature and can be edited as you need.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -370,34 +422,34 @@ cookieconsent.run({
 </div>
 <div class="callout-body-container callout-body">
 <p>This command can be used to print multiline information using Groovy’s logger functionality. Instead of writing a series of <code>println</code> commands, it can be used to include a multiline message.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode groovy code-with-copy"><code class="sourceCode groovy"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>log<span class="op">.</span><span class="fu">info</span> <span class="st">"""</span><span class="op">\</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="st">    This is a multiline message. </span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="st">    It can even capture parameters like</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="st">    results : </span><span class="ss">${</span>params<span class="op">.</span>outdir<span class="ss">}</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>log.info """\</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    This is a multiline message. </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    It can even capture parameters like</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    results : ${params.outdir}</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>"""</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>Open the <code>main.nf</code> file to see how we’ve implemented this for summarising the workflow’s execution, pre-execution and post-execution:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode groovy code-with-copy"><code class="sourceCode groovy"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Print a header for your pipeline </span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>log<span class="op">.</span><span class="fu">info</span> <span class="st">"""</span><span class="op">\</span></span>
+<div class="sourceCode" id="cb6"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>// Print a header for your pipeline </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>log.info """\</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="st">=======================================================================================</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="st">Name of the pipeline - nf </span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="st">=======================================================================================</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>=======================================================================================</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>Name of the pipeline - nf </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>=======================================================================================</span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="st">Created by &lt;YOUR NAME&gt; </span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="st">Find documentation @ https://sydney-informatics-hub.github.io/Nextflow_DSL2_template_guide/</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="st">Cite this pipeline @ INSERT DOI</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>Created by &lt;YOUR NAME&gt; </span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>Find documentation @ https://sydney-informatics-hub.github.io/Nextflow_DSL2_template_guide/</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>Cite this pipeline @ INSERT DOI</span>
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="st">=======================================================================================</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="st">Workflow run parameters </span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="st">=======================================================================================</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="st">input       : </span><span class="ss">${</span>params<span class="op">.</span>input<span class="ss">}</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="st">results     : </span><span class="ss">${</span>params<span class="op">.</span>outdir<span class="ss">}</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="st">workDir     : </span><span class="ss">${</span>workflow<span class="op">.</span>workDir<span class="ss">}</span></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="st">=======================================================================================</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>=======================================================================================</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>Workflow run parameters </span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>=======================================================================================</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>input       : ${params.input}</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>results     : ${params.outdir}</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>workDir     : ${workflow.workDir}</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>=======================================================================================</span>
 <span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>"""</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb7"><pre class="sourceCode groovy code-with-copy"><code class="sourceCode groovy"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Print workflow execution summary </span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>workflow<span class="op">.</span><span class="fu">onComplete</span> <span class="op">{</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> <span class="st">"""</span></span>
@@ -416,16 +468,17 @@ cookieconsent.run({
 <span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>println summary</span>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>As the workflow starts, you will also see a number of processes spawn out underneath this (orange box). In Nextflow, processes are executed independently and can run in parallel. Nextflow manages the data dependencies between processes, ensuring that each process is executed only when its input data is available and all of its dependencies have been satisfied.</p>
+<p>As the workflow starts, you will also see a number of processes spawn out underneath this. In Nextflow, processes are executed independently and can run in parallel. Nextflow manages the data dependencies between processes, ensuring that each process is executed only when its input data is available and all of its dependencies have been satisfied. In our demo, we’ve got one task per <code>check_input</code> and <code>group_samples</code> process, and two tasks as the <code>generate_report</code> process is run over each sequencer-specific samplesheet in parallel.</p>
+<p><img src="../figs/demo_nf.png" class="img-fluid"></p>
 <p>Because of how the data flows from process 1 (<code>check_input</code>) to process 2 (<code>group_samples</code>) to process 3 (<code>generate_report</code>) in our workflow, they will run in that order.</p>
 </section>
 <section id="explore-the-outputs" class="level4">
 <h4 class="anchored" data-anchor-id="explore-the-outputs">5. Explore the outputs</h4>
 <p>If you can see the workflow exercution summary has run without error, then the pipeline ran successfully. List (<code>ls -la</code>) the contents of your directory, you’ll see a few new directories (and a hidden directory and log file) have been created:</p>
-<p><img src="../figs/02_demo.png" class="img-fluid"></p>
+<p><img src="../figs/demo_ls.png" class="img-fluid"></p>
 <p><strong>The <code>work/</code> directory</strong></p>
 <p>As each task is run, a unique sub-directory is created in the work directory. These directories house temporary files and various command logs created by a process. We can find all information regarding this task that we need to troubleshoot a failed task.</p>
-<p><img src="../figs/03_demo.png" class="img-fluid"></p>
+<p><img src="../figs/demo_work.png" class="img-fluid"></p>
 <p>Notice how the work directories correspond to the apparently random number/letter codes printed to the screen next to each process upon workflow execution. Each task in a Nextflow pipeline is assigned a unique identifier based on the input data, parameters, and code used. The output of the task is then saved (cached) in a uniquely named subdirectory within the work directory.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -444,7 +497,7 @@ Process caching and the work directory
 </div>
 <p><strong>The <code>results/</code> directory</strong></p>
 <p>All final outputs for this workflow will be presented in a directory specified by the <code>--outdir</code> flag which is a custom parameter we have defined in the <code>nextflow.config</code> as <code>params.ourdir</code>. Note the default is set to <code>results/</code>.</p>
-<p><img src="../figs/04_demo.png" class="img-fluid"></p>
+<p><img src="../figs/demo_results.png" class="img-fluid"></p>
 <p>If you were to rerun the workflow, using the <code>--outdir</code> flag and a different value, you could change the name of the output directory:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>nextflow run main.nf --input assets/samplesheet.csv --outdir different_out</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-note callout-titled">
