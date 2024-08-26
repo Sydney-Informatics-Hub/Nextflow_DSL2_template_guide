@@ -6,22 +6,37 @@ We've designed this demo to show off the most simple aspects of the template, we
 
 The demo workflow consists of 3 processes and requires only one input parameter be defined. It accepts samplesheet that can be found in the `assets/` directory. 
 
-Upon executing this workflow, the `samplesheet.csv` file will be passed to the first process `check_input`, which runs a custom script stored in the `bin/` directory to validate the structure of the samplesheet as per the conditions set out in the custom script. 
+![](../figs/demo_structure.png)
+
+We have structured this demo to show how one can use inbuilt Nextflow features to do common tasks like run custom scripts, pass outputs of one process as inputs to another, publish outputs to a results directory, and process samples specified in a samplesheet in parallel. 
+
+## The demo scenario 
+
+Imagine the processes run by this demo are the beginning of a very complex workflow where a user needs to batch samples for further processing depending on their sequencing platform. In this scenario, we've got a single samplesheet in csv format with the following structure (in your code see `assets/samplesheet.csv`): 
+
+|sample           |fq1                                   |fq2                                   |platform|library|center|
+|-----------------|--------------------------------------|--------------------------------------|--------|-------|------|
+|earlycasualcaiman|earlycasualcaiman_XXXXXX_1_1k.fastq.gz|earlycasualcaiman_XXXXXX_2_1k.fastq.gz|illumina|1      |nfcore|
+|hugelymodelbat   |hugelymodelbat_XXXXXX_1_1k.fastq.gz   |hugelymodelbat_XXXXXX_2_1k.fastq.gz   |pacbio  |1      |nfcore|
+|vapidkangaroo    |vapidkangaroo_XXXXXX_1_1k.fastq.gz    |vapidkangaroo_XXXXXX_2_1k.fastq.gz    |pacbio  |1      |nfcore|
+
+
+We need to organise samples based on their sequencing platform for subsequent processing as pacbio and illumina reads require different software and processing methods. 
+
+Upon executing this workflow, the `samplesheet.csv` file will be passed to the first process `check_input`, which runs a custom script stored in the `bin/` directory to validate the structure of the samplesheet as per the conditions set out in the custom script. So these processes are going to validate our original input samplesheet format, group and split the samples into 2 new samplesheets, and summarise the batches separately.
+
+![](../figs/demo_flow.png)
 
 Once successfully validated, the validated samplesheet is then passed to the next process `group_samples` to  create 2 separate samplesheets based on which sequencing platform the samples specified in each row have been processed on. 
 
-After this, each platform-specific samplesheet will be summarised by `generate_report` process which creates a separate summary text file for each.  
-
-![](../figs/demo.png)
-
-We have structured this demo to show how one can use inbuilt Nextflow features to do common tasks like run custom scripts, pass outputs of one process as inputs to another, publish outputs to a results directory, and process samples specified in a samplesheet in parallel. 
+After this, each platform-specific samplesheet will be summarised by the `generate_report` process in parallel, creating a separate summary text file for each.  
 
 ## The processes
 
 Each process file follows the structure laid out in `modules/template_process.nf`. We've used:
 
 * Comment lines `//` to explain sections of code 
-* [Tags](https://www.nextflow.io/docs/latest/process.html#tag) to associate each process execution with a custom label.
+* [`tag`](https://www.nextflow.io/docs/latest/process.html#tag) to associate each process execution with a custom label.
 * [`publishDir`](https://www.nextflow.io/docs/latest/process.html#publishdir) to save outputs of selected processes to `--outdir`.
 * [`input:`](https://www.nextflow.io/docs/latest/process.html#inputs) to define the input channels of a process, similar to function arguments.
 * [`output:`](https://www.nextflow.io/docs/latest/process.html#outputs) to define output channels of a process, similar to function outputs.
@@ -63,13 +78,13 @@ process generate_report {
 
 #### 2. Clone a copy of your repository to your chosen computational environment
 
-```bash
+```default
 git clone https://github.com/yourusername/your-pipeline.git
 ```
 
 #### 3. Move into your workflow's directory
 
-```bash
+```default
 cd your-pipeline
 ```
 
@@ -93,7 +108,7 @@ nextflow run main.nf --input assets/samplesheet.csv
 
 Take a look at the stdout printed to the screen. The demo workflow configuration and parameter customisations are documented here. You can use this to confirm if your parameters have been correctly passed to the run command. 
 
-![](../figs/01_demo.png) 
+![](../figs/demo_stdout.png) 
 
 When you execute the workflow on the command line, Nextflow will print a bunch of information to the screen. Some of this information is generated automatically (orange box), others are specified in the `main.nf` (green boxes). The information in the green boxes have been defined in our `main.nf` using `log.info`. It is an entirely optional feature and can be edited as you need. 
 
@@ -102,7 +117,7 @@ When you execute the workflow on the command line, Nextflow will print a bunch o
 
 This command can be used to print multiline information using Groovy’s logger functionality. Instead of writing a series of `println` commands, it can be used to include a multiline message. 
 
-```groovy
+```default
 log.info """\
     This is a multiline message. 
     It can even capture parameters like
@@ -113,7 +128,7 @@ log.info """\
 
 Open the `main.nf` file to see how we've implemented this for summarising the workflow's execution, pre-execution and post-execution:
 
-```groovy
+```default
 // Print a header for your pipeline 
 log.info """\
 
@@ -157,7 +172,9 @@ println summary
 }
 ```
 
-As the workflow starts, you will also see a number of processes spawn out underneath this (orange box). In Nextflow, processes are executed independently and can run in parallel. Nextflow manages the data dependencies between processes, ensuring that each process is executed only when its input data is available and all of its dependencies have been satisfied. 
+As the workflow starts, you will also see a number of processes spawn out underneath this. In Nextflow, processes are executed independently and can run in parallel. Nextflow manages the data dependencies between processes, ensuring that each process is executed only when its input data is available and all of its dependencies have been satisfied. In our demo, we've got one task per `check_input` and `group_samples` process, and two tasks as the `generate_report` process is run over each sequencer-specific samplesheet in parallel. 
+
+![](../figs/demo_nf.png)
 
 Because of how the data flows from process 1 (`check_input`) to process 2 (`group_samples`) to process 3 (`generate_report`) in our workflow, they will run in that order. 
 
@@ -165,13 +182,13 @@ Because of how the data flows from process 1 (`check_input`) to process 2 (`grou
 
 If you can see the workflow exercution summary has run without error, then the pipeline ran successfully. List (`ls -la`) the contents of your directory, you’ll see a few new directories (and a hidden directory and log file) have been created:
 
-![](../figs/02_demo.png)
+![](../figs/demo_ls.png)
 
 **The `work/` directory**
 
 As each task is run, a unique sub-directory is created in the work directory. These directories house temporary files and various command logs created by a process. We can find all information regarding this task that we need to troubleshoot a failed task. 
 
-![](../figs/03_demo.png)
+![](../figs/demo_work.png)
 
 Notice how the work directories correspond to the apparently random number/letter codes printed to the screen next to each process upon workflow execution. Each task in a Nextflow pipeline is assigned a unique identifier based on the input data, parameters, and code used. The output of the task is then saved (cached) in a uniquely named subdirectory within the work directory.
 
@@ -191,7 +208,7 @@ If a workflow is interrupted or if you decide to make changes and rerun it, Next
 All final outputs for this workflow will be presented in a directory specified by the `--outdir` flag which is a custom parameter we have defined in the `nextflow.config` as `params.ourdir`. Note the default is set to `results/`.
 
 
-![](../figs/04_demo.png)
+![](../figs/demo_results.png)
 
 If you were to rerun the workflow, using the `--outdir` flag and a different value, you could change the name of the output directory: 
 
@@ -231,7 +248,6 @@ process group_samples {
 ```  
 
 Here, we've chosen to output the files created by this process as a copy of what has been saved to the `work/` directory. Alternatively, to save space we could have used `symlink` to reduce the creation of additional files. 
-
 
 **The `.nextflow/` directory**
 
