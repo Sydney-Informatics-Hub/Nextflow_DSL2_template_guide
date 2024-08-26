@@ -3,6 +3,9 @@ title: '**Resource configuration**'
 from: markdown+emoji
 ---
 
+
+**WORK IN PROGRESS**
+
 Resource configuration in Nextflow workflows can be challenging due to the diversity of computational environments we each work in. Each environment has unique resource constraints and management systems which can complicate the allocation of resources like CPUs, memory, and storage.
 
 Ensuring you're resource efficient will minimise the runtime and reduce the cost of running your workflows. Poorly configured workflows can lead to failed jobs, wasted computational time, and overuse of resources, particularly in HPC and cloud environments. 
@@ -25,7 +28,7 @@ These configuration files allow you to specify [settings for resources](https://
 
 Here is a basic example of how you can set these resources for all processes in a workflow within the process scope in a configuration file: 
 
-``` 
+```default 
 process {
   cpus = 2
   memory = '4.GB'
@@ -35,7 +38,7 @@ process {
 
 In Nextflow, resource directives are specified within the `process` block. These directives control how many CPUs, how much memory, and how much time each process is allocated. While a default minimum resource allocation can be suitable in some workflows, this will not always work in more complex workflows and you will need to configure resources per process. Here is an example of how you'd configure the resources for a specific process, overwriting default settings for that process: 
 
-```
+```default
 process {
   cpus = 2
   memory = '4.GB'
@@ -53,7 +56,7 @@ process {
 
 Nextflow also allows you to dynamically allocate resources based on the input data size or task type. For example, you might need to adjust memory based on the size of an input file: 
 
-```
+```default
 
 ```
 
