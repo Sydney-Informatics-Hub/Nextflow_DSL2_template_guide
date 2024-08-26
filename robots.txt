@@ -1,0 +1,1 @@
+Sitemap: https://Sydney-Informatics-Hub.github.io/Nextflow_DSL2_template_guide/sitemap.xml
