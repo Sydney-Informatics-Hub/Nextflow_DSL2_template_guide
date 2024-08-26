@@ -21,7 +21,7 @@ This section provides step-by-step instructions to help you set up your local de
 
 Use these sections to familiarise yourself with the essential elements of the template including code base structure, directory organisation, configuration files, and how to modularise your workflow.
 
-#### **3. [Resource configuration](./notebooks/configuration.qmd)**
+#### **3. [Resource configuration](./notebooks/resource-config.qmd)**
 
 This section can help you configure the resources required for running your workflow efficiently in your environment. The guide will cover topics such as specifying CPU and memory requirements, handling parallel execution, and integrating with HPC environments.
 
