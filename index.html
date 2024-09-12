@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.56">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Welcome to the Nextflow template guide! – Nextflow DSL2 template user guide</title>
+<title>Welcome – Template-nf user guide</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,25 +30,21 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<script src="site_libs/cookie-consent/cookie-consent.js"></script>
-<link href="site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
+  "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
+  "panel-placement": "end",
+  "type": "overlay",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -70,51 +66,66 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-TNWWV3HK57"></script>
-
-<script type="text/plain" cookie-consent="tracking">
-
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-TNWWV3HK57', { 'anonymize_ip': true});
-</script>
-
-<script type="text/javascript" charset="UTF-8">
-document.addEventListener('DOMContentLoaded', function () {
-cookieconsent.run({
-  "notice_banner_type":"simple",
-  "consent_type":"express",
-  "palette":"light",
-  "language":"en",
-  "page_load_consent_levels":["strictly-necessary"],
-  "notice_banner_reject_button_hide":false,
-  "preferences_center_close_button_hide":false,
-  "website_name":"",
-"website_privacy_policy_url":"https://www.sydney.edu.au/privacy-statement.html"
-  ,
-"language":"en"
-  });
-});
-</script> 
-  
 
 
 <link rel="stylesheet" href="styles.scss">
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title"><strong>Template-nf user guide</strong></span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./notebooks/demo.html"> 
+<span class="menu-text">Tutorial</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./notebooks/components.html"> 
+<span class="menu-text">Components</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./notebooks/how-to.html"> 
+<span class="menu-text">How-to Guides</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./notebooks/best-practices.html"> 
+<span class="menu-text">Best Practices</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./notebooks/resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><strong>Welcome to the Nextflow template guide!</strong></a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
+        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title">Welcome</h1>
+        </a>     
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -122,16 +133,13 @@ cookieconsent.run({
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="./">Nextflow DSL2 template user guide</a> 
-        <div class="sidebar-tools-main">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-</div>
-    </div>
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./figs/SIH_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
@@ -142,25 +150,25 @@ cookieconsent.run({
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><strong>Welcome to the Nextflow template guide!</strong></span></a>
+  <a href="./notebooks/demo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./template.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>The template</strong></span></a>
+  <a href="./notebooks/how-to.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How-to Guides</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text"><strong>Template components</strong></span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a href="./notebooks/components.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Template Components</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./notebooks/main-nf.html" class="sidebar-item-text sidebar-link">
@@ -199,59 +207,53 @@ cookieconsent.run({
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./notebooks/best-practices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Best Practices</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebooks/channels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>Building channels</strong></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./notebooks/resource-config.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><strong>Resource configuration</strong></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./notebooks/software.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><strong>Software management</strong></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./notebooks/demo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>Demo workflow</strong></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./notebooks/hands-on.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>Hands on tutorial</strong></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./notebooks/guides.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>Guides</strong></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./resources.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>Resources</strong></span></a>
-  </div>
-</li>
+      </ul>
+  </li>
     </ul>
     </div>
+    
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><strong>Welcome to the Nextflow template guide!</strong></h1>
+<h1 class="title d-none d-lg-block">Welcome</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta">
 
     
   
@@ -263,60 +265,13 @@ cookieconsent.run({
 </header>
 
 
-<p>We developed a <a href="https://github.com/Sydney-Informatics-Hub/Nextflow_DSL2_template">Nextflow DSL2 workflow template</a> and this user guide to aid beginners in developing their own Nextflow workflows. Here, we guide you through how to use our workflow template to develop your own Nextflow pipelines.</p>
-<p><a href="https://www.nextflow.io/">Nextflow</a> is open source and scalable workflow management software for bioinformatics. It enables the development and running of integrated, reproducible workflows consisting of multiple processes, various environment management systems, scripting languages, and software packages. While Nextflow is designed to have a minimal learning curve as it doesn’t require end users to learn new programming languages, its extensive capabilities, use of Groovy syntax, and <a href="https://www.nextflow.io/docs/latest/index.html">comprehensive documentation</a> can be overwhelming for users who aren’t well versed in programming and software development.</p>
-<p>This user guide is under active development and will be updated progressively.</p>
-<section id="how-to-use-this-guide" class="level2">
-<h2 class="anchored" data-anchor-id="how-to-use-this-guide"><strong>How to use this guide</strong></h2>
-<p>This guide explains all aspects of using the workflow template, including:</p>
-<section id="how-to-use-the-template" class="level4">
-<h4 class="anchored" data-anchor-id="how-to-use-the-template"><strong>1. <a href="./template.html">How to use the template</a></strong></h4>
-<p>This section provides step-by-step instructions to help you set up your local development environment and use the template files.</p>
-</section>
-<section id="template-components" class="level4">
-<h4 class="anchored" data-anchor-id="template-components"><strong>2. Template components</strong></h4>
-<p>Use these sections to familiarise yourself with the essential elements of the template including code base structure, directory organisation, configuration files, and how to modularise your workflow.</p>
-</section>
-<section id="resource-configuration" class="level4">
-<h4 class="anchored" data-anchor-id="resource-configuration"><strong>3. <a href="./notebooks/resource-config.html">Resource configuration</a></strong></h4>
-<p>This section can help you configure the resources required for running your workflow efficiently in your environment. The guide will cover topics such as specifying CPU and memory requirements, handling parallel execution, and integrating with HPC environments.</p>
-</section>
-<section id="guides-for-customising-the-template" class="level4">
-<h4 class="anchored" data-anchor-id="guides-for-customising-the-template"><strong>4. <a href="./notebooks/guides.html">Guides for customising the template</a></strong></h4>
-<p>Here, you will find various examples of scenarios you may come across when writing Nextflow code and developing your workflows.</p>
-</section>
-<section id="a-demo-workflow" class="level4">
-<h4 class="anchored" data-anchor-id="a-demo-workflow"><strong>5. <a href="./notebooks/demo.html">A demo workflow</a></strong></h4>
-<p>Get a feel for the template and how to use it with the demo workflow. It walks you through a practical example that demonstrates the application of the workflow template.</p>
-</section>
-<section id="documentation-and-training-resources" class="level4">
-<h4 class="anchored" data-anchor-id="documentation-and-training-resources"><strong>6. Documentation and training resources</strong></h4>
-<p>The details contained within this user guide are limited, as such we strongly recommend you explore additional documentation and training resources. These resources serve as references for further exploration of Nextflow concepts, advanced topics, and community support.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<strong>Attention newcomers!</strong>
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>If you are new to this template and/or Nextflow, we recommend you do the following before applying the template to your own workflow:</p>
-<ol type="1">
-<li>Familiarise yourself with Nextflow</li>
-<li>Clone the template repository</li>
-<li>Explore the template structure as you run through the hands-on exercise</li>
-<li>Review the workflow structure</li>
-<li>Customise the resource configuration for your own needs</li>
-</ol>
-</div>
-</div>
-</section>
-</section>
-<section id="who-is-the-dsl2-template-for" class="level2">
-<h2 class="anchored" data-anchor-id="who-is-the-dsl2-template-for"><strong>Who is the DSL2 template for?</strong></h2>
-<p>The DSL2 workflow template is suitable for:</p>
+<p><br> We developed a <a href="https://github.com/Sydney-Informatics-Hub/template-nf">template-nf</a> to aid beginners in developing their own Nextflow workflows. Here, we guide you through how to use our workflow template to develop your own Nextflow pipelines.</p>
+<p><a href="https://www.nextflow.io/">Nextflow</a> is open source and scalable workflow management software for bioinformatics. It enables the development and running of integrated, reproducible workflows consisting of multiple processes, various environment management systems, scripting languages, and software packages.</p>
+<p>While Nextflow is designed to have a minimal learning curve, its extensive capabilities, use of Groovy syntax, and <a href="https://www.nextflow.io/docs/latest/index.html">comprehensive documentation</a> can be overwhelming for users who aren’t well versed in programming and software development.</p>
+<p>This user guide is under active development and will be updated progressively. <br> <br></p>
+<section id="who-is-template-nf-for" class="level3">
+<h3 class="anchored" data-anchor-id="who-is-template-nf-for">Who is <a href="https://github.com/Sydney-Informatics-Hub/template-nf">template-nf</a> for?</h3>
+<p>Our Nextflow workflow template is suitable for:</p>
 <ul>
 <li>Nextflow newcomers looking for a low barrier to entry, structured starting point, and guidance.</li>
 <li>Custom workflow developers looking for a simple scaffold which can be extended and modified as needed.</li>
@@ -331,16 +286,47 @@ cookieconsent.run({
 <li>Those with no previous command-line and bash experience.</li>
 </ul>
 </section>
-<section id="acknowledgements" class="level2">
-<h2 class="anchored" data-anchor-id="acknowledgements"><strong>Acknowledgements</strong></h2>
-<p>The Nextflow DSL2 template and accompanying materials were developed by the Sydney Informatics Hub, University of Sydney in partnership with the Australian BioCommons - Bring Your Own Data Platforms project (Australian Research Data Commons and NCRIS via Bioplatforms Australia).</p>
+<section id="getting-started" class="level3">
+<h3 class="anchored" data-anchor-id="getting-started">Getting started</h3>
+<p>Get a feel for the template and how to use it with the <a href="./notebooks/demo.html">demo workflow</a>.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<strong>Attention newcomers!</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you are new to this template and/or Nextflow, we recommend you do the following before applying the template to your own workflow:</p>
+<ol type="1">
+<li>Familiarise yourself with Nextflow</li>
+<li>Clone the template repository</li>
+<li>Explore the template structure</li>
+</ol>
+</div>
+</div>
+</section>
+<section id="site-contents" class="level3">
+<h3 class="anchored" data-anchor-id="site-contents">Site contents</h3>
+<ol type="1">
+<li><a href="#1-the-template">The template</a></li>
+<li><a href="#2-template-components">Components</a></li>
+<li><a href="#3-resource-configuration">Resource configuration</a></li>
+<li><a href="#4-demo-workflow">Demo workflow</a></li>
+<li><a href="#5-guides">Guides</a></li>
+<li><a href="#6-resources">Resources</a> <br> <br></li>
+</ol>
+</section>
+<section id="acknowledgements" class="level3">
+<h3 class="anchored" data-anchor-id="acknowledgements">Acknowledgements</h3>
+<p>The Nextflow DSL2 template and accompanying materials were developed by the Sydney Informatics Hub, University of Sydney in partnership with the Australian BioCommons (NCRIS via Bioplatforms Australia).</p>
 
 
 </section>
 
-<div style="font-size: 14px;">
-All materials copyright Sydney Informatics Hub, University of Sydney
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -361,150 +347,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
-      }
-    }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-      }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
-        }
-      });
-    }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
-        }
-      }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
-      return false;
-    }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -906,19 +748,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-      &nbsp;
-    </div>   
-    <div class="nav-footer-center">
-
-<div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
-    <div class="nav-footer-right">
-      &nbsp;
-    </div>
-  </div>
-</footer>
 
 
 
