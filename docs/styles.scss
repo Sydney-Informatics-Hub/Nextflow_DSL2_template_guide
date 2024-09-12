@@ -1,0 +1,29 @@
+// footer {
+//     text-align: left;
+//     font-size: 18px;
+// }
+
+@media (max-width: 900px) {
+  #quarto-margin-sidebar {
+    display: none;
+  }
+}
+/* Overwrite navbar text color to always be white */
+.navbar-default .navbar-nav > li > a,
+.navbar-default .navbar-brand,
+.navbar-default .navbar-nav > li.active > a,
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-dark .navbar-nav .nav-link {
+  color: #ffffff !important;  /* Force the text to be white */
+}
+
+/* CSS to make all tables scroll horizontally */
+.table-scroll {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.table-scroll table {
+  width: auto;  /* Prevent the table from stretching to fill the entire width */
+  display: table;
+}

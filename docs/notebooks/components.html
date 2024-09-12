@@ -196,7 +196,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../notebooks/components.html" class="sidebar-item-text sidebar-link">
+            <a href="../notebooks/components.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Template Components</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -217,7 +217,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notebooks/modules.html" class="sidebar-item-text sidebar-link active">
+  <a href="../notebooks/modules.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><code>modules/</code> directory</span></a>
   </div>
 </li>
@@ -283,96 +283,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="modules-directory" class="level1">
-<h1><code>modules/</code> directory</h1>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Relevant Nextflow components
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<section id="template-structure" class="level1">
+<h1><strong>Template structure</strong></h1>
+<p>Nextflow is highly flexible, allowing users to implement workflows in a number of different ways. In this template, we provide one common implementation for structuring your Nextflow code base in a way that is easy to maintain and read.</p>
+<p>The template’s code repository is organised into a number of files and directories:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>myWorkflow-nf</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>├── .github/ISSUE_TEMPLATE</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>├── assets</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>├── bin</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>├── config</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>├── modules</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>├── main.nf</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>├── LICENSE</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>├── README.md</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>└── nextflow.config</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Consider a basic Nextflow run command below, where a user will need to specify parameters and (optionally) a configuration <a href="https://www.nextflow.io/docs/latest/config.html#config-profiles">profile</a>:</p>
+<p><img src="../figs/template_command.png" class="img-fluid"></p>
 <ul>
-<li>Use <a href="https://www.nextflow.io/docs/latest/process.html#directives">directives</a> to control the execution of the current process.</li>
-<li>Use the <a href="https://www.nextflow.io/docs/latest/process.html#inputs"><code>input</code></a> block to set the input channels of the current process.</li>
-<li>Use the <a href="https://www.nextflow.io/docs/latest/process.html#outputs"><code>output</code></a> block to set the output channels of the current process.</li>
-<li>Use the <a href="https://www.nextflow.io/docs/latest/process.html#script"><code>script</code></a> block to define the script that is executed by the process.</li>
+<li>The <code>main.nf</code> file is the executable file that identifies the workflow structure, inputs, and processes to pull form the <code>modules/</code> directory.</li>
+<li>The <code>--parameter</code> flag matches a parameter initialised in the <code>nextflow.config</code> file and applies it to the workflow execution.</li>
+<li>The <code>-profile</code> flag is used to specify environment-specific configuration details such as a software implementation method and/or resource management.</li>
 </ul>
-</div>
-</div>
-<section id="whats-in-modules" class="level3">
-<h3 class="anchored" data-anchor-id="whats-in-modules"><strong>What’s in <code>modules/</code>?</strong></h3>
-<p>This directory contains all sub-workflows to be run with <code>nextflow run main.nf</code>. It is considered good practice to split out processes into separate <code>.nf</code> files and store them here, rather than including them all in the <code>main.nf</code> file. This directory is referenced in <code>main.nf</code> by <a href="https://www.nextflow.io/docs/latest/dsl2.html#modules"><code>include {x} from ./modules/process</code></a>.</p>
-<p>Each module <code>.nf</code> script contains the process to be run, in addition to details of which container to be used, where to publish the output for the process.</p>
-</section>
-<section id="what-is-in-each-module-file" class="level3">
-<h3 class="anchored" data-anchor-id="what-is-in-each-module-file"><strong>What is in each module file?</strong></h3>
-<section id="directives" class="level4">
-<h4 class="anchored" data-anchor-id="directives"><strong>Directives</strong></h4>
-<p>Nextflow process <a href="https://www.nextflow.io/docs/latest/process.html#directives">directives</a> are optional settings that determine the execution of the current process. They can be provided at the top of the process body, before any other declaration blocks.</p>
-<p>Some examples you may wish to include are:</p>
+<p>Running a workflow that follows this template will output:</p>
 <ul>
-<li><a href="https://www.nextflow.io/docs/latest/process.html#debug"><code>debug true</code></a> to print stdout for each command being run<br>
-</li>
-<li><a href="https://www.nextflow.io/docs/latest/process.html#module"><code>module</code></a> to specify environmental modules</li>
-<li><a href="https://www.nextflow.io/docs/latest/process.html#container"><code>container</code></a> to specify a container to run the process</li>
-<li><a href="https://www.nextflow.io/docs/latest/process.html#errorstrategy"><code>error strategy</code></a> to define how a process error is managed</li>
-<li><a href="https://www.nextflow.io/docs/latest/process.html#label"><code>labels</code></a> that can be applied to multiple processes</li>
+<li>A customisable execution message invoked when the workflow is run</li>
+<li>A customisable help message invoked using <code>--help</code> or failing to supply a required parameter</li>
+<li>A customisable completion message invoked when the workflow has finished running</li>
+<li>Files generated by your processes, optionally these can be saved to a results directory</li>
+<li>Workflow execution resource usage, trace, and timeline reports</li>
 </ul>
-<p>In the template we have provided an example of using a <a href="https://www.nextflow.io/docs/latest/process.html#dynamic-computing-resources">dynamic directive</a> to modify the amount of computing resources requested by a process in case of a process failure and try to re-execute it using a higher limit:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>process process1 {</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    time { 2.hour * task.attempt }</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    errorStrategy { task.exitStatus in 137..143 ? 'retry' : 'terminate' }</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    maxRetries 2</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>...</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>In this example, if a task fails and returns an exit status between 137-143, it is resubmitted, otherwise it will terminate. The first time the process is run, <code>task.attempt</code> is set to 1 and it will request 2 hour of maximum execution time. If the first attempt of a task fails AND reports an exit status of 137-143, it will be resubmitted but this time <code>task.attempt</code> is 2, so the maximum execution time will be set to 4 hours. You can customise the number of attempts (maxRetries), the task exit status, and can specify time, memory, or cpus as resources.</p>
-</section>
-<section id="input" class="level4">
-<h4 class="anchored" data-anchor-id="input"><strong>Input</strong></h4>
-<p>The <a href="https://www.nextflow.io/docs/latest/process.html#inputs">input block</a> is required for each process, it defines the input channels for a process. A process must have at least one input and only one input block. You can specify values, paths, or files as inputs.</p>
-</section>
-<section id="output" class="level4">
-<h4 class="anchored" data-anchor-id="output"><strong>Output</strong></h4>
-<p>An <a href="https://www.nextflow.io/docs/latest/process.html#outputs">output block</a> defines the output channels for a process. A process should have at least one output and only one output block. Nextflow DSL2 provides some flexibility regarding the creation of outputs. For example, we can use the <a href="https://www.nextflow.io/docs/latest/dsl2.html#process-named-output"><code>emit</code> option</a> the assign a name identifier to a specific output. Assign a process’ output a specific name:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>process PROCESS1 {</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    output: </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        path 'sample*.bam', emit: sample_bam</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This name can be used within the <code>main.nf</code> workflow to reference the channel, whether that be as input for another process or to view the output:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>workflow {</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    PROCESS1()</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    PROCESS1.out.samples_bam.view()</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>We can also define an output as <a href="https://www.nextflow.io/docs/latest/process.html#optional-outputs">optional</a>, meaning the process will not fail if an output is not generated by a task. Set an output as optional with the following:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>output: </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    path("myFile.txt"), optional: true</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="script" class="level4">
-<h4 class="anchored" data-anchor-id="script"><strong>Script</strong></h4>
-<p>The <a href="https://www.nextflow.io/docs/latest/process.html#script">script block</a> defines the script executed by the process as a string expression. The script block must follow the input and output blocks at the bottom of a process scope.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>process process1 {</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    input: </span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    path x </span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    output:</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    path y </span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    script:</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    """</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    cat x </span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    """</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
-</section>
-</section>
 </section>
 
 </main> <!-- /main -->

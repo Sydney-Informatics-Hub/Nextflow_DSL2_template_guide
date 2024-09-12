@@ -3,6 +3,7 @@ project:
   output-dir: docs
 
 website:
+  bread-crumbs: false
   title: "**Template-nf user guide**"
   navbar:
     background: primary
@@ -10,6 +11,8 @@ website:
     right:
       - text: "Home"
         href: index.qmd
+      - text: "Tutorial"
+        href: notebooks/demo.qmd
       - text: "Components"
         href: notebooks/components.qmd
       - text: "How-to Guides"
@@ -25,16 +28,10 @@ website:
     search: true
     collapse-level: 1
     contents:
-      - section: "Tutorial"
-        href: notebooks/tutorial.qmd
-        contents:
-          - notebooks/demo.qmd
-        collapse: true   # Ensures subsections are collapsed by default
-      - section: "How-to Guides"
+      - text: "Tutorial"
+        href: notebooks/demo.qmd
+      - text: "How-to Guides"
         href: notebooks/how-to.qmd
-        contents:
-          - notebooks/template.qmd
-        collapse: true   # Ensures subsections are collapsed by default
       - section: "Template Components"
         href: notebooks/components.qmd 
         contents:
@@ -44,22 +41,22 @@ website:
           - notebooks/bin.qmd
           - notebooks/configs.qmd
           - notebooks/bits.qmd
-        collapse: true   # Ensures subsections are collapsed by default
       - section: "Best Practices"
         href: notebooks/best-practices.qmd
         contents:
+          - notebooks/channels.qmd
           - notebooks/resource-config.qmd
           - notebooks/software.qmd
-        collapse: true   # Ensures subsections are collapsed by default
 
 format:
   html:
     theme: simplex
     css: styles.scss
-    toc: false              # Enable TOC globally for all pages
-    toc-location: left      # Ensure TOC appears on the sidebar
-    toc-depth: 2            # Set the depth of TOC (adjust as necessary)
+    toc: false              
+    toc-location: left     
+    toc-depth: 2            
     code-overflow: wrap
     code-link: true
     code-fold: false
     highlight-style: github
+    #page-layout: full

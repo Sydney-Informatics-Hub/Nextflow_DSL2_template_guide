@@ -1,5 +1,11 @@
 # `config/` directory
 
+::: {.callout-note}
+## Relevant Nextflow components 
+
+- Use 
+:::
+
 ### **What's in `config/`?** 
 
 This directory contains various profile modules for configuring the pipeline run. Some care should be taken when using these config profiles. See the [Nextflow documentation](https://nextflow.io/docs/latest/config.html#config-profiles) for more details.

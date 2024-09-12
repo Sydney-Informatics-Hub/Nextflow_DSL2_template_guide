@@ -4,7 +4,7 @@ A strength of Nextflow is the fact it can be used to combine processes written i
 
 ### **What should go in `bin/`?** 
 
-In the real world, workflows often use custom scripts written in languages like Bash, Perl, R, and Python. Simply place these scripts inside the `bin/` directory in the workflow project root folder, as we have provided in this template. These scripts will automatically be added by Nextflow to your workflow execution $PATH. 
+In the real world, workflows often use custom scripts written in languages like Bash, Perl, R, and Python. Simply place these scripts inside the `bin/` directory in the workflow project root folder, as we have provided in this template. These scripts will automatically be added by Nextflow to your workflow execution `$PATH`. 
 
 ::: {.callout-tip}
 # Make your scripts executable
