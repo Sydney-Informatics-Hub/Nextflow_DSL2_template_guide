@@ -71,4 +71,13 @@ process multiqc {
 ```
 
 ## `LICENSE`
+
+The LICENSE file provides legal information about how your workflow code can be used, shared, and modified by others. This is important because it sets the terms and conditions under which your workflow or code can be distributed. In this template, we have included an open-source license,  GNU GENERAL PUBLIC LICENSE, which is a popular choice for scientific software as it allows users to freely use, modify, and distribute the code.
+
+Ensure you choose a license that fits your project's goals. See [here](https://opensource.org/licenses) for a registry of open source license options. 
+
 ## `README.md`
+
+The README.md file is the primary documentation for your project and should provide an introduction, instructions on how to use the workflow, and additional context that potential users or contributors will find helpful. By maintaining a well-documented README.md, you'll make it easier for others to understand and use your workflow. 
+
+Here, we have used Australian BioCommons' [workflow documentation](https://australianbiocommons.github.io/how-to-doc-guidelines/) template. 

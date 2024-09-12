@@ -3,6 +3,15 @@ title: '`main.nf`'
 from: markdown+emoji
 ---
 
+::: {.callout-note}
+## Relevant Nextflow components 
+
+- Use the keyword [`include`](https://www.nextflow.io/docs/latest/module.html#module-inclusion) to import modules into the workflow. 
+- Use the keyword [`workflow`](https://www.nextflow.io/docs/latest/workflow.html#workflows) scope to compose a set of processes, channels, and operators.
+- Use [channels](https://www.nextflow.io/docs/latest/channel.html) for data flow between processes
+- Use [operators](https://www.nextflow.io/docs/latest/operator.html) to create and manipulate channels. 
+:::
+
 This is the primary script file or entry point for defining and executing a Nextflow workflow. The `main.nf` script contains the workflow's structure, processes, and channels. This file doesn't have to be called `main.nf` but this is common practice in Nextflow. 
 
 ### **What's in `main.nf`?** 
@@ -15,7 +24,7 @@ This file contains the following essentials:
 
 #### **Processes** 
 
-Consider processes as individual units of work or steps to be executed by a workflow. While you can opt to define all processes within the `main.nf` script (like [here](https://github.com/nextflow-io/rnaseq-nf/blob/3b5b49f/main.nf)), we have chosen to focus on modularity with this template. As such, processes inside the template are saved as individual scripts inside the `modules/` directory and [imported](https://training.nextflow.io/basic_training/modules/#importing-modules) into the `main.nf` script: 
+Consider processes as individual units of work or steps to be executed by a workflow. While you can opt to define all processes within the `main.nf` script (like [here](https://github.com/nextflow-io/rnaseq-nf/blob/3b5b49f/main.nf)), we have chosen to focus on modularity with this template. As such, processes inside the template are saved as individual scripts inside the `modules/` directory and [imported](https://training.nextflow.io/basic_training/modules/#importing-modules) into the `main.nf` script, using the `include` keyword: 
 
 ```default
 include { processName } from './modules/moduleName'

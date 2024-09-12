@@ -3,7 +3,6 @@ title: '**Resource configuration**'
 from: markdown+emoji
 ---
 
-
 **WORK IN PROGRESS**
 
 Resource configuration in Nextflow workflows can be challenging due to the diversity of computational environments we each work in. Each environment has unique resource constraints and management systems which can complicate the allocation of resources like CPUs, memory, and storage.

@@ -1,6 +1,25 @@
 # `nextflow.config`
 
-This is the configuration script that Nextflow looks for when you run a workflow. It contains a number of property definitions that are used by the pipeline. A key feature of Nextflow is the ability to separate workflow implementation from the underlying execution platform using this configuration file. Since we can add additional configuration files for different run environments (i.e. job schedulers, use of singularity vs bioconda) each configuration file can contain conflicting settings and parameters listed in this file can be overwritten in the run command by specifying relevant commands. See [here](https://www.nextflow.io/docs/latest/config.html#configuration-file) for details on the hierarchy of configuration files.
+::: {.callout-note}
+## Relevant Nextflow components 
+
+- Use the [`manifest`](https://www.nextflow.io/docs/latest/config.html#scope-manifest) scope to define metadata for publishing the pipeline.
+- Use the [`nextflowVersion`](https://www.nextflow.io/docs/latest/config.html#nextflow-version) setting to set the minimum version of Nextflow.
+- Use the [`params`](https://www.nextflow.io/docs/latest/config.html#scope-params) scope to define parameters accessible to the pipeline. 
+- Use the [`shell`](https://www.nextflow.io/docs/latest/process.html#process-directive-shell) directive to define a custom shell command. 
+- Use the [`dag`](https://www.nextflow.io/docs/latest/config.html#scope-dag) config scope to generate a workflow diagram. 
+- Use the [`report`](https://www.nextflow.io/docs/latest/config.html#scope-report) config scope to generate an html summary report.
+- Use the [`timeline`](https://www.nextflow.io/docs/latest/config.html#scope-timeline) config scope to generate an html runtime report. 
+- Use the [`trace`](https://www.nextflow.io/docs/latest/config.html#scope-trace) config scope to generate a task execution trace file.
+- Use the [`profile`](https://www.nextflow.io/docs/latest/config.html#config-profiles) scope to import profile configs from `config/` directory.
+- Use the [`process selector`](https://www.nextflow.io/docs/latest/config.html#process-selectors) to specify default directives for processes.
+:::
+
+This is the configuration script that Nextflow looks for when you run a workflow. It contains a number of property definitions that are used by the pipeline. A key feature of Nextflow is the ability to separate workflow implementation from the underlying execution platform using this configuration file. 
+
+Since we can add additional configuration files for different run environments (i.e. job schedulers, use of singularity vs bioconda) each configuration file can contain conflicting settings and parameters listed in this file can be overwritten in the run command by specifying relevant commands. 
+
+See [here](https://www.nextflow.io/docs/latest/config.html#configuration-file) for details on the hierarchy of configuration files.
 
 ### **What's in `nextflow.config`?** 
 
@@ -91,12 +110,6 @@ executor >  local (1)
 [eb/25f43a] process > PROCESS [100%] 1 of 1 ✔
 Hello world!
 ```
-
-::: {.callout-tip}
-# How is this output printed to the screen?
-
-Note the use of the `.view()` appended to the process inside the workflow in the `main.nf` file. The [view](https://www.nextflow.io/docs/latest/operator.html#view) operator prints items emitted by a channel to standard output.
-:::
 
 You can override these parameters when you run the workflow, for example: 
 

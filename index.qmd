@@ -1,56 +1,22 @@
 ---
-title: '**Welcome to the Nextflow template guide!**'
+title: 'Welcome'
 from: markdown+emoji
 ---
 
-We developed a [Nextflow DSL2 workflow template](https://github.com/Sydney-Informatics-Hub/Nextflow_DSL2_template) and this user guide to aid beginners in developing their own Nextflow workflows. Here, we guide you through how to use our workflow template to develop your own Nextflow pipelines. 
+<br>
+We developed a [template-nf](https://github.com/Sydney-Informatics-Hub/template-nf) to aid beginners in developing their own Nextflow workflows. Here, we guide you through how to use our workflow template to develop your own Nextflow pipelines. 
 
-[Nextflow](https://www.nextflow.io/) is open source and scalable workflow management software for bioinformatics. It enables the development and running of integrated, reproducible workflows consisting of multiple processes, various environment management systems, scripting languages, and software packages. While Nextflow is designed to have a minimal learning curve as it doesn't require end users to learn new programming languages, its extensive capabilities, use of Groovy syntax, and [comprehensive documentation](https://www.nextflow.io/docs/latest/index.html) can be overwhelming for users who aren't well versed in programming and software development.  
+[Nextflow](https://www.nextflow.io/) is open source and scalable workflow management software for bioinformatics. It enables the development and running of integrated, reproducible workflows consisting of multiple processes, various environment management systems, scripting languages, and software packages. 
+
+While Nextflow is designed to have a minimal learning curve, its extensive capabilities, use of Groovy syntax, and [comprehensive documentation](https://www.nextflow.io/docs/latest/index.html) can be overwhelming for users who aren't well versed in programming and software development.  
 
 This user guide is under active development and will be updated progressively. 
+<br>
+<br>
 
-## **How to use this guide**
+### Who is [template-nf](https://github.com/Sydney-Informatics-Hub/template-nf) for?
 
-This guide explains all aspects of using the workflow template, including: 
-
-#### **1. [How to use the template](template.qmd)** 
-
-This section provides step-by-step instructions to help you set up your local development environment and use the template files.
-
-#### **2. Template components** 
-
-Use these sections to familiarise yourself with the essential elements of the template including code base structure, directory organisation, configuration files, and how to modularise your workflow.
-
-#### **3. [Resource configuration](./notebooks/resource-config.qmd)**
-
-This section can help you configure the resources required for running your workflow efficiently in your environment. The guide will cover topics such as specifying CPU and memory requirements, handling parallel execution, and integrating with HPC environments.
-
-#### **4. [Guides for customising the template](./notebooks/guides.qmd)**
-
-Here, you will find various examples of scenarios you may come across when writing Nextflow code and developing your workflows. 
-
-#### **5. [A demo workflow](./notebooks/demo.qmd)** 
-
-Get a feel for the template and how to use it with the demo workflow. It walks you through a practical example that demonstrates the application of the workflow template. 
-
-#### **6. Documentation and training resources**
-
-The details contained within this user guide are limited, as such we strongly recommend you explore additional documentation and training resources. These resources serve as references for further exploration of Nextflow concepts, advanced topics, and community support.
-
-::: {.callout-tip}
-## **Attention newcomers!**
-If you are new to this template and/or Nextflow, we recommend you do the following before applying the template to your own workflow: 
-
-1. Familiarise yourself with Nextflow 
-2. Clone the template repository 
-3. Explore the template structure as you run through the hands-on exercise
-4. Review the workflow structure 
-5. Customise the resource configuration for your own needs 
-:::
-
-## **Who is the DSL2 template for?**
-
-The DSL2 workflow template is suitable for: 
+Our Nextflow workflow template is suitable for: 
 
 * Nextflow newcomers looking for a low barrier to entry, structured starting point, and guidance. 
 * Custom workflow developers looking for a simple scaffold which can be extended and modified as needed. 
@@ -64,6 +30,31 @@ It is *not* suitable for:
 * Those needing to rapidly prototype a workflow or perform exploratory analysis. 
 * Those with no previous command-line and bash experience. 
 
-## **Acknowledgements**
+### Getting started 
 
-The Nextflow DSL2 template and accompanying materials were developed by the Sydney Informatics Hub, University of Sydney in partnership with the Australian BioCommons - Bring Your Own Data Platforms project (Australian Research Data Commons and NCRIS via Bioplatforms Australia). 
+Get a feel for the template and how to use it with the [demo workflow](./notebooks/demo.qmd). 
+
+::: {.callout-important}
+## **Attention newcomers!**
+If you are new to this template and/or Nextflow, we recommend you do the following before applying the template to your own workflow: 
+
+1. Familiarise yourself with Nextflow 
+2. Clone the template repository 
+3. Explore the template structure
+:::
+
+
+### Site contents
+
+1. [The template](#1-the-template)
+2. [Components](#2-template-components)
+3. [Resource configuration](#3-resource-configuration)
+4. [Demo workflow](#4-demo-workflow)
+5. [Guides](#5-guides)
+6. [Resources](#6-resources)
+<br>
+<br>
+
+### Acknowledgements
+
+The Nextflow DSL2 template and accompanying materials were developed by the Sydney Informatics Hub, University of Sydney in partnership with the Australian BioCommons (NCRIS via Bioplatforms Australia). 

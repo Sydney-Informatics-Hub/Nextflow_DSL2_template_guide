@@ -3,14 +3,37 @@ project:
   output-dir: docs
 
 website:
-  title: "Nextflow DSL2 template user guide"
+  bread-crumbs: false
+  title: "**Template-nf user guide**"
+  navbar:
+    background: primary
+    # Top navigation bar with high-level sections
+    right:
+      - text: "Home"
+        href: index.qmd
+      - text: "Tutorial"
+        href: notebooks/demo.qmd
+      - text: "Components"
+        href: notebooks/components.qmd
+      - text: "How-to Guides"
+        href: notebooks/how-to.qmd
+      - text: "Best Practices"
+        href: notebooks/best-practices.qmd
+      - text: "Resources"
+        href: notebooks/resources.qmd
+    search: true
   sidebar:
     style: "floating"
+    logo: "figs/SIH_logo.png"
     search: true
-    contents: 
-      - index.qmd
-      - template.qmd
-      - section: "**Template components**"
+    collapse-level: 1
+    contents:
+      - text: "Tutorial"
+        href: notebooks/demo.qmd
+      - text: "How-to Guides"
+        href: notebooks/how-to.qmd
+      - section: "Template Components"
+        href: notebooks/components.qmd 
         contents:
           - notebooks/main-nf.qmd
           - notebooks/nextflow-config.qmd
@@ -18,33 +41,22 @@ website:
           - notebooks/bin.qmd
           - notebooks/configs.qmd
           - notebooks/bits.qmd
-      - notebooks/resource-config.qmd
-      - notebooks/software.qmd
-      - notebooks/demo.qmd
-      - notebooks/hands-on.qmd
-      - notebooks/guides.qmd
-      - resources.qmd
-  cookie-consent: 
-    type: express
-    style: simple
-    palette: light
-    policy-url: https://www.sydney.edu.au/privacy-statement.html
-  google-analytics: "G-TNWWV3HK57"
-  
-  body-footer: "<div style='font-size: 14px;'>All materials copyright Sydney Informatics Hub, University of Sydney</div>"
-
+      - section: "Best Practices"
+        href: notebooks/best-practices.qmd
+        contents:
+          - notebooks/channels.qmd
+          - notebooks/resource-config.qmd
+          - notebooks/software.qmd
 
 format:
   html:
-   toc: false
-   theme:
-      light: flatly
-      dark: darkly
-   css: styles.scss
-   code-link: true
-   code-fold: false
-   code-overflow: scroll
-   highlight-style: github
-   page-layout: full
-
-
+    theme: simplex
+    css: styles.scss
+    toc: false              
+    toc-location: left     
+    toc-depth: 2            
+    code-overflow: wrap
+    code-link: true
+    code-fold: false
+    highlight-style: github
+    #page-layout: full

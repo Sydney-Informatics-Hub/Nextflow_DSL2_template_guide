@@ -1,6 +1,8 @@
-# **Demo workflow**
+# **Template demo**
 
-`template-nf` contains a demonstration workflow that can help you explore the template's functionality. This demo accepts a samplesheet as input and runs 3 processes, demonstrating various aspects of Nextflow functionality. You will need to have Nextflow [installed](https://www.nextflow.io/docs/latest/install.html) on your system to run the demo workflow. 
+`template-nf` contains a demonstration workflow that can help you explore the template's functionality. This demo accepts a samplesheet as input and runs 3 processes, demonstrating various aspects of Nextflow functionality. 
+
+You will need to have Nextflow [installed](https://www.nextflow.io/docs/latest/install.html) on your system to run the demo workflow. 
 
 We've designed this demo to show off the most simple aspects of the template, we have not included the use of the `config/` directory as configuration profiles are often infrastructure dependent. 
 
@@ -14,12 +16,18 @@ We have structured this demo to show how one can use inbuilt Nextflow features t
 
 Imagine the processes run by this demo are the beginning of a very complex workflow where a user needs to batch samples for further processing depending on their sequencing platform. In this scenario, we've got a single samplesheet in csv format with the following structure (in your code see `assets/samplesheet.csv`): 
 
+<br>
+<br>
+<div class="table-scroll">
 |sample           |fq1                                   |fq2                                   |platform|library|center|
 |-----------------|--------------------------------------|--------------------------------------|--------|-------|------|
 |earlycasualcaiman|earlycasualcaiman_XXXXXX_1_1k.fastq.gz|earlycasualcaiman_XXXXXX_2_1k.fastq.gz|illumina|1      |nfcore|
 |hugelymodelbat   |hugelymodelbat_XXXXXX_1_1k.fastq.gz   |hugelymodelbat_XXXXXX_2_1k.fastq.gz   |pacbio  |1      |nfcore|
 |vapidkangaroo    |vapidkangaroo_XXXXXX_1_1k.fastq.gz    |vapidkangaroo_XXXXXX_2_1k.fastq.gz    |pacbio  |1      |nfcore|
+</div>
 
+<br>
+<br>
 
 We need to organise samples based on their sequencing platform for subsequent processing as pacbio and illumina reads require different software and processing methods. 
 
