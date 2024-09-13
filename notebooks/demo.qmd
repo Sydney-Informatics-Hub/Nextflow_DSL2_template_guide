@@ -145,7 +145,7 @@ Name of the pipeline - nf
 =======================================================================================
 
 Created by <YOUR NAME> 
-Find documentation @ https://sydney-informatics-hub.github.io/Nextflow_DSL2_template_guide/
+Find documentation @ https://sydney-informatics-hub.github.io/template-nf-guide/
 Cite this pipeline @ INSERT DOI
 
 =======================================================================================
