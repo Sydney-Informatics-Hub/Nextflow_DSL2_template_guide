@@ -1,5 +1,17 @@
 # **Template structure**
 
+The template employs a basic framework that allows users to customise and extend the workflow while adhering to code management best practices. 
+
+The workflow code-base is organised into a number of different executable files and directories. This organisaiton promotes code modularity, reusability, maintainability, and clarity. Each executable file included in the template contains comment lines, links to relevant Nextflow documentation, and implementation examples. To apply the template to your own workflows, you will need to replace examples with your own code. 
+
+Modularising the code base and splitting workflow processes and configuration files offers a few benefits: 
+
+* Code organisation and maintainability
+* Readability and clarity
+* Collaboration 
+* Testing and debugging
+* Code reuse and extensibility
+
 Nextflow is highly flexible, allowing users to implement workflows in a number of different ways. In this template, we provide one common implementation for structuring your Nextflow code base in a way that is easy to maintain and read. 
 
 The template's code repository is organised into a number of files and directories: 
