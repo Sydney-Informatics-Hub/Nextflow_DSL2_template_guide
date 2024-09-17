@@ -2,3 +2,220 @@
 title: '**Building channels**'
 from: markdown+emoji
 ---
+
+In Nextflow, channels are require to move data between processes. Channels act as communication links that pass data between tasks in a workflow. Using channels effectively ensures smooth and efficient execution. Let's explore some best practices and common scenarios for building channels, and how Groovy and Nextflow operators can be used to manipulate data within them.
+
+::: {.callout-note}
+
+## Relevant documentation and resources
+
+- [Nextflow documentation: channels](https://www.nextflow.io/docs/latest/channel.html)
+- [Nextflow documentation: operators](https://www.nextflow.io/docs/latest/operator.html)
+- [Nextflow training: channels](https://training.nextflow.io/basic_training/channels/#queue-channel)
+- [Nextflow training: operators](https://training.nextflow.io/basic_training/operators/#grouptuple)
+- [Nextflow patterns](https://nextflow-io.github.io/patterns/index.html)
+:::
+
+## Some tricky scenarios
+
+### Creating channels from samplesheets 
+
+In bioinformatics workflows, samplesheets (as CSV files) are a common way to store metadata about sequencing experiments, such as sample names, file paths, and experimental conditions. Nextflow allows you to easily create channels from these samplesheets, enabling efficient parallel processing of the associated data.
+
+#### *Use case: grouping fastq pairs according to their sample ID*
+
+Consider a samplesheet with the following structure: 
+
+```default
+```default
+sample,tissue_type,fq1,fq2
+sample1,liver,sample1_liver_1.fq,sample1_liver_2.fq
+sample2,kidney,sample2_kidney_1.fq,sample2_kidney_2.fq
+sample3,brain,sample3_brain_1.fq,sample3_brain_2.fq
+sample4,liver,sample4_liver_1.fq,sample4_liver_2.fq
+sample5,kidney,sample5_kidney_1.fq,sample5_kidney_2.fq
+```
+
+We need to input fq pairs according to their sample ID to bwa-mem2 for alignment to a reference assembly. We can do this with the channel: 
+
+```default
+samplesheet = Channel.fromPath('samples.csv')
+              .splitCsv(header: true)
+              .map { row -> tuple(row.sample, row.tissue_type, row.fq1, row.fq2) }
+```
+
+- `splitCsv(header: true)` parses the CSV with headers.
+- `map` transforms each row into a tuple containing relevant fields 
+
+```default
+process align_reads {
+    
+  input:
+  tuple val(sample), path(fq1), path(fq2)
+  path reference_index
+
+  output:
+  path "${sample}.bam"
+
+  script:
+  """
+  bwa-mem2 mem ${reference_index} ${fq1} ${fq2} \\
+    -t ${task.cpus} \\
+    | samtools view -Sb - \\
+    > ${sample}.bam
+  """
+}
+```
+
+
+This allows you to process samples in parallel while maintaining consistent metadata and file associations for each sample across all workflow steps.
+
+### Dynamic input selection 
+
+In Nextflow allows workflows to intelligently handle variable inputs, making them adaptable to different scenarios. This is especially useful when your input data or conditions change across runs, for example checking if a resource like a database or index already exists. If it does, the workflow uses it directly. If not, it dynamically runs a process to generate or download the resource. 
+
+#### *Use case: dynamically selecting to run a process*
+
+Consider a scenario where we need to check if the Kraken2 database exists and either use the existing file or download/build it if it’s missing. 
+
+```default
+if (params.kraken_db) {
+    kraken2_db = path(params.kraken_db)
+
+} else {
+    process download_k2db {
+      output:
+      path "kraken2_db", emit: k2db
+
+      script:
+      """
+      kraken2-build --download-library bacteria --db kraken2_db
+      """
+   }
+
+    kraken2_db = download_kraken2_db.out.k2db
+}
+```
+
+- `if (params.kraken_db)` checks if the kraken_db parameter (`--kraken_db`) is provided in the run command. If it is, it defines the `kraken2_db` channel.
+- `else {}` block: if `--kraken_db` is not provided, it runs the `download_k2db` process and assigns the output to the `kraken2_db` channel.
+
+This structure makes the workflow flexible by either using an existing resource or generating it if necessary.
+
+### Group data by a metadata field
+
+In bioinformatics workflows, it’s common to process data based on specific attributes, such as grouping samples by tissue type, batch, or condition. This can be useful when performing differential expression analysis or organising data for downstream steps.
+
+
+#### *Use case: grouping data for batch analysis*
+
+Consider a scenario where you have RNAseq data from multiple tissues (e.g. liver, kidney, brain) listed in a CSV file. To perform differential analysis per tissue type, you can group samples by the `tissue_type` field and analyse each group separately.
+
+Key Steps:
+
+- Extract sample information from the metadata (e.g., tissue type) using a CSV.
+- Use the `groupBy` operator to organise samples by the tissue type field.
+- Run processes on each group independently, enabling parallel analysis.
+
+Consider the theoretical samplesheet containing the fields:
+
+- `sample`: The unique identifier for each sample.
+- `tissue_type`: The tissue from which the sample was taken.
+- `fq1`, `fq2`: Paths to paired-end fastq files for RNAseq data.
+
+```default
+sample,tissue_type,fq1,fq2
+sample1,liver,sample1_liver_1.fq,sample1_liver_2.fq
+sample2,kidney,sample2_kidney_1.fq,sample2_kidney_2.fq
+sample3,brain,sample3_brain_1.fq,sample3_brain_2.fq
+sample4,liver,sample4_liver_1.fq,sample4_liver_2.fq
+sample5,kidney,sample5_kidney_1.fq,sample5_kidney_2.fq
+```
+
+The channel for this samplesheet structure: 
+
+```default
+samplesheet = Channel.fromPath('samples.csv')
+              .splitCsv(header: true)
+              .map { row -> tuple(row.tissue_type, 
+                            tuple(row.sample, row.fq1, row.fq2)) }
+              .groupTuple()
+```
+
+- [`splitCsv(header: true)`](https://www.nextflow.io/docs/latest/operator.html#splitcsv) reads the CSV file with headers.
+- [`map`](https://www.nextflow.io/docs/latest/operator.html#map) extracts the sample, tissue type, fq1, and fq2 file paths.
+- [`groupTuple(by: 1)`](https://www.nextflow.io/docs/latest/operator.html#grouptuple) groups the samples by tissue type (index 1 refers to the second column, which is tissue_type).
+
+This will create groups based on tissue types for downstream analysis, enabling you to process samples by their respective tissues.
+
+```default
+process salmon_quant {
+
+  input:
+  tuple val(tissue_type), tuple val(sample), path(fq1), path(fq2)
+  path(transcriptome_index)
+
+  output:
+  path "results/${tissue_type}/${sample}_quant.sf"
+
+  script:
+  """
+  salmon quant \\
+    -i transcriptome_index \\
+    -l A \\
+    -1 ${fq1} -2 ${fq2} \\
+    -o ${tissue_type}/${sample}
+  """
+}
+```
+
+This ensures correct association between tissue, sample, and paired-end files for RNAseq quantification.
+
+### Skipping empty or optional data
+
+The [`ifEmpty`](https://www.nextflow.io/docs/latest/operator.html#ifempty) operator allows us to define a fallback channel if the original channel is empty. This is helpful when working with optional outputs (as specified in the `output:` block, using `optional: true`). 
+
+#### *Use case: conditionally outputting results from a process*
+
+In workflows, you may need to handle cases where processes generate optional outputs. In this case, Plassembler outputs plasmid detection files, but not all samples will contain plasmids. To manage this, you can combine optional outputs with `ifEmpty` to control what gets passed downstream.
+
+Key steps: 
+
+- Run plassembler to detect plasmids. 
+- Use `ifEmpty` to handle cases where plasmids `.fasta` is empty or missing.
+- Use `optional: true` for downstream processes (e.g. Bakta) that depend on plasmid detection
+
+```default
+process plassembler {
+  tag "DETECTING PLASMIDS AND OTHER MOBILE ELEMENTS: ${barcode}"
+
+  input:
+  tuple val(barcode), path(trimmed_fq), path(flye_assembly)
+  path plassembler_db 
+
+  output:
+  tuple val(barcode), path("plassembler/plasmids.fasta"), optional: true
+  tuple val(barcode), path("plassembler/summary.tsv")
+
+  script:
+  """
+  plassembler long \\
+    -d ${plassembler_db} \\
+    -l ${trimmed_fq} \\
+    --flye_assembly ${flye_assembly} \\
+    -o plassembler \\
+    -t ${task.cpus}
+  """
+}
+```
+
+Now, we can define the `bakta_plasmids` input channel as: 
+
+```default
+bakta_plasmid = plassembler.out.plassembler_fasta.ifEmpty([])
+```
+
+- `bakta_plasmid` channel will receive the output from the Plassembler process.
+- `ifEmpty([])` ensures that if no plasmid `.fasta` file is generated, an empty list [] is passed instead. 
+
+This channel can now be used as input to downstream processes, like Bakta, with conditional execution based on whether plasmids were detected.

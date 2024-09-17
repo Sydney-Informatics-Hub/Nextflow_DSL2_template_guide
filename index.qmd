@@ -8,7 +8,7 @@ We developed a [template-nf](https://github.com/Sydney-Informatics-Hub/template-
 
 [Nextflow](https://www.nextflow.io/) is open source and scalable workflow management software for bioinformatics. It enables the development and running of integrated, reproducible workflows consisting of multiple processes, various environment management systems, scripting languages, and software packages. 
 
-While Nextflow is designed to have a minimal learning curve, its extensive capabilities, use of Groovy syntax, and [comprehensive documentation](https://www.nextflow.io/docs/latest/index.html) can be overwhelming for users who aren't well versed in programming and software development.  
+While Nextflow is designed to have a minimal learning curve, its extensive capabilities, use of Groovy syntax, and comprehensive documentation can be overwhelming for users who aren't well versed in programming and software development.  
 
 This user guide is under active development and will be updated progressively. 
 <br>
@@ -16,7 +16,7 @@ This user guide is under active development and will be updated progressively.
 
 ### Who is [template-nf](https://github.com/Sydney-Informatics-Hub/template-nf) for?
 
-Our Nextflow workflow template is suitable for: 
+Our Nextflow template is suitable for: 
 
 * Nextflow newcomers looking for a low barrier to entry, structured starting point, and guidance. 
 * Custom workflow developers looking for a simple scaffold which can be extended and modified as needed. 
@@ -32,7 +32,7 @@ It is *not* suitable for:
 
 ### Getting started 
 
-Get a feel for the template and how to use it with the [demo workflow](./notebooks/demo.qmd). 
+Get a feel for the template and how to use it with the in-built demo workflow and our [tutorial](./notebooks/demo.qmd). 
 
 ::: {.callout-important}
 ## **Attention newcomers!**
@@ -43,18 +43,16 @@ If you are new to this template and/or Nextflow, we recommend you do the followi
 3. Explore the template structure
 :::
 
-
 ### Site contents
 
-1. [The template](#1-the-template)
-2. [Components](#2-template-components)
-3. [Resource configuration](#3-resource-configuration)
-4. [Demo workflow](#4-demo-workflow)
-5. [Guides](#5-guides)
-6. [Resources](#6-resources)
+1. [Tutorial](./notebooks/demo.qmd)
+2. [How-to guide](./notebooks/how-to.qmd)
+3. [Template components](./notebooks/components.qmd)
+4. [Best practices](./notebooks/best-practices.qmd) 
+5. [Supporting resources](./notebooks/resources.qmd)
 <br>
 <br>
 
 ### Acknowledgements
 
-The Nextflow DSL2 template and accompanying materials were developed by the Sydney Informatics Hub, University of Sydney in partnership with the Australian BioCommons (NCRIS via Bioplatforms Australia). 
+Template-nf and accompanying materials were developed by the Sydney Informatics Hub, University of Sydney in partnership with the Australian BioCommons (NCRIS via Bioplatforms Australia). 

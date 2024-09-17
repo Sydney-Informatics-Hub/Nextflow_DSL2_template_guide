@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -196,13 +162,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../notebooks/components.html" class="sidebar-item-text sidebar-link active">
+            <a href="../notebooks/components.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Template Components</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/main-nf.html" class="sidebar-item-text sidebar-link">
@@ -283,48 +249,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="template-structure" class="level1">
-<h1><strong>Template structure</strong></h1>
-<p>The template employs a basic framework that allows users to customise and extend the workflow while adhering to code management best practices.</p>
-<p>The workflow code-base is organised into a number of different executable files and directories. This organisaiton promotes code modularity, reusability, maintainability, and clarity. Each executable file included in the template contains comment lines, links to relevant Nextflow documentation, and implementation examples. To apply the template to your own workflows, you will need to replace examples with your own code.</p>
-<p>Modularising the code base and splitting workflow processes and configuration files offers a few benefits:</p>
-<ul>
-<li>Code organisation and maintainability</li>
-<li>Readability and clarity</li>
-<li>Collaboration</li>
-<li>Testing and debugging</li>
-<li>Code reuse and extensibility</li>
-</ul>
-<p>Nextflow is highly flexible, allowing users to implement workflows in a number of different ways. In this template, we provide one common implementation for structuring your Nextflow code base in a way that is easy to maintain and read.</p>
-<p>The template’s code repository is organised into a number of files and directories:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>myWorkflow-nf</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>├── .github/ISSUE_TEMPLATE</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>├── assets</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>├── bin</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>├── config</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>├── modules</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>├── main.nf</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>├── LICENSE</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>├── README.md</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>└── nextflow.config</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Consider a basic Nextflow run command below, where a user will need to specify parameters and (optionally) a configuration <a href="https://www.nextflow.io/docs/latest/config.html#config-profiles">profile</a>:</p>
-<p><img src="../figs/template_command.png" class="img-fluid"></p>
-<ul>
-<li>The <code>main.nf</code> file is the executable file that identifies the workflow structure, inputs, and processes to pull form the <code>modules/</code> directory.</li>
-<li>The <code>--parameter</code> flag matches a parameter initialised in the <code>nextflow.config</code> file and applies it to the workflow execution.</li>
-<li>The <code>-profile</code> flag is used to specify environment-specific configuration details such as a software implementation method and/or resource management.</li>
-</ul>
-<p>Running a workflow that follows this template will output:</p>
-<ul>
-<li>A customisable execution message invoked when the workflow is run</li>
-<li>A customisable help message invoked using <code>--help</code> or failing to supply a required parameter</li>
-<li>A customisable completion message invoked when the workflow has finished running</li>
-<li>Files generated by your processes, optionally these can be saved to a results directory</li>
-<li>Workflow execution resource usage, trace, and timeline reports</li>
-</ul>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
