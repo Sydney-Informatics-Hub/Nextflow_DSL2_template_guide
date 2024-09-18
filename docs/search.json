@@ -363,5 +363,28 @@
       "Best Practices",
       "**Building channels**"
     ]
+  },
+  {
+    "objectID": "notebooks/best-practices.html",
+    "href": "notebooks/best-practices.html",
+    "title": "Best practice recommmendations",
+    "section": "",
+    "text": "To ensure high-quality, efficient Nextflow workflows, we recommend following these best practices to improve portability, scalability, and maintainability:\n\nWorkflow design\n\nChannel creation\nModular components\n\n\n\nSystem management\n\nSoftware management\nResource management\n\n\n\nWorkflow execution\n\nMetadata tracking\nError handling and troubleshooting",
+    "crumbs": [
+      "Home",
+      "Best Practices"
+    ]
+  },
+  {
+    "objectID": "notebooks/channels.html#how-to-approach-channel-creation",
+    "href": "notebooks/channels.html#how-to-approach-channel-creation",
+    "title": "Building channels",
+    "section": "How to approach channel creation",
+    "text": "How to approach channel creation\nWhen creating a channel in Nextflow, consider the following steps to ensure an efficient and structured approach:\n\n1. Understand the data source\nBefore creating a channel, identify where your data originates. This could be files, external databases, or outputs from previous processes. The data source defines the channel’s structure and how it will interact with other workflow components.\nYou’ll need to use channel factories to capture this information correctly. For example, if you’re processing paired fastq files, you need a channel that can handle paths to those files, e.g. fromPath or fromFilePairs.\n\n\n2. Transform the data as required\nTo ensure your data is formatted correctly for different processes, Nextflow provides various operators for transforming data within channels.\nOperators like splitCsv are useful for reading and parsing CSV files, map allows you to restructure rows into tuples, and groupTuple helps to group related data.\n\n\n3. Set the Scope\nDetermine how the channel will be used within the workflow. Is it feeding a single process, or will it be used across multiple steps? A well-defined scope ensures the channel is built efficiently and passes only the necessary data, at the right stage, and potentially reusing the channel in different contexts.\nFor example, if you have a channel that feeds fastq files into FastQC process, that same channel could be reused for read alignment with BWA.\n\n\n4. Proactively handle errors\nWhen creating a channel, consider edge cases like missing or incomplete data. Use operators like ifEmpty to define fallback behavior when the channel contains no data. This avoids crashes or unexpected behavior during workflow execution and ensures a more resilient pipeline. You can also use directives like errorStrategy to define error conditions.\n\n\n5. Run processes in parallel where possible\nChannels enable parallel execution by distributing data across tasks. When building a channel, ensure that the data is partitioned in a way that supports concurrency.\nNextflow channels naturally support parallelism, but it’s essential to structure them appropriately so that the tasks they feed can run independently. For example, using groupTuple or map can create subsets of data that can be processed simultaneously.",
+    "crumbs": [
+      "Home",
+      "Best Practices",
+      "**Building channels**"
+    ]
   }
 ]
