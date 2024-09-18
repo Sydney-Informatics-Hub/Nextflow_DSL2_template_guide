@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -265,8 +299,200 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>In Nextflow, channels are require to move data between processes. Channels act as communication links that pass data between tasks in a workflow. Using channels effectively ensures smooth and efficient execution. Let’s explore some best practices and common scenarios for building channels, and how Groovy and Nextflow operators can be used to manipulate data within them.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Relevant documentation and resources
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><a href="https://www.nextflow.io/docs/latest/channel.html">Nextflow documentation: channels</a></li>
+<li><a href="https://www.nextflow.io/docs/latest/operator.html">Nextflow documentation: operators</a></li>
+<li><a href="https://training.nextflow.io/basic_training/channels/#queue-channel">Nextflow training: channels</a></li>
+<li><a href="https://training.nextflow.io/basic_training/operators/#grouptuple">Nextflow training: operators</a></li>
+<li><a href="https://nextflow-io.github.io/patterns/index.html">Nextflow patterns</a></li>
+</ul>
+</div>
+</div>
+<section id="some-tricky-scenarios" class="level2">
+<h2 class="anchored" data-anchor-id="some-tricky-scenarios">Some tricky scenarios</h2>
+<section id="creating-channels-from-samplesheets" class="level3">
+<h3 class="anchored" data-anchor-id="creating-channels-from-samplesheets">Creating channels from samplesheets</h3>
+<p>In bioinformatics workflows, samplesheets (as CSV files) are a common way to store metadata about sequencing experiments, such as sample names, file paths, and experimental conditions. Nextflow allows you to easily create channels from these samplesheets, enabling efficient parallel processing of the associated data.</p>
+<section id="use-case-grouping-fastq-pairs-according-to-their-sample-id" class="level4">
+<h4 class="anchored" data-anchor-id="use-case-grouping-fastq-pairs-according-to-their-sample-id"><em>Use case: grouping fastq pairs according to their sample ID</em></h4>
+<p>Consider a samplesheet with the following structure:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>```default</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>sample,tissue_type,fq1,fq2</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>sample1,liver,sample1_liver_1.fq,sample1_liver_2.fq</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>sample2,kidney,sample2_kidney_1.fq,sample2_kidney_2.fq</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>sample3,brain,sample3_brain_1.fq,sample3_brain_2.fq</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>sample4,liver,sample4_liver_1.fq,sample4_liver_2.fq</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>sample5,kidney,sample5_kidney_1.fq,sample5_kidney_2.fq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We need to input fq pairs according to their sample ID to bwa-mem2 for alignment to a reference assembly. We can do this with the channel:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>samplesheet = Channel.fromPath('samples.csv')</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>              .splitCsv(header: true)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>              .map { row -&gt; tuple(row.sample, row.tissue_type, row.fq1, row.fq2) }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>splitCsv(header: true)</code> parses the CSV with headers.</li>
+<li><code>map</code> transforms each row into a tuple containing relevant fields</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>process align_reads {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  input:</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  tuple val(sample), path(fq1), path(fq2)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  path reference_index</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  output:</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  path "${sample}.bam"</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  script:</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  """</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  bwa-mem2 mem ${reference_index} ${fq1} ${fq2} \\</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    -t ${task.cpus} \\</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    | samtools view -Sb - \\</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    &gt; ${sample}.bam</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  """</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This allows you to process samples in parallel while maintaining consistent metadata and file associations for each sample across all workflow steps.</p>
+</section>
+</section>
+<section id="dynamic-input-selection" class="level3">
+<h3 class="anchored" data-anchor-id="dynamic-input-selection">Dynamic input selection</h3>
+<p>In Nextflow allows workflows to intelligently handle variable inputs, making them adaptable to different scenarios. This is especially useful when your input data or conditions change across runs, for example checking if a resource like a database or index already exists. If it does, the workflow uses it directly. If not, it dynamically runs a process to generate or download the resource.</p>
+<section id="use-case-dynamically-selecting-to-run-a-process" class="level4">
+<h4 class="anchored" data-anchor-id="use-case-dynamically-selecting-to-run-a-process"><em>Use case: dynamically selecting to run a process</em></h4>
+<p>Consider a scenario where we need to check if the Kraken2 database exists and either use the existing file or download/build it if it’s missing.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>if (params.kraken_db) {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    kraken2_db = path(params.kraken_db)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>} else {</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    process download_k2db {</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>      output:</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>      path "kraken2_db", emit: k2db</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>      script:</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>      """</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>      kraken2-build --download-library bacteria --db kraken2_db</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>      """</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>   }</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    kraken2_db = download_kraken2_db.out.k2db</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>if (params.kraken_db)</code> checks if the kraken_db parameter (<code>--kraken_db</code>) is provided in the run command. If it is, it defines the <code>kraken2_db</code> channel.</li>
+<li><code>else {}</code> block: if <code>--kraken_db</code> is not provided, it runs the <code>download_k2db</code> process and assigns the output to the <code>kraken2_db</code> channel.</li>
+</ul>
+<p>This structure makes the workflow flexible by either using an existing resource or generating it if necessary.</p>
+</section>
+</section>
+<section id="group-data-by-a-metadata-field" class="level3">
+<h3 class="anchored" data-anchor-id="group-data-by-a-metadata-field">Group data by a metadata field</h3>
+<p>In bioinformatics workflows, it’s common to process data based on specific attributes, such as grouping samples by tissue type, batch, or condition. This can be useful when performing differential expression analysis or organising data for downstream steps.</p>
+<section id="use-case-grouping-data-for-batch-analysis" class="level4">
+<h4 class="anchored" data-anchor-id="use-case-grouping-data-for-batch-analysis"><em>Use case: grouping data for batch analysis</em></h4>
+<p>Consider a scenario where you have RNAseq data from multiple tissues (e.g.&nbsp;liver, kidney, brain) listed in a CSV file. To perform differential analysis per tissue type, you can group samples by the <code>tissue_type</code> field and analyse each group separately.</p>
+<p>Key Steps:</p>
+<ul>
+<li>Extract sample information from the metadata (e.g., tissue type) using a CSV.</li>
+<li>Use the <code>groupBy</code> operator to organise samples by the tissue type field.</li>
+<li>Run processes on each group independently, enabling parallel analysis.</li>
+</ul>
+<p>Consider the theoretical samplesheet containing the fields:</p>
+<ul>
+<li><code>sample</code>: The unique identifier for each sample.</li>
+<li><code>tissue_type</code>: The tissue from which the sample was taken.</li>
+<li><code>fq1</code>, <code>fq2</code>: Paths to paired-end fastq files for RNAseq data.</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sample,tissue_type,fq1,fq2</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>sample1,liver,sample1_liver_1.fq,sample1_liver_2.fq</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>sample2,kidney,sample2_kidney_1.fq,sample2_kidney_2.fq</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>sample3,brain,sample3_brain_1.fq,sample3_brain_2.fq</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>sample4,liver,sample4_liver_1.fq,sample4_liver_2.fq</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>sample5,kidney,sample5_kidney_1.fq,sample5_kidney_2.fq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The channel for this samplesheet structure:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>samplesheet = Channel.fromPath('samples.csv')</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>              .splitCsv(header: true)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>              .map { row -&gt; tuple(row.tissue_type, </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                            tuple(row.sample, row.fq1, row.fq2)) }</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>              .groupTuple()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><a href="https://www.nextflow.io/docs/latest/operator.html#splitcsv"><code>splitCsv(header: true)</code></a> reads the CSV file with headers.</li>
+<li><a href="https://www.nextflow.io/docs/latest/operator.html#map"><code>map</code></a> extracts the sample, tissue type, fq1, and fq2 file paths.</li>
+<li><a href="https://www.nextflow.io/docs/latest/operator.html#grouptuple"><code>groupTuple(by: 1)</code></a> groups the samples by tissue type (index 1 refers to the second column, which is tissue_type).</li>
+</ul>
+<p>This will create groups based on tissue types for downstream analysis, enabling you to process samples by their respective tissues.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>process salmon_quant {</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  input:</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  tuple val(tissue_type), tuple val(sample), path(fq1), path(fq2)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  path(transcriptome_index)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  output:</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  path "results/${tissue_type}/${sample}_quant.sf"</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  script:</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  """</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  salmon quant \\</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    -i transcriptome_index \\</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    -l A \\</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    -1 ${fq1} -2 ${fq2} \\</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    -o ${tissue_type}/${sample}</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  """</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This ensures correct association between tissue, sample, and paired-end files for RNAseq quantification.</p>
+</section>
+</section>
+<section id="skipping-empty-or-optional-data" class="level3">
+<h3 class="anchored" data-anchor-id="skipping-empty-or-optional-data">Skipping empty or optional data</h3>
+<p>The <a href="https://www.nextflow.io/docs/latest/operator.html#ifempty"><code>ifEmpty</code></a> operator allows us to define a fallback channel if the original channel is empty. This is helpful when working with optional outputs (as specified in the <code>output:</code> block, using <code>optional: true</code>).</p>
+<section id="use-case-conditionally-outputting-results-from-a-process" class="level4">
+<h4 class="anchored" data-anchor-id="use-case-conditionally-outputting-results-from-a-process"><em>Use case: conditionally outputting results from a process</em></h4>
+<p>In workflows, you may need to handle cases where processes generate optional outputs. In this case, Plassembler outputs plasmid detection files, but not all samples will contain plasmids. To manage this, you can combine optional outputs with <code>ifEmpty</code> to control what gets passed downstream.</p>
+<p>Key steps:</p>
+<ul>
+<li>Run plassembler to detect plasmids.</li>
+<li>Use <code>ifEmpty</code> to handle cases where plasmids <code>.fasta</code> is empty or missing.</li>
+<li>Use <code>optional: true</code> for downstream processes (e.g.&nbsp;Bakta) that depend on plasmid detection</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>process plassembler {</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  tag "DETECTING PLASMIDS AND OTHER MOBILE ELEMENTS: ${barcode}"</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  input:</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  tuple val(barcode), path(trimmed_fq), path(flye_assembly)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  path plassembler_db </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  output:</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  tuple val(barcode), path("plassembler/plasmids.fasta"), optional: true</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  tuple val(barcode), path("plassembler/summary.tsv")</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  script:</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  """</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  plassembler long \\</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    -d ${plassembler_db} \\</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    -l ${trimmed_fq} \\</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    --flye_assembly ${flye_assembly} \\</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    -o plassembler \\</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    -t ${task.cpus}</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>  """</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now, we can define the <code>bakta_plasmids</code> input channel as:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>bakta_plasmid = plassembler.out.plassembler_fasta.ifEmpty([])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>bakta_plasmid</code> channel will receive the output from the Plassembler process.</li>
+<li><code>ifEmpty([])</code> ensures that if no plasmid <code>.fasta</code> file is generated, an empty list [] is passed instead.</li>
+</ul>
+<p>This channel can now be used as input to downstream processes, like Bakta, with conditional execution based on whether plasmids were detected.</p>
 
 
+</section>
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

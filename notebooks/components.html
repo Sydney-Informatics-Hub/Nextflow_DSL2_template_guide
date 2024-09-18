@@ -285,6 +285,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="template-structure" class="level1">
 <h1><strong>Template structure</strong></h1>
+<p>The template employs a basic framework that allows users to customise and extend the workflow while adhering to code management best practices.</p>
+<p>The workflow code-base is organised into a number of different executable files and directories. This organisaiton promotes code modularity, reusability, maintainability, and clarity. Each executable file included in the template contains comment lines, links to relevant Nextflow documentation, and implementation examples. To apply the template to your own workflows, you will need to replace examples with your own code.</p>
+<p>Modularising the code base and splitting workflow processes and configuration files offers a few benefits:</p>
+<ul>
+<li>Code organisation and maintainability</li>
+<li>Readability and clarity</li>
+<li>Collaboration</li>
+<li>Testing and debugging</li>
+<li>Code reuse and extensibility</li>
+</ul>
 <p>Nextflow is highly flexible, allowing users to implement workflows in a number of different ways. In this template, we provide one common implementation for structuring your Nextflow code base in a way that is easy to maintain and read.</p>
 <p>The template’s code repository is organised into a number of files and directories:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>myWorkflow-nf</span>
