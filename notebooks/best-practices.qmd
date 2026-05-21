@@ -5,17 +5,17 @@ from: markdown+emoji
 
 To ensure high-quality, efficient Nextflow workflows, we recommend following these best practices to improve portability, scalability, and maintainability:
 
-### Workflow design 
+### Workflow design
 
 - [Channel creation](./channels.qmd)
 - [Modular components]()
 
-### System management 
+### System management
 
 - [Software management](./software.qmd)
 - [Resource management](./resource-config.qmd)
 
-### Workflow execution 
+### Workflow execution
 
 - [Metadata tracking]()
 - [Error handling and troubleshooting]()

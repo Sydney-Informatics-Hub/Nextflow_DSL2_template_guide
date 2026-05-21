@@ -33,7 +33,7 @@ website:
       - text: "How-to Guides"
         href: notebooks/how-to.qmd
       - section: "Template Components"
-        href: notebooks/components.qmd 
+        href: notebooks/components.qmd
         contents:
           - notebooks/main-nf.qmd
           - notebooks/nextflow-config.qmd
@@ -52,9 +52,9 @@ format:
   html:
     theme: simplex
     css: styles.scss
-    toc: false              
-    toc-location: left     
-    toc-depth: 2            
+    toc: false
+    toc-location: left
+    toc-depth: 2
     code-overflow: wrap
     code-link: true
     code-fold: false

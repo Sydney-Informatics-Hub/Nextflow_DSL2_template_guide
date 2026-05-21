@@ -1,41 +1,41 @@
 # `nextflow.config`
 
 ::: {.callout-note}
-## Relevant Nextflow components 
+## Relevant Nextflow components
 
 - Use the [`manifest`](https://www.nextflow.io/docs/latest/config.html#scope-manifest) scope to define metadata for publishing the pipeline.
 - Use the [`nextflowVersion`](https://www.nextflow.io/docs/latest/config.html#nextflow-version) setting to set the minimum version of Nextflow.
-- Use the [`params`](https://www.nextflow.io/docs/latest/config.html#scope-params) scope to define parameters accessible to the pipeline. 
-- Use the [`shell`](https://www.nextflow.io/docs/latest/process.html#process-directive-shell) directive to define a custom shell command. 
-- Use the [`dag`](https://www.nextflow.io/docs/latest/config.html#scope-dag) config scope to generate a workflow diagram. 
+- Use the [`params`](https://www.nextflow.io/docs/latest/config.html#scope-params) scope to define parameters accessible to the pipeline.
+- Use the [`shell`](https://www.nextflow.io/docs/latest/process.html#process-directive-shell) directive to define a custom shell command.
+- Use the [`dag`](https://www.nextflow.io/docs/latest/config.html#scope-dag) config scope to generate a workflow diagram.
 - Use the [`report`](https://www.nextflow.io/docs/latest/config.html#scope-report) config scope to generate an html summary report.
-- Use the [`timeline`](https://www.nextflow.io/docs/latest/config.html#scope-timeline) config scope to generate an html runtime report. 
+- Use the [`timeline`](https://www.nextflow.io/docs/latest/config.html#scope-timeline) config scope to generate an html runtime report.
 - Use the [`trace`](https://www.nextflow.io/docs/latest/config.html#scope-trace) config scope to generate a task execution trace file.
 - Use the [`profile`](https://www.nextflow.io/docs/latest/config.html#config-profiles) scope to import profile configs from `config/` directory.
 - Use the [`process selector`](https://www.nextflow.io/docs/latest/config.html#process-selectors) to specify default directives for processes.
 :::
 
-This is the configuration script that Nextflow looks for when you run a workflow. It contains a number of property definitions that are used by the pipeline. A key feature of Nextflow is the ability to separate workflow implementation from the underlying execution platform using this configuration file. 
+This is the configuration script that Nextflow looks for when you run a workflow. It contains a number of property definitions that are used by the pipeline. A key feature of Nextflow is the ability to separate workflow implementation from the underlying execution platform using this configuration file.
 
-Since we can add additional configuration files for different run environments (i.e. job schedulers, use of singularity vs bioconda) each configuration file can contain conflicting settings and parameters listed in this file can be overwritten in the run command by specifying relevant commands. 
+Since we can add additional configuration files for different run environments (i.e. job schedulers, use of singularity vs bioconda) each configuration file can contain conflicting settings and parameters listed in this file can be overwritten in the run command by specifying relevant commands.
 
 See [here](https://www.nextflow.io/docs/latest/config.html#configuration-file) for details on the hierarchy of configuration files.
 
-### **What's in `nextflow.config`?** 
+### **What's in `nextflow.config`?**
 
- This file contains: 
+ This file contains:
 
-* A manifest for defining workflow metadata 
+* A manifest for defining workflow metadata
 * Mandated minimal version of Nextflow required to run pipeline
-* Default workflow parameter definitions 
-* Shell behaviour settings for the workflow 
-* Execution reports 
-* Configuration profiles 
+* Default workflow parameter definitions
+* Shell behaviour settings for the workflow
+* Execution reports
+* Configuration profiles
 * Default resource definitions for processes
 
-#### **Manifest** 
+#### **Manifest**
 
-The [manifest](https://www.nextflow.io/docs/latest/config.html#scope-manifest) scope allows you to define metadata required when publishing or running your pipeline. In this template, we've applied the following information to the workflow: 
+The [manifest](https://www.nextflow.io/docs/latest/config.html#scope-manifest) scope allows you to define metadata required when publishing or running your pipeline. In this template, we've applied the following information to the workflow:
 
 ```default
 manifest {
@@ -56,7 +56,7 @@ nextflowVersion = '!>=20.07.1'
 
 #### **Parameters**
 
-The [params](https://www.nextflow.io/docs/latest/config.html#scope-params) scope allows you to define all parameters accessible in the pipeline script. Here, you can define default values to parameters which can then be overwritten using parameter flags (`--`) when the workflow is run. These defined parameters should correspond to parameters called by the process modules. For example: 
+The [params](https://www.nextflow.io/docs/latest/config.html#scope-params) scope allows you to define all parameters accessible in the pipeline script. Here, you can define default values to parameters which can then be overwritten using parameter flags (`--`) when the workflow is run. These defined parameters should correspond to parameters called by the process modules. For example:
 
 In `nextflow.config` we define default parameters:
 
@@ -68,16 +68,16 @@ params.bar = 'world!'
 In `main.nf` we define the workflow and specify our parameters as inputs to the process:
 
 ```default
-// Include the process file 
+// Include the process file
 include { PROCESS } from './modules/process.nf'
 
-// Run the workflow, calling the process called PROCESS 
+// Run the workflow, calling the process called PROCESS
 workflow {
     PROCESS(params.foo, params.bar).view()
 }
 ```
 
-In `modules/process.nf` we provide those parameters as input channels to the process and defined the output channel as standard output: 
+In `modules/process.nf` we provide those parameters as input channels to the process and defined the output channel as standard output:
 
 ```default
 process PROCESS {
@@ -95,7 +95,7 @@ script:
 }
 ```
 
-Running these scripts as: 
+Running these scripts as:
 
 ```default
 nextflow run main.nf
@@ -111,13 +111,13 @@ executor >  local (1)
 Hello world!
 ```
 
-You can override these parameters when you run the workflow, for example: 
+You can override these parameters when you run the workflow, for example:
 
 ```default
-nextflow run main.nf --foo goodbye 
+nextflow run main.nf --foo goodbye
 ```
 
-Gives the following output: 
+Gives the following output:
 
 ```default
 N E X T F L O W  ~  version 22.10.3
@@ -127,22 +127,22 @@ executor >  local (1)
 goodbye world!
 ```
 
-#### **Shell behaviour settings** 
+#### **Shell behaviour settings**
 
-By default for the most recent versions of Nextflow, workflows are executed with `set -ue`. Set is a Bash command used to control the different attributes and parameters of the shell environment. The `-e` flag ensures the workflow exits for non-zero exit status values and the `-u` flag traces unset variables. We have provided additional recommended shell settings to enhance error handling and pipeline reliability: 
+By default for the most recent versions of Nextflow, workflows are executed with `set -ue`. Set is a Bash command used to control the different attributes and parameters of the shell environment. The `-e` flag ensures the workflow exits for non-zero exit status values and the `-u` flag traces unset variables. We have provided additional recommended shell settings to enhance error handling and pipeline reliability:
 
-* `'/bin/bash'` tells Nextflow to use Bash as the shell to run process scripts 
+* `'/bin/bash'` tells Nextflow to use Bash as the shell to run process scripts
 * `'-euo', 'pipefail'` tells Bash to consider a pipeline as failed if any command within it fails and to exit on error.
 
 ```default
 shell = ['/bin/bash', '-euo', 'pipefail']
 ```
 
-You can specify additional [bash options](https://tldp.org/LDP/abs/html/options.html) to specify script execution and error management strategies. 
+You can specify additional [bash options](https://tldp.org/LDP/abs/html/options.html) to specify script execution and error management strategies.
 
-#### **Execution reports** 
+#### **Execution reports**
 
-Nextflow provides a number of features for tracing and reporting on process execution status. In this template, we've asked Nextflow to generate info reports with `dag{}`, `report{}`, `timeline{}`, and `trace{}` scopes. 
+Nextflow provides a number of features for tracing and reporting on process execution status. In this template, we've asked Nextflow to generate info reports with `dag{}`, `report{}`, `timeline{}`, and `trace{}` scopes.
 
 **DAG visualisation with `dag{}`**
 
@@ -150,16 +150,16 @@ A Nextflow pipeline's direct acyclic graph (DAG) can be rendered by specifying [
 
 * Enabled DAG creation upon workflow completion by default with `enable = true`
 * Enabled the overwriting of existing DAGs with `overwrite = true`
-* Specified a file name and location to save the DAG with `file = 'runInfo/dag.svg'` 
+* Specified a file name and location to save the DAG with `file = 'runInfo/dag.svg'`
 
-To generate the DAG, you must have [GraphViz](http://www.graphviz.org/) installed on your system. 
+To generate the DAG, you must have [GraphViz](http://www.graphviz.org/) installed on your system.
 
 **Execution report with `report{}`**
 
-Nextflow can create an HTML execution report that contains useful metrics about your workflow execution. See the Nextflow documentation for more information on its [contents](https://www.nextflow.io/docs/latest/tracing.html#execution-report). Similarly, we have employed the same operators as above to output the execution report, however unlike a DAG you may wish to not overwrite existing execution reports, you can do this by specifying `overwrite = false` and naming your execution report based on timestamp, as was demonstrated [here](https://sydney-informatics-hub.github.io/customising-nfcore-workshop/notebooks/2.4_multiConfig.html#customised-resource-tracing) for a trace report: 
- 
+Nextflow can create an HTML execution report that contains useful metrics about your workflow execution. See the Nextflow documentation for more information on its [contents](https://www.nextflow.io/docs/latest/tracing.html#execution-report). Similarly, we have employed the same operators as above to output the execution report, however unlike a DAG you may wish to not overwrite existing execution reports, you can do this by specifying `overwrite = false` and naming your execution report based on timestamp, as was demonstrated [here](https://sydney-informatics-hub.github.io/customising-nfcore-workshop/notebooks/2.4_multiConfig.html#customised-resource-tracing) for a trace report:
+
 ```default
-// Define timestamp, to avoid overwriting existing report 
+// Define timestamp, to avoid overwriting existing report
 def timestamp = new java.util.Date().format('yyyy-MM-dd_HH-mm-ss')
 
 report {
@@ -170,15 +170,15 @@ report {
 ```
 **Timeline summary with `timeline{}`**
 
-Nextflow can create an HTML timeline report for all tasks executed by your workflow. See the Nextflow documentation for more information on its [contents](https://www.nextflow.io/docs/latest/tracing.html#timeline-report). Same as with the dag and report features, you may wish to adjust the way these are output in the template. 
+Nextflow can create an HTML timeline report for all tasks executed by your workflow. See the Nextflow documentation for more information on its [contents](https://www.nextflow.io/docs/latest/tracing.html#timeline-report). Same as with the dag and report features, you may wish to adjust the way these are output in the template.
 
 **Process resource trace with `trace{}`**
 
-This template also creates a simple resource [trace report](https://www.nextflow.io/docs/latest/tracing.html#trace-report). A trace report can be customised to include any combination of available fields as demonstrated [here](https://sydney-informatics-hub.github.io/customising-nfcore-workshop/notebooks/2.4_multiConfig.html#customised-resource-tracing). Consider customising the trace file generated by the workflow by adding the `fields = ` option to specify any of the [trace fields](https://www.nextflow.io/docs/latest/tracing.html#trace-report) provided by Nextflow. 
+This template also creates a simple resource [trace report](https://www.nextflow.io/docs/latest/tracing.html#trace-report). A trace report can be customised to include any combination of available fields as demonstrated [here](https://sydney-informatics-hub.github.io/customising-nfcore-workshop/notebooks/2.4_multiConfig.html#customised-resource-tracing). Consider customising the trace file generated by the workflow by adding the `fields = ` option to specify any of the [trace fields](https://www.nextflow.io/docs/latest/tracing.html#trace-report) provided by Nextflow.
 
-#### **Configuration profiles** 
+#### **Configuration profiles**
 
-We have provided configuration files for specific infrastructures inside the `config/` directory in this template. These are defined inside the `nextflow.config` file using the [`profiles{}` scope](https://www.nextflow.io/docs/latest/config.html#config-profiles). To keep the workflow modular and flexible, we've assigned profile names to these config files using [`includeConfig`](https://www.nextflow.io/docs/latest/config.html#config-include) allowing these profile definitions to be activated when launching your pipeline with `nextflow run main.nf -profile standard` for example. These configuration files can be used to override defaults specified inside the `nextflow.config`. Add your own custom configuration to `config/` directory and update the profiles scope within the `nextflow.config` with the following: 
+We have provided configuration files for specific infrastructures inside the `config/` directory in this template. These are defined inside the `nextflow.config` file using the [`profiles{}` scope](https://www.nextflow.io/docs/latest/config.html#config-profiles). To keep the workflow modular and flexible, we've assigned profile names to these config files using [`includeConfig`](https://www.nextflow.io/docs/latest/config.html#config-include) allowing these profile definitions to be activated when launching your pipeline with `nextflow run main.nf -profile standard` for example. These configuration files can be used to override defaults specified inside the `nextflow.config`. Add your own custom configuration to `config/` directory and update the profiles scope within the `nextflow.config` with the following:
 
 ```default
 profiles {
@@ -187,13 +187,13 @@ profiles {
 }
 ```
 
-See [here](https://www.nextflow.io/docs/latest/config.html?highlight=profiles#config-profiles) for more details on what sorts of things can be included here. 
+See [here](https://www.nextflow.io/docs/latest/config.html?highlight=profiles#config-profiles) for more details on what sorts of things can be included here.
 
-#### **Default resource definitions** 
+#### **Default resource definitions**
 
-The `process{}` configuration scope can be used to provide default configurations for the processes in your workflow. In the template, we have set some default CPU and memory directives to be applied to all processes run by the workflow. There are many [process directives](https://www.nextflow.io/docs/latest/process.html#process-directives) you can apply here to control resource availability, software execution, interact with job schedulers etc.  
+The `process{}` configuration scope can be used to provide default configurations for the processes in your workflow. In the template, we have set some default CPU and memory directives to be applied to all processes run by the workflow. There are many [process directives](https://www.nextflow.io/docs/latest/process.html#process-directives) you can apply here to control resource availability, software execution, interact with job schedulers etc.
 
-You can take a more fine-grained approach to process configuration by using Nextflow's `withName` [process selector](https://www.nextflow.io/docs/latest/config.html#process-selectors), as demonstrated [here](https://sydney-informatics-hub.github.io/customising-nfcore-workshop/notebooks/2.3_configEnv.html#custom-resource-configuration-using-process-names). For example, for a process called PROCESS, we could change the default settings applied at the workflow level with: 
+You can take a more fine-grained approach to process configuration by using Nextflow's `withName` [process selector](https://www.nextflow.io/docs/latest/config.html#process-selectors), as demonstrated [here](https://sydney-informatics-hub.github.io/customising-nfcore-workshop/notebooks/2.3_configEnv.html#custom-resource-configuration-using-process-names). For example, for a process called PROCESS, we could change the default settings applied at the workflow level with:
 
 ```default
 process {

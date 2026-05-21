@@ -16,47 +16,47 @@ In Nextflow, channels are require to move data between processes. Channels act a
 - [Nextflow patterns](https://nextflow-io.github.io/patterns/index.html)
 :::
 
-## How to approach channel creation 
+## How to approach channel creation
 
 When creating a channel in Nextflow, consider the following steps to ensure an efficient and structured approach:
 
-### 1.  Understand the data source 
+### 1.  Understand the data source
 
-Before creating a channel, identify where your data originates. This could be files, external databases, or outputs from previous processes. The data source defines the channel's structure and how it will interact with other workflow components. 
+Before creating a channel, identify where your data originates. This could be files, external databases, or outputs from previous processes. The data source defines the channel's structure and how it will interact with other workflow components.
 
-You'll need to use [channel factories](https://www.nextflow.io/docs/latest/channel.html#channel-factories) to capture this information correctly. For example, if you're processing paired fastq files, you need a channel that can handle paths to those files, e.g. [`fromPath`](https://www.nextflow.io/docs/latest/channel.html#frompath) or [`fromFilePairs`](https://www.nextflow.io/docs/latest/channel.html#fromfilepairs). 
+You'll need to use [channel factories](https://www.nextflow.io/docs/latest/channel.html#channel-factories) to capture this information correctly. For example, if you're processing paired fastq files, you need a channel that can handle paths to those files, e.g. [`fromPath`](https://www.nextflow.io/docs/latest/channel.html#frompath) or [`fromFilePairs`](https://www.nextflow.io/docs/latest/channel.html#fromfilepairs).
 
 ### 2. Transform the data as required
 
 To ensure your data is formatted correctly for different processes, Nextflow provides various [operators](https://www.nextflow.io/docs/latest/operator.html) for transforming data within channels.
 
-Operators like [`splitCsv`](https://www.nextflow.io/docs/latest/operator.html#splitcsv) are useful for reading and parsing CSV files, [map](https://www.nextflow.io/docs/latest/operator.html#map) allows you to restructure rows into tuples, and groupTuple helps to group related data. 
+Operators like [`splitCsv`](https://www.nextflow.io/docs/latest/operator.html#splitcsv) are useful for reading and parsing CSV files, [map](https://www.nextflow.io/docs/latest/operator.html#map) allows you to restructure rows into tuples, and groupTuple helps to group related data.
 
 ### 3. Set the Scope
 
 Determine how the channel will be used within the workflow. Is it feeding a single process, or will it be used across multiple steps? A well-defined scope ensures the channel is built efficiently and passes only the necessary data, at the right stage, and potentially reusing the channel in different contexts.
 
-For example, if you have a channel that feeds fastq files into FastQC process, that same channel could be reused for read alignment with BWA. 
+For example, if you have a channel that feeds fastq files into FastQC process, that same channel could be reused for read alignment with BWA.
 
 ### 4. Proactively handle errors
 
-When creating a channel, consider edge cases like missing or incomplete data. Use operators like [`ifEmpty`](https://www.nextflow.io/docs/latest/operator.html#ifempty) to define fallback behavior when the channel contains no data. This avoids crashes or unexpected behavior during workflow execution and ensures a more resilient pipeline. You can also use directives like [`errorStrategy`](https://www.nextflow.io/docs/latest/process.html#errorstrategy) to define error conditions. 
+When creating a channel, consider edge cases like missing or incomplete data. Use operators like [`ifEmpty`](https://www.nextflow.io/docs/latest/operator.html#ifempty) to define fallback behavior when the channel contains no data. This avoids crashes or unexpected behavior during workflow execution and ensures a more resilient pipeline. You can also use directives like [`errorStrategy`](https://www.nextflow.io/docs/latest/process.html#errorstrategy) to define error conditions.
 
 ### 5. Run processes in parallel where possible
 
-Channels enable parallel execution by distributing data across tasks. When building a channel, ensure that the data is partitioned in a way that supports concurrency. 
+Channels enable parallel execution by distributing data across tasks. When building a channel, ensure that the data is partitioned in a way that supports concurrency.
 
-Nextflow channels naturally support parallelism, but it's essential to structure them appropriately so that the tasks they feed can run independently. For example, using [`groupTuple`](https://www.nextflow.io/docs/latest/operator.html#grouptuple) or [`map`](https://www.nextflow.io/docs/latest/operator.html#map) can create subsets of data that can be processed simultaneously. 
+Nextflow channels naturally support parallelism, but it's essential to structure them appropriately so that the tasks they feed can run independently. For example, using [`groupTuple`](https://www.nextflow.io/docs/latest/operator.html#grouptuple) or [`map`](https://www.nextflow.io/docs/latest/operator.html#map) can create subsets of data that can be processed simultaneously.
 
 ## Some tricky scenarios
 
-### Creating channels from samplesheets 
+### Creating channels from samplesheets
 
 In bioinformatics workflows, samplesheets (as CSV files) are a common way to store metadata about sequencing experiments, such as sample names, file paths, and experimental conditions. Nextflow allows you to easily create channels from these samplesheets, enabling efficient parallel processing of the associated data.
 
 #### *Use case: grouping fastq pairs according to their sample ID*
 
-Consider a samplesheet with the following structure: 
+Consider a samplesheet with the following structure:
 
 ```default
 ```default
@@ -68,7 +68,7 @@ sample4,liver,sample4_liver_1.fq,sample4_liver_2.fq
 sample5,kidney,sample5_kidney_1.fq,sample5_kidney_2.fq
 ```
 
-We need to input fq pairs according to their sample ID to bwa-mem2 for alignment to a reference assembly. We can do this with the channel: 
+We need to input fq pairs according to their sample ID to bwa-mem2 for alignment to a reference assembly. We can do this with the channel:
 
 ```default
 samplesheet = Channel.fromPath('samples.csv')
@@ -77,11 +77,11 @@ samplesheet = Channel.fromPath('samples.csv')
 ```
 
 - `splitCsv(header: true)` parses the CSV with headers.
-- `map` transforms each row into a tuple containing relevant fields 
+- `map` transforms each row into a tuple containing relevant fields
 
 ```default
 process align_reads {
-    
+
   input:
   tuple val(sample), path(fq1), path(fq2)
   path reference_index
@@ -102,13 +102,13 @@ process align_reads {
 
 This allows you to process samples in parallel while maintaining consistent metadata and file associations for each sample across all workflow steps.
 
-### Dynamic input selection 
+### Dynamic input selection
 
-In Nextflow allows workflows to intelligently handle variable inputs, making them adaptable to different scenarios. This is especially useful when your input data or conditions change across runs, for example checking if a resource like a database or index already exists. If it does, the workflow uses it directly. If not, it dynamically runs a process to generate or download the resource. 
+In Nextflow allows workflows to intelligently handle variable inputs, making them adaptable to different scenarios. This is especially useful when your input data or conditions change across runs, for example checking if a resource like a database or index already exists. If it does, the workflow uses it directly. If not, it dynamically runs a process to generate or download the resource.
 
 #### *Use case: dynamically selecting to run a process*
 
-Consider a scenario where we need to check if the Kraken2 database exists and either use the existing file or download/build it if it’s missing. 
+Consider a scenario where we need to check if the Kraken2 database exists and either use the existing file or download/build it if it’s missing.
 
 ```default
 if (params.kraken_db) {
@@ -164,12 +164,12 @@ sample4,liver,sample4_liver_1.fq,sample4_liver_2.fq
 sample5,kidney,sample5_kidney_1.fq,sample5_kidney_2.fq
 ```
 
-The channel for this samplesheet structure: 
+The channel for this samplesheet structure:
 
 ```default
 samplesheet = Channel.fromPath('samples.csv')
               .splitCsv(header: true)
-              .map { row -> tuple(row.tissue_type, 
+              .map { row -> tuple(row.tissue_type,
                             tuple(row.sample, row.fq1, row.fq2)) }
               .groupTuple()
 ```
@@ -205,15 +205,15 @@ This ensures correct association between tissue, sample, and paired-end files fo
 
 ### Skipping empty or optional data
 
-The [`ifEmpty`](https://www.nextflow.io/docs/latest/operator.html#ifempty) operator allows us to define a fallback channel if the original channel is empty. This is helpful when working with optional outputs (as specified in the `output:` block, using `optional: true`). 
+The [`ifEmpty`](https://www.nextflow.io/docs/latest/operator.html#ifempty) operator allows us to define a fallback channel if the original channel is empty. This is helpful when working with optional outputs (as specified in the `output:` block, using `optional: true`).
 
 #### *Use case: conditionally outputting results from a process*
 
 In workflows, you may need to handle cases where processes generate optional outputs. In this case, Plassembler outputs plasmid detection files, but not all samples will contain plasmids. To manage this, you can combine optional outputs with `ifEmpty` to control what gets passed downstream.
 
-Key steps: 
+Key steps:
 
-- Run plassembler to detect plasmids. 
+- Run plassembler to detect plasmids.
 - Use `ifEmpty` to handle cases where plasmids `.fasta` is empty or missing.
 - Use `optional: true` for downstream processes (e.g. Bakta) that depend on plasmid detection
 
@@ -223,7 +223,7 @@ process plassembler {
 
   input:
   tuple val(barcode), path(trimmed_fq), path(flye_assembly)
-  path plassembler_db 
+  path plassembler_db
 
   output:
   tuple val(barcode), path("plassembler/plasmids.fasta"), optional: true
@@ -241,13 +241,13 @@ process plassembler {
 }
 ```
 
-Now, we can define the `bakta_plasmids` input channel as: 
+Now, we can define the `bakta_plasmids` input channel as:
 
 ```default
 bakta_plasmid = plassembler.out.plassembler_fasta.ifEmpty([])
 ```
 
 - `bakta_plasmid` channel will receive the output from the Plassembler process.
-- `ifEmpty([])` ensures that if no plasmid `.fasta` file is generated, an empty list [] is passed instead. 
+- `ifEmpty([])` ensures that if no plasmid `.fasta` file is generated, an empty list [] is passed instead.
 
 This channel can now be used as input to downstream processes, like Bakta, with conditional execution based on whether plasmids were detected.

@@ -4,42 +4,42 @@ from: markdown+emoji
 ---
 
 <br>
-We developed a [template-nf](https://github.com/Sydney-Informatics-Hub/template-nf) to aid beginners in developing their own Nextflow workflows. Here, we guide you through how to use our workflow template to develop your own Nextflow pipelines. 
+We developed a [template-nf](https://github.com/Sydney-Informatics-Hub/template-nf) to aid beginners in developing their own Nextflow workflows. Here, we guide you through how to use our workflow template to develop your own Nextflow pipelines.
 
-[Nextflow](https://www.nextflow.io/) is open source and scalable workflow management software for bioinformatics. It enables the development and running of integrated, reproducible workflows consisting of multiple processes, various environment management systems, scripting languages, and software packages. 
+[Nextflow](https://www.nextflow.io/) is open source and scalable workflow management software for bioinformatics. It enables the development and running of integrated, reproducible workflows consisting of multiple processes, various environment management systems, scripting languages, and software packages.
 
-While Nextflow is designed to have a minimal learning curve, its extensive capabilities, use of Groovy syntax, and comprehensive documentation can be overwhelming for users who aren't well versed in programming and software development.  
+While Nextflow is designed to have a minimal learning curve, its extensive capabilities, use of Groovy syntax, and comprehensive documentation can be overwhelming for users who aren't well versed in programming and software development.
 
-This user guide is under active development and will be updated progressively. 
+This user guide is under active development and will be updated progressively.
 <br>
 <br>
 
 ### Who is [template-nf](https://github.com/Sydney-Informatics-Hub/template-nf) for?
 
-Our Nextflow template is suitable for: 
+Our Nextflow template is suitable for:
 
-* Nextflow newcomers looking for a low barrier to entry, structured starting point, and guidance. 
-* Custom workflow developers looking for a simple scaffold which can be extended and modified as needed. 
-* Collaborative teams looking for a standard and consistent workflow code base structure. 
-* Scalable workflow developers looking for a scalable and reproducible solution for their data analysis and processing needs. 
+* Nextflow newcomers looking for a low barrier to entry, structured starting point, and guidance.
+* Custom workflow developers looking for a simple scaffold which can be extended and modified as needed.
+* Collaborative teams looking for a standard and consistent workflow code base structure.
+* Scalable workflow developers looking for a scalable and reproducible solution for their data analysis and processing needs.
 
-It is *not* suitable for: 
+It is *not* suitable for:
 
-* Those wishing to create and contribute to public nf-core workflows, as it is not nf-core compatible. 
-* Those creating simple or single-task workflows with only a few tasks and minimal complexity. 
-* Those needing to rapidly prototype a workflow or perform exploratory analysis. 
-* Those with no previous command-line and bash experience. 
+* Those wishing to create and contribute to public nf-core workflows, as it is not nf-core compatible.
+* Those creating simple or single-task workflows with only a few tasks and minimal complexity.
+* Those needing to rapidly prototype a workflow or perform exploratory analysis.
+* Those with no previous command-line and bash experience.
 
-### Getting started 
+### Getting started
 
-Get a feel for the template and how to use it with the in-built demo workflow and our [tutorial](./notebooks/demo.qmd). 
+Get a feel for the template and how to use it with the in-built demo workflow and our [tutorial](./notebooks/demo.qmd).
 
 ::: {.callout-important}
 ## **Attention newcomers!**
-If you are new to this template and/or Nextflow, we recommend you do the following before applying the template to your own workflow: 
+If you are new to this template and/or Nextflow, we recommend you do the following before applying the template to your own workflow:
 
-1. Familiarise yourself with Nextflow 
-2. Clone the template repository 
+1. Familiarise yourself with Nextflow
+2. Clone the template repository
 3. Explore the template structure
 :::
 
@@ -48,11 +48,11 @@ If you are new to this template and/or Nextflow, we recommend you do the followi
 1. [Tutorial](./notebooks/demo.qmd)
 2. [How-to guide](./notebooks/how-to.qmd)
 3. [Template components](./notebooks/components.qmd)
-4. [Best practices](./notebooks/best-practices.qmd) 
+4. [Best practices](./notebooks/best-practices.qmd)
 5. [Supporting resources](./notebooks/resources.qmd)
 <br>
 <br>
 
 ### Acknowledgements
 
-Template-nf and accompanying materials were developed by the Sydney Informatics Hub, University of Sydney in partnership with the Australian BioCommons (NCRIS via Bioplatforms Australia). 
+Template-nf and accompanying materials were developed by the Sydney Informatics Hub, University of Sydney in partnership with the Australian BioCommons (NCRIS via Bioplatforms Australia).
